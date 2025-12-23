@@ -2,7 +2,7 @@
 
 <p class="badge">SETUP GUIDES • BEST PRACTICES • USER ROLLOUT</p>
 
-# Everything you need to deploy Vesper Secure in your environment
+# Everything you need to deploy Vesper Secure in your environment  
 
 This documentation is your step-by-step playbook for getting Vesper configured, connected to your firewall, and rolled out to your users—fast. Follow the guides below and you'll be live in minutes.
 
