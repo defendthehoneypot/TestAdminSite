@@ -4,7 +4,7 @@
 
 This repository contains the documentation for TestAdminSite, a development site mimicking cybersecurity documentation similar to VesperSecure.
 
-## 🚀 Quick Start
+## 🚀 Quick Start  
 
 ### Prerequisites
 - Python 3.8 or higher
