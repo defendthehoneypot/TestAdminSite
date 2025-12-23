@@ -1,3 +1,78 @@
-site_name: Vesper Secure Documentation
-theme:  
-  name: material 
+site_name: VESPER SECURE
+site_description: Secure VPN Defense and Access Control Documentation
+site_author: TestAdminSite Team
+site_url: https://defendthehoneypot.github.io/TestAdminSite/
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: cyan
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: cyan
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.instant
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+  icon:
+    logo: material/shield-lock-outline
+  favicon: material/shield-lock-outline
+  font:
+    text: Inter
+    code: Roboto Mono
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - Admin Setup: admin-setup.md
+  - User Instructions: user-instructions.md
+  - Resources:
+      - FAQ: resources/faq.md
+      - Best Practices: resources/best-practices.md
+      - Troubleshooting: resources/troubleshooting.md
+  - About: about.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+plugins:
+  - search
+  - tags
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/defendthehoneypot/TestAdminSite

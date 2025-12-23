@@ -1,0 +1,189 @@
+# Best Practices
+
+## Deployment
+
+### Planning
+
+- **Start small**: Pilot with a small group before full rollout
+- **Test thoroughly**: Validate EDL integration with test accounts
+- **Communication**: Clearly explain the process to users beforehand
+- **Backup access**: Maintain static IP allow-list for critical admins
+
+### Rollout Strategy
+
+1. **Week 1**: Configure Vesper and integrate with firewall
+2. **Week 2**: Pilot with IT team (10-20 users)
+3. **Week 3**: Expand to early adopters (50-100 users)
+4. **Week 4+**: Full organization rollout
+
+## Configuration
+
+### Authentication
+
+!!! success "Recommended"
+    Use Microsoft Entra ID integration for automatic user provisioning and SSO.
+
+### Approval Policies
+
+**For trusted organizations:**
+- Auto-approve permanent locations
+- Require review for temporary locations
+
+**For high-security environments:**
+- Require admin approval for all requests
+- Enable MFA for access portal
+- Restrict to specific countries
+
+### EDL Refresh Interval
+
+- **5 minutes**: Responsive access, higher firewall load
+- **15 minutes**: Balanced approach (recommended)
+- **1 hour**: Lower load, slower access grants
+
+## Security
+
+### Firewall Configuration
+
+✅ **Do:**
+- Place Vesper allow rules above deny rules
+- Log both allowed and denied attempts
+- Enable alerts for EDL update failures
+- Test policy ordering regularly
+
+❌ **Don't:**
+- Rely solely on Vesper without fallback
+- Ignore EDL update failures
+- Mix Vesper IPs with other allow lists
+
+### Access Management
+
+- **Review regularly**: Audit registered locations monthly
+- **Remove promptly**: Delete locations for departed employees
+- **Monitor patterns**: Watch for unusual access requests
+- **Enforce expiration**: Set reasonable temporary durations
+
+## User Experience
+
+### Documentation
+
+- Share [User Instructions](../user-instructions.md) page during onboarding
+- Include link in VPN setup guides
+- Add to IT knowledge base
+- Send reminder emails before travel periods
+
+### Support
+
+- Train helpdesk on common issues
+- Monitor requests during initial rollout
+- Be available for questions
+- Collect feedback and iterate
+
+### Communication Templates
+
+**Initial announcement:**
+```
+Subject: New: VPN Access Registration Required
+
+Starting [date], you'll need to register your location 
+before using VPN. This quick one-time setup takes less 
+than a minute.
+
+Visit: [link to user instructions]
+Questions? Contact IT support.
+```
+
+**Pre-travel reminder:**
+```
+Subject: Traveling? Register Your Location First
+
+Planning to work remotely? Register your new location 
+before connecting to VPN:
+
+1. Visit access.vespersecure.com
+2. Log in and choose "Temporary"
+3. Wait 5 minutes, then connect
+
+Takes less than a minute!
+```
+
+## Monitoring
+
+### Daily Checks
+
+- Review pending approval requests
+- Check EDL update status
+- Monitor firewall deny logs for patterns
+
+### Weekly Reviews
+
+- Analyze temporary location usage
+- Identify users needing assistance
+- Review denial patterns
+
+### Monthly Audits
+
+- Audit user list vs. employee roster
+- Review and update policies
+- Check EDL credential rotation schedule
+- Analyze usage trends
+
+## Troubleshooting
+
+### Proactive Monitoring
+
+Set up alerts for:
+- EDL update failures (critical)
+- High rate of denied requests (investigate)
+- Unusual access patterns (security)
+- Failed login attempts (support)
+
+### Common Issues Prevention
+
+**EDL connectivity:**
+- Test EDL URL monthly
+- Monitor firewall outbound HTTPS
+- Keep credentials current
+
+**User confusion:**
+- Clear documentation
+- Training for common scenarios
+- Helpdesk scripts
+
+## Compliance
+
+### Audit Requirements
+
+Vesper provides logs for:
+- All access requests (with timestamps)
+- Approval/denial decisions
+- Location types and durations
+- Admin actions
+
+Export logs regularly for compliance retention.
+
+### Data Privacy
+
+- Document what data Vesper collects
+- Include in privacy policy
+- Ensure users are informed
+- Follow data retention policies
+
+## Performance
+
+### Optimization
+
+- Use appropriate EDL refresh interval
+- Limit temporary duration to actual needs
+- Expire old permanent locations
+- Keep user list current
+
+### Scalability
+
+Vesper scales automatically, but consider:
+- Firewall EDL size limits
+- Network bandwidth for EDL updates
+- Admin workload for manual approvals
+
+---
+
+[Back to Home](../index.md) • [Admin Setup](../admin-setup.md) • [FAQ](faq.md)
