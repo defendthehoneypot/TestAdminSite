@@ -1,5 +1,5 @@
-site_name: TestAdminSite
-site_description: A development MkDocs site for testing and documentation
+site_name: VESPER SECURE
+site_description: Secure VPN Defense and Access Control Documentation
 site_author: TestAdminSite Team
 site_url: https://defendthehoneypot.github.io/TestAdminSite/
 
@@ -7,14 +7,14 @@ theme:
   name: material
   palette:
     - scheme: default
-      primary: indigo
-      accent: indigo
+      primary: cyan
+      accent: cyan
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: cyan
+      accent: cyan
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
@@ -23,22 +23,32 @@ theme:
     - navigation.sections
     - navigation.expand
     - navigation.top
+    - navigation.instant
+    - navigation.tracking
     - search.suggest
     - search.highlight
+    - search.share
     - content.tabs.link
     - content.code.annotation
     - content.code.copy
+  icon:
+    logo: material/shield-lock-outline
+  favicon: material/shield-lock-outline
+  font:
+    text: Inter
+    code: Roboto Mono
+
+extra_css:
+  - stylesheets/extra.css
 
 nav:
   - Home: index.md
-  - Getting Started: getting-started.md
-  - Documentation:
-      - Overview: documentation/overview.md
-      - Installation: documentation/installation.md
-      - Configuration: documentation/configuration.md
-  - Development:
-      - Setup: development/setup.md
-      - Contributing: development/contributing.md
+  - Admin Setup: admin-setup.md
+  - User Instructions: user-instructions.md
+  - Resources:
+      - FAQ: resources/faq.md
+      - Best Practices: resources/best-practices.md
+      - Troubleshooting: resources/troubleshooting.md
   - About: about.md
 
 markdown_extensions:

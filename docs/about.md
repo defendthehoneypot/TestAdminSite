@@ -1,17 +1,17 @@
-# About TestAdminSite
+# About Vesper Secure Documentation
 
 ## Overview
 
-**TestAdminSite** is a development MkDocs site created for testing, documenting, and demonstrating administrative tools and workflows. This site serves as a template and learning resource for creating documentation with MkDocs.
+This documentation site mimics the VesperSecure documentation design for testing and demonstration purposes. It showcases a clean, modern documentation layout focused on security and VPN access control.
 
 ## Purpose
 
-This project was created to:
+This site demonstrates:
 
-- **Demonstrate MkDocs**: Show how to set up and configure a modern documentation site
-- **Provide Templates**: Offer reusable documentation templates
-- **Test Features**: Experiment with MkDocs features and plugins
-- **Share Knowledge**: Document best practices for technical writing
+- **Modern Documentation Design**: Clean, card-based layout with Tailwind-inspired styling
+- **Two-Page Structure**: Simple admin and user-focused documentation
+- **Security Focus**: Documentation for VPN defense and access control
+- **Material for MkDocs**: Customized theme matching VesperSecure aesthetics
 
 ## Technology Stack
 
@@ -20,7 +20,7 @@ This documentation site is built with:
 - **[MkDocs](https://www.mkdocs.org/)**: Static site generator focused on documentation
 - **[Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)**: Modern, feature-rich theme
 - **[Python-Markdown Extensions](https://facelessuser.github.io/pymdown-extensions/)**: Enhanced Markdown features
-- **[Python](https://www.python.org/)**: Programming language powering MkDocs
+- **Custom CSS**: Tailwind-inspired styling matching VesperSecure design
 
 ## Features
 
@@ -30,17 +30,16 @@ This documentation site is built with:
 - ✅ **Dark/Light Mode**: Toggle between color schemes
 - ✅ **Search Functionality**: Fast, client-side search
 - ✅ **Syntax Highlighting**: Beautiful code blocks
-- ✅ **Navigation**: Intuitive menu structure
-- ✅ **Mobile-Friendly**: Optimized for mobile devices
+- ✅ **Card-Based Layout**: Modern UI with cards and badges
+- ✅ **Cyan Color Scheme**: VesperSecure brand colors
 
 ### Content Features
 
-- 📝 **Markdown Support**: Easy content creation
-- 💻 **Code Examples**: Syntax-highlighted code blocks
+- 📝 **Admin Setup Guide**: Complete configuration documentation
+- 👥 **User Instructions**: Simple step-by-step for end users
 - 📋 **Admonitions**: Note, warning, and tip boxes
-- 🏷️ **Tags**: Organize content with tags
-- 🔗 **Cross-References**: Link between pages
-- 😀 **Emoji Support**: Express with emojis
+- 💻 **Code Examples**: Firewall configuration samples
+- 🔗 **External Links**: Integration with admin panel and homepage
 
 ## Project Structure
 
@@ -48,34 +47,30 @@ This documentation site is built with:
 TestAdminSite/
 ├── docs/                      # Documentation source
 │   ├── index.md              # Homepage
-│   ├── getting-started.md    # Getting started guide
-│   ├── documentation/        # Documentation section
-│   │   ├── overview.md
-│   │   ├── installation.md
-│   │   └── configuration.md
-│   ├── development/          # Development guides
-│   │   ├── setup.md
-│   │   └── contributing.md
+│   ├── admin-setup.md        # Administrator guide
+│   ├── user-instructions.md  # End user guide
+│   ├── resources/            # Additional resources
+│   │   ├── faq.md
+│   │   ├── best-practices.md
+│   │   └── troubleshooting.md
+│   ├── stylesheets/         # Custom CSS
+│   │   └── extra.css
 │   └── about.md              # This page
 ├── mkdocs.yml                # Configuration file
 ├── requirements.txt          # Python dependencies
 └── README.md                 # Project README
 ```
 
-## Contributing
+## Design Inspiration
 
-We welcome contributions from the community! Whether you want to:
+This site mimics [VesperSecure Documentation](https://docs.vespersecure.com) which features:
 
-- Fix typos or improve documentation
-- Add new features or examples
-- Report bugs or issues
-- Suggest improvements
-
-Please see our [Contributing Guide](development/contributing.md) for details on how to get started.
-
-## License
-
-This project is open source and available for anyone to use, modify, and distribute. Please check the repository for specific license information.
+- Orbitron font for branding
+- Inter font for body text
+- Cyan and slate color palette
+- Soft glows and rounded corners
+- Card-based content layout
+- Step-by-step deployment guides
 
 ## Maintainers
 
@@ -90,25 +85,8 @@ Special thanks to:
 
 - The [MkDocs](https://www.mkdocs.org/) team for the excellent documentation tool
 - The [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) theme creators
-- All contributors who help improve this project
+- VesperSecure for design inspiration
 - The open-source community
-
-## Version History
-
-### Current Version
-
-- Initial release with complete MkDocs setup
-- Comprehensive documentation structure
-- Material theme with dark/light mode
-- Search functionality
-- Responsive design
-
-### Future Plans
-
-- Additional documentation sections
-- More examples and tutorials
-- Enhanced customization options
-- Community contributions
 
 ## Learn More
 
@@ -119,17 +97,8 @@ To learn more about the technologies used:
 - [Python-Markdown](https://python-markdown.github.io/)
 - [Markdown Guide](https://www.markdownguide.org/)
 
-## Contact
-
-For questions, feedback, or support:
-
-1. Check the [documentation](documentation/overview.md)
-2. Review [existing issues](https://github.com/defendthehoneypot/TestAdminSite/issues)
-3. Open a new issue if needed
-4. Join the community discussions
-
 ---
 
 *Built with ❤️ using MkDocs and Material theme*
 
-*Last updated: December 2025*
+*Mimicking VesperSecure design • December 2025*

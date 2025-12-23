@@ -1,0 +1,290 @@
+/* VesperSecure Documentation Style */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap');
+
+:root {
+  /* VesperSecure Color Palette */
+  --md-primary-fg-color: #0891b2; /* cyan-600 */
+  --md-primary-fg-color--light: #06b6d4; /* cyan-500 */
+  --md-primary-fg-color--dark: #0e7490; /* cyan-700 */
+  --md-accent-fg-color: #0891b2;
+  
+  /* Background colors matching VesperSecure */
+  --md-default-bg-color: #f8fafc; /* slate-50 */
+  --md-default-fg-color: #0f172a; /* slate-900 */
+  
+  /* Fonts */
+  --md-text-font: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --md-code-font: "Roboto Mono", monospace;
+}
+
+/* Brand font for headers */
+.md-header__title,
+h1, h2, h3 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+/* Body text */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(to bottom right, #f8fafc, #ffffff, #f1f5f9);
+}
+
+/* Header styling to match VesperSecure */
+.md-header {
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+  box-shadow: none;
+}
+
+.md-header__title {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Soft glow effect for brand */
+.md-header__title .md-header__ellipsis {
+  text-shadow: 0 0 1px rgba(6, 182, 212, 0.35);
+}
+
+/* Cards styling */
+.md-typeset .grid.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.md-typeset .grid.cards > a,
+.md-typeset .grid.cards > div {
+  border: 1px solid #e2e8f0;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  background: white;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.md-typeset .grid.cards > a:hover,
+.md-typeset .grid.cards > div:hover {
+  border-color: #67e8f9;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  transform: translateY(-2px);
+}
+
+/* Step cards */
+.md-typeset .step-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  background: white;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  margin-bottom: 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.md-typeset .step-card:hover {
+  border-color: #67e8f9;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  transform: translateY(-2px);
+}
+
+.md-typeset .step-card h3 {
+  color: #0f172a;
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-top: 0.5rem;
+}
+
+.md-typeset .step-card:hover h3 {
+  color: #0e7490;
+}
+
+/* Badge styles */
+.md-typeset .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid #a5f3fc;
+  background: #ecfeff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #155e75;
+}
+
+/* Hero section */
+.md-typeset .hero {
+  border: 1px solid #e2e8f0;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  background: white;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  margin: 2rem 0;
+}
+
+/* Number badges for steps */
+.md-typeset .step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid #a5f3fc;
+  background: #ecfeff;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: #0e7490;
+}
+
+/* Icon badges */
+.md-typeset .icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid #a5f3fc;
+  background: #ecfeff;
+  border-radius: 1rem;
+  font-size: 1.25rem;
+  color: #0e7490;
+}
+
+/* Button styles */
+.md-typeset .md-button {
+  border-radius: 1rem;
+  padding: 0.625rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.md-typeset .md-button--primary {
+  background: #ecfeff;
+  border-color: #67e8f9;
+  color: #155e75;
+}
+
+.md-typeset .md-button--primary:hover {
+  background: #cffafe;
+  border-color: #22d3ee;
+}
+
+/* Content area */
+.md-content {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+/* Navigation tabs */
+.md-tabs {
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+}
+
+/* Admonitions */
+.md-typeset .admonition {
+  border-radius: 1rem;
+  border-left-width: 0;
+  border: 1px solid #e2e8f0;
+}
+
+.md-typeset .admonition.note {
+  border-color: #a5f3fc;
+  background-color: #ecfeff;
+}
+
+.md-typeset .admonition.tip {
+  border-color: #86efac;
+  background-color: #dcfce7;
+}
+
+.md-typeset .admonition.warning {
+  border-color: #fde047;
+  background-color: #fef9c3;
+}
+
+/* Code blocks */
+.md-typeset code {
+  border-radius: 0.375rem;
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+}
+
+.md-typeset pre > code {
+  border-radius: 0.75rem;
+}
+
+/* Links */
+.md-typeset a {
+  color: #0891b2;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.md-typeset a:hover {
+  color: #0e7490;
+}
+
+/* Tables */
+.md-typeset table:not([class]) {
+  border-radius: 0.75rem;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+
+.md-typeset table:not([class]) th {
+  background-color: #f8fafc;
+  font-weight: 600;
+}
+
+/* Footer */
+.md-footer {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: #64748b;
+}
+
+/* Search */
+.md-search__form {
+  border-radius: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #e2e8f0;
+}
+
+/* Dark mode adjustments */
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: #0f172a;
+  --md-default-fg-color: #f8fafc;
+  --md-primary-fg-color: #22d3ee;
+}
+
+[data-md-color-scheme="slate"] body {
+  background: linear-gradient(to bottom right, #0f172a, #1e293b, #334155);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .grid.cards > a,
+[data-md-color-scheme="slate"] .md-typeset .grid.cards > div,
+[data-md-color-scheme="slate"] .md-typeset .step-card,
+[data-md-color-scheme="slate"] .md-typeset .hero {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+[data-md-color-scheme="slate"] .md-header,
+[data-md-color-scheme="slate"] .md-tabs {
+  background-color: rgba(15, 23, 42, 0.7);
+  border-color: rgba(51, 65, 85, 0.7);
+}
