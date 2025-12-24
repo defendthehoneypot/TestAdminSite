@@ -1,17 +1,37 @@
 # Frequently Asked Questions
 
+Common questions about Vesper Secure for administrators and general information.
+
+---
+
 ## General Questions
 
 ### What is Vesper Secure?
 
-Vesper Secure is a VPN defense and access control solution that verifies user locations before allowing VPN access. It uses External Dynamic Lists (EDL) to automatically update firewall rules based on verified user locations.
+Vesper Secure is a dynamic IP list management system that serves approved IP addresses via a web service for firewall ACL ingestion. Users register their locations, administrators approve them, and firewalls automatically update access control lists based on the approved IP list.
 
 ### How does it work?
 
 1. Users register their location through the access portal
-2. Vesper verifies the location and adds the IP to the approved list
-3. Your firewall pulls this list and allows traffic from approved IPs only
-4. Unregistered locations are automatically blocked
+2. Administrators review and approve requests
+3. Approved IPs are added to the External Dynamic List (EDL)
+4. Your firewall polls the EDL and automatically updates ACLs
+5. Only approved IPs can access protected resources
+
+### What makes Vesper Secure different from static IP lists?
+
+**Static IP Lists:**
+- Manual updates required
+- Error-prone
+- Slow to add/remove access
+- No self-service for users
+
+**Vesper Secure:**
+- Automatic firewall updates
+- Self-service user registration
+- Approval workflows
+- Audit logs and compliance
+- Temporary access management
 
 ## For Administrators
 
@@ -38,15 +58,23 @@ You can manually approve requests instantly in the admin panel, or maintain a ba
 
 ## For End Users
 
+### How do I register my location?
+
+See the [User Guide](../user/get-ip-added.md) for detailed instructions. Quick version:
+1. Visit [access.vespersecure.com](https://access.vespersecure.com){:target="_blank"}
+2. Log in with corporate credentials
+3. Choose Permanent or Temporary
+4. Wait 5 minutes for approval
+
 ### Do I need to register every time I connect?
 
 No - only when you're in a new location:
-- **Permanent locations** (home, office): Register once, works forever
-- **Temporary locations** (hotel, coffee shop): Register each time
+- **Permanent locations** (home, office): Register once, works indefinitely
+- **Temporary locations** (hotel, coffee shop): Register each time, expires after configured duration
 
 ### What if I forget to register before traveling?
 
-Just visit access.vespersecure.com from your new location, complete the registration, and wait 5 minutes.
+Just visit [access.vespersecure.com](https://access.vespersecure.com){:target="_blank"} from your new location, complete the registration, and wait 5 minutes. See the [User Guide](../user/index.md) for more details.
 
 ### Can I use this on mobile devices?
 
@@ -54,9 +82,16 @@ Yes! The access portal works on phones and tablets.
 
 ### Who do I contact for help?
 
-Contact your organization's admin - they can troubleshoot and escalate to Vesper support if needed.
+**End users:** Contact your organization's IT administrator
 
-## Technical Questions
+**Administrators:** 
+- Check the [Troubleshooting Guide](troubleshooting.md)
+- Contact Vesper support at support@vespersecure.com
+- Submit ticket via admin panel
+
+---
+
+[Back to Home](../index.md) • [Administrator Guide](../admin/index.md) • [User Guide](../user/index.md)
 
 ### What information is collected?
 
@@ -80,4 +115,4 @@ Yes! Users can have multiple permanent locations and register temporary location
 
 ---
 
-[Back to Home](../index.md) • [Admin Setup](../admin-setup.md) • [User Instructions](../user-instructions.md)
+[Back to Home](../index.md) • [Administrator Guide](../admin/index.md) • [User Guide](../user/index.md)
