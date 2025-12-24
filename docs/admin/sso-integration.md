@@ -183,16 +183,16 @@ If you don't use EntraID, Google, or Okta, you can manually manage users:
 
 After configuring SSO:
 
-1. **[Set up Firewall Integration](firewall-integration.md)** - Connect your firewall to the EDL
-2. **[Configure User Management](user-management.md)** - Set up approval workflows
+1. **[Set up Firewall Integration](./firewall-integration.md)** - Connect your firewall to the EDL
+2. **[Configure User Management](./user-management.md)** - Set up monitoring workflows
 3. Test with a pilot user group
 
 ---
 
 ## Additional Resources
 
-- [Back to Administrator Guide](index.md)
-- [Setup & Configuration](setup.md)
+- [Back to Administrator Guide](./index.md)
+- [Setup & Configuration](./setup.md)
 - [Troubleshooting Guide](../resources/troubleshooting.md)
 
 ---

@@ -8,15 +8,15 @@ Common questions about Vesper Secure for administrators and general information.
 
 ### What is Vesper Secure?
 
-Vesper Secure is a dynamic IP list management system that serves approved IP addresses via a web service for firewall ACL ingestion. Users register their locations, administrators approve them, and firewalls automatically update access control lists based on the approved IP list.
+Vesper Secure is a dynamic IP list management system that serves registered IP addresses via a web service for firewall ACL ingestion. Users register their locations, IPs are automatically added to the list, and firewalls automatically update access control lists based on the registered IP list.
 
 ### How does it work?
 
 1. Users register their location through the access portal
-2. Administrators review and approve requests
-3. Approved IPs are added to the External Dynamic List (EDL)
-4. Your firewall polls the EDL and automatically updates ACLs
-5. Only approved IPs can access protected resources
+2. IPs are automatically added to the External Dynamic List (EDL)
+3. Your firewall polls the EDL and automatically updates ACLs
+4. Administrators can monitor and revoke access if needed
+5. Only registered IPs can access protected resources
 
 ### What makes Vesper Secure different from static IP lists?
 
@@ -29,7 +29,7 @@ Vesper Secure is a dynamic IP list management system that serves approved IP add
 **Vesper Secure:**
 - Automatic firewall updates
 - Self-service user registration
-- Approval workflows
+- Automatic IP addition to EDL
 - Audit logs and compliance
 - Temporary access management
 
@@ -48,23 +48,23 @@ Vesper Secure works with any firewall that supports External Dynamic Lists (EDL)
 
 You can configure the refresh interval on your firewall. We recommend 5 minutes for responsive access, or hourly for reduced load.
 
-### Can I auto-approve requests?
+### How can admins monitor registrations?
 
-Yes! You can configure automatic approval for permanent locations, temporary locations, or both in the admin panel settings.
+Administrators can monitor all registrations through the admin panel and receive alerts for new registrations or unusual patterns. They can revoke access at any time if needed.
 
 ### How do I handle emergency access?
 
-You can manually approve requests instantly in the admin panel, or maintain a backup static IP allow-list for critical admin users.
+Users can register immediately through the portal. If you need faster access than the normal firewall refresh interval, you can force a firewall refresh manually (if your firewall supports it), or maintain a backup static IP allow-list for critical admin users.
 
 ## For End Users
 
 ### How do I register my location?
 
 See the [User Guide](../user/get-ip-added.md) for detailed instructions. Quick version:
-1. Visit [access.vespersecure.com](https://access.vespersecure.com){:target="_blank"}
+1. Visit [access.vespersecure.com](https://access.vespersecure.com)
 2. Log in with corporate credentials
 3. Choose Permanent or Temporary
-4. Wait 5 minutes for approval
+4. Wait for firewall refresh (typically 5-60 minutes)
 
 ### Do I need to register every time I connect?
 

@@ -8,15 +8,15 @@ Common questions from end users about using Vesper Secure.
 
 ### What is Vesper Secure?
 
-Vesper Secure is a system that manages which IP addresses can access your organization's VPN and protected resources. It ensures only approved locations can connect.
+Vesper Secure is a system that manages which IP addresses can access your organization's VPN and protected resources. It ensures only registered locations can connect.
 
 ### Why do I need to register?
 
-Your organization uses Vesper Secure to control VPN access. Before you can connect from a new location, that location's IP address must be approved.
+Your organization uses Vesper Secure to control VPN access. Before you can connect from a new location, you need to register that location's IP address.
 
 ### How long does registration take?
 
-The registration itself takes less than 1 minute. After submitting, wait up to 5 minutes for approval and system updates before trying to connect to VPN.
+The registration itself takes less than 1 minute. After submitting, your IP is immediately added to the list. You'll need to wait for your firewall to refresh (typically 5-60 minutes) before you can connect to VPN.
 
 ---
 
@@ -24,13 +24,13 @@ The registration itself takes less than 1 minute. After submitting, wait up to 5
 
 ### How do I register my location?
 
-1. Visit [access.vespersecure.com](https://access.vespersecure.com){:target="_blank"}
+1. Visit [access.vespersecure.com](https://access.vespersecure.com)
 2. Log in with your corporate credentials
 3. Choose Permanent or Temporary
-4. Submit your request
-5. Wait 5 minutes
+4. Submit your registration
+5. Wait for firewall refresh (typically 5-60 minutes)
 
-[See detailed instructions](get-ip-added.md)
+[See detailed instructions](./get-ip-added.md)
 
 ### When should I choose "Permanent"?
 
@@ -70,16 +70,16 @@ Yes! You can have multiple permanent locations and register temporary ones as ne
 
 Register each new location as Temporary before connecting to VPN:
 1. Arrive at new location
-2. Register at [access.vespersecure.com](https://access.vespersecure.com){:target="_blank"}
-3. Wait 5 minutes
+2. Register at [access.vespersecure.com](https://access.vespersecure.com)
+3. Wait for firewall refresh (typically 5-60 minutes)
 4. Connect to VPN
 
 ### What if I forgot to register before leaving?
 
 Register from your current location:
-1. Visit [access.vespersecure.com](https://access.vespersecure.com){:target="_blank"} 
+1. Visit [access.vespersecure.com](https://access.vespersecure.com) 
 2. Register as Temporary
-3. Wait 5 minutes
+3. Wait for firewall refresh (typically 5-60 minutes)
 4. Connect
 
 ### What if I moved to a new home?
@@ -92,13 +92,14 @@ Register your new address as Permanent. Your administrator will eventually remov
 
 ### I registered but still can't connect
 
-**Wait the full 5 minutes** - The system needs time to update.
+**Wait for the firewall to refresh** - This typically takes 5-60 minutes depending on your organization's configuration.
 
 **Still not working?**
 1. Disconnect and reconnect VPN
 2. Check your internet connection
 3. Verify you're at the location you registered
-4. Contact your IT administrator
+4. Verify your IP hasn't changed
+5. Contact your IT administrator
 
 ### My VPN was working, now it's not
 
@@ -127,17 +128,17 @@ Register your new address as Permanent. Your administrator will eventually remov
 
 **Still having issues?** Contact your IT administrator.
 
-### What if my request is denied?
+### What if my location is revoked?
 
 1. You'll receive a notification with the reason
 2. Contact your IT administrator for clarification
 3. They may ask for more information
-4. Submit a new request if approved
+4. Submit a new registration if approved
 
 ### My temporary access expired
 
 Simply register again:
-1. Visit [access.vespersecure.com](https://access.vespersecure.com){:target="_blank"}
+1. Visit [access.vespersecure.com](https://access.vespersecure.com)
 2. Choose Temporary
 3. Wait 5 minutes
 4. Connect
@@ -184,17 +185,17 @@ Not directly in the user portal. Contact your IT administrator if you need to kn
 
 ## Policy Questions
 
-### Who approves my requests?
+### Who manages my registrations?
 
-Your organization's IT administrator reviews and approves requests. Depending on policies, approval may be automatic.
+Your organization's IT administrator monitors registrations and can revoke access if needed. IPs are automatically added to the list when you register.
 
-### Why was my request denied?
+### Why was my location revoked?
 
 Common reasons:
 - Location appears suspicious (VPN/proxy)
 - Geographic restrictions
 - Account not authorized
-- Additional information needed
+- Security concerns
 
 Contact your IT administrator for specific reasons.
 
@@ -204,7 +205,7 @@ Contact your IT administrator. They can extend the duration if needed.
 
 ### What if I need emergency access?
 
-Contact your IT administrator immediately. They can manually approve your request for faster access.
+Register your location immediately through the portal. If you need faster access than the normal firewall refresh, contact your IT administrator - they may be able to force a firewall refresh.
 
 ---
 

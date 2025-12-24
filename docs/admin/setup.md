@@ -1,18 +1,12 @@
-<div class="hero" markdown>
-
-<p class="badge">ADMINISTRATOR GUIDE</p>
-
 # Setup & Configuration
 
 Initial setup and configuration of Vesper Secure for your organization.
-
-</div>
 
 ---
 
 ## Step 1: Access the Admin Panel
 
-1. Navigate to [app.vespersecure.com](https://app.vespersecure.com){:target="_blank"}
+1. Navigate to [app.vespersecure.com](https://app.vespersecure.com)
 2. Sign in with your administrator credentials
 3. Complete initial setup wizard if this is your first login
 
@@ -20,16 +14,15 @@ Initial setup and configuration of Vesper Secure for your organization.
 
 ## Step 2: Configure Organization Policies
 
-Define how Vesper Secure handles access requests:
+Define how Vesper Secure handles user registrations:
 
 1. Navigate to **Settings** → **Policies**
-2. Configure approval settings:
+2. Configure registration settings:
 
 ```
-□ Auto-approve permanent location requests
-□ Auto-approve temporary location requests  
-□ Require admin approval for all requests
-□ Send notification for new requests
+□ Send notification for new registrations
+□ Enable monitoring alerts for unusual patterns
+□ Restrict registrations to specific countries
 ```
 
 3. Set location settings:
@@ -89,18 +82,16 @@ After completing basic setup:
 
 1. **[Configure SSO Integration](sso-integration.md)** - Connect your identity provider
 2. **[Set up Firewall Integration](firewall-integration.md)** - Add EDL to your firewall
-3. **[Start Managing Users](user-management.md)** - Begin approving access requests
+3. **[Start Managing Users](./user-management.md)** - Begin monitoring user registrations
 
 ---
 
 ## Additional Resources
 
-- [Back to Administrator Guide](index.md)
+- [Back to Administrator Guide](./index.md)
 - [Troubleshooting Guide](../resources/troubleshooting.md)
 - [Best Practices](../resources/best-practices.md)
 
 ---
 
-<p style="text-align: center; color: #64748b; font-size: 0.875rem; margin-top: 2rem;">
-© 2025 Evenstar Security, LLC. All rights reserved.
-</p>
+*© 2025 Evenstar Security, LLC. All rights reserved.*
