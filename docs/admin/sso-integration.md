@@ -1,202 +1,164 @@
-<div class="hero" markdown>
+<p>ADMINISTRATOR GUIDE</p>
 
-<p class="badge">ADMINISTRATOR GUIDE</p>
+# SSO Integration (Microsoft Entra ID)
 
-# SSO Integration
-
-Configure single sign-on with EntraID, Google, or Okta for user authentication.
-
-</div>
+This page describes how to configure Microsoft Entra ID (Azure AD) so your organization can use single sign‑on (SSO) with Vesper Secure.
 
 ---
 
 ## Overview
 
-Vesper Secure supports multiple identity providers for user authentication. SSO integration provides:
+Integrating Entra ID provides:
 
-- **Automatic user provisioning** from your identity provider
-- **Single sign-on** for seamless user experience
-- **Centralized user management** in your existing system
-- **MFA enforcement** from your identity provider
+- Single sign‑on for users
+- Automatic user provisioning (when configured)
+- Group‑based access control
+- Centralized management and MFA enforcement
 
----
-
-## Microsoft Entra ID (Recommended)
-
-### Benefits
-
-- Automatic user provisioning and deprovisioning
-- Group-based access control
-- Single sign-on (SSO) support  
-- Native MFA enforcement
-- Seamless integration with Microsoft 365
-
-### Configuration Steps
-
-1. Go to **Settings** → **Authentication** in the Vesper admin panel
-2. Click **Configure Entra ID**
-3. Enter your Azure AD tenant ID (found in Azure Portal → Azure Active Directory → Overview)
-4. Click **Grant Permissions** and sign in with Global Admin credentials
-5. Grant the requested API permissions when prompted:
-   - `User.Read.All` - Read user profiles
-   - `Group.Read.All` - Read group memberships
-   - `offline_access` - Maintain access
-6. Select which Azure AD groups should have access to Vesper Secure
-7. Click **Save Configuration**
-
-!!! success "Recommended"
-    Entra ID integration provides the best user experience and simplifies administration for Microsoft-based organizations.
-
-### Troubleshooting Entra ID
-
-**Issue: Can't grant permissions**
-
-- Ensure you have Global Administrator or Application Administrator role
-- Check that API permissions are enabled for your tenant
-- Verify no conditional access policies are blocking the grant
-
-**Issue: Users not syncing**
-
-- Verify selected groups contain users
-- Check users have valid email addresses
-- Allow up to 15 minutes for initial sync
-- Check sync logs in **Settings** → **Authentication** → **Sync Status**
+This guide walks through creating an Azure AD application, granting the required permissions, and copying the information into the Vesper Secure admin panel.
 
 ---
 
-## Google Workspace
+## Before you begin
 
-### Benefits
-
-- Integration with Google Workspace
-- Group-based access via Google Groups
-- Single sign-on for Google users
-
-### Configuration Steps
-
-1. Go to **Settings** → **Authentication** in the Vesper admin panel
-2. Click **Configure Google Workspace**
-3. Enter your Google Workspace domain (e.g., `yourcompany.com`)
-4. Click **Authorize with Google** and sign in with Super Admin credentials
-5. Grant the requested OAuth scopes:
-   - View and manage users
-   - View groups
-6. Select which Google Groups should have access
-7. Click **Save Configuration**
-
-### Troubleshooting Google
-
-**Issue: Authorization fails**
-
-- Ensure you have Super Admin role in Google Workspace
-- Check that API access is enabled in Google Workspace Admin Console
-- Verify domain ownership
-
-**Issue: Groups not appearing**
-
-- Ensure groups are visible in the directory
-- Check group membership includes users
-- Refresh the group list after changes
+- You must be a Global Administrator or Application Administrator in your Azure tenant.
+- You will need access to the Vesper Secure admin panel (Settings → Authentication).
+- Keep a browser open to both the Azure portal and the Vesper admin panel for copying IDs and secrets.
 
 ---
 
-## Okta
+## Step 1 — Register an application in Entra ID
 
-### Benefits
+1. Sign in to the Azure Portal: https://portal.azure.com
+2. Go to Azure Active Directory → App registrations → New registration.
+3. Configure:
+   - Name: Vesper Secure (or another descriptive name)
+   - Supported account types: Choose the option that matches your organization (e.g., "Accounts in this organizational directory only").
+   - Redirect URI (optional at this step): set to the URL provided by the Vesper Secure admin panel (for example: https://app.vespersecure.com/auth/azure/callback). If Vesper Secure lists a specific redirect URI, use that exact value.
+4. Click Register.
 
-- Works with Okta identity management
-- Group-based access control
-- Single sign-on via SAML or OIDC
+After registration, note these values from the Overview page:
+- Application (client) ID
+- Directory (tenant) ID
 
-### Configuration Steps
-
-1. Go to **Settings** → **Authentication** in the Vesper admin panel
-2. Click **Configure Okta**
-3. Enter your Okta domain (e.g., `yourcompany.okta.com`)
-4. Choose authentication method:
-   - **OIDC** (recommended) - OAuth 2.0 / OpenID Connect
-   - **SAML** - SAML 2.0 federation
-5. For OIDC:
-   - Enter your Okta Client ID
-   - Enter your Okta Client Secret
-   - Click **Test Connection**
-6. For SAML:
-   - Download the metadata XML from Okta
-   - Upload it to Vesper Secure
-7. Select which Okta groups should have access
-8. Click **Save Configuration**
-
-### Troubleshooting Okta
-
-**Issue: Connection test fails**
-
-- Verify Client ID and Secret are correct
-- Check Okta application is assigned to users
-- Ensure redirect URI is configured in Okta
-
-**Issue: Users can't authenticate**
-
-- Verify users are assigned to the Okta application
-- Check group assignments match selected groups
-- Review Okta system logs for authentication errors
+You will enter these in the Vesper Secure admin panel.
 
 ---
 
-## Manual User Management (Alternative)
+## Step 2 — Create a client secret (if using OAuth / OIDC)
 
-If you don't use EntraID, Google, or Okta, you can manually manage users:
+If Vesper Secure requires a client secret (for OIDC/OAuth integration):
 
-1. Go to **Users** → **Add Users**
-2. Enter user email addresses (one per line)
-3. Assign roles and permissions
-4. Click **Create Users**
-5. Users will receive email invitations
-
-**Use cases for manual management:**
-- Small organizations without SSO
-- Testing environments
-- Organizations with different identity providers
+1. In the app registration, go to Certificates & secrets → New client secret.
+2. Add a description (e.g., "Vesper Secure secret") and choose an expiration.
+3. Click Add — copy the secret value immediately. You will not be able to see it again.
+4. Store the secret securely and paste it into the Vesper Secure admin panel when prompted.
 
 ---
 
-## Best Practices
+## Step 3 — Configure API permissions
 
-!!! tip "Use SSO Integration"
-    SSO integration is strongly recommended for:
-    - Automatic user lifecycle management
-    - Better security with centralized authentication
-    - Improved user experience
-    - Reduced administrative overhead
+Vesper Secure needs access to read users and group membership. Configure delegated permissions:
 
-!!! info "Group-Based Access"
-    Use groups to manage access at scale:
-    - Create a "VesperSecure-Users" group in your identity provider
-    - Add/remove users from the group to manage access
-    - Changes sync automatically
+1. In the app registration, go to API permissions → Add a permission → Microsoft Graph → Delegated permissions.
+2. Add the following permissions:
+   - openid
+   - profile
+   - email
+   - offline_access
+   - User.Read.All
+   - Group.Read.All
+3. Click Add permissions.
+4. Click Grant admin consent for [Your Tenant] and confirm. (Admin consent is required for User.Read.All and Group.Read.All.)
 
-!!! warning "Test Before Production"
-    Test SSO configuration with a small pilot group before rolling out organization-wide.
-
----
-
-## Next Steps
-
-After configuring SSO:
-
-1. **[Set up Firewall Integration](./firewall-integration.md)** - Connect your firewall to the EDL
-2. **[Configure User Management](./user-management.md)** - Set up monitoring workflows
-3. Test with a pilot user group
+Notes:
+- If you prefer more constrained permissions, consult Vesper Secure for the minimum required scopes for your deployment.
+- If you will use provisioning or advanced group sync features, additional permissions may be required; Vesper Secure will indicate those in the admin panel.
 
 ---
 
-## Additional Resources
+## Step 4 — Configure token & group claims (optional but recommended)
 
-- [Back to Administrator Guide](./index.md)
-- [Setup & Configuration](./setup.md)
-- [Troubleshooting Guide](../resources/troubleshooting.md)
+If you want Vesper Secure to receive group membership information in tokens:
+
+1. In the app registration, go to Token configuration → Add group claim.
+2. Choose which groups to include (All groups, Security groups, or Groups assigned to the application).
+3. Optionally add optional claims (such as email, upn) depending on Vesper Secure's mapping requirements.
+
+Alternatively, Vesper Secure can use Microsoft Graph APIs to query group membership; ensure Group.Read.All is consented if that method is used.
 
 ---
 
-<p style="text-align: center; color: #64748b; font-size: 0.875rem; margin-top: 2rem;">
+## Step 5 — (SAML only) Configure SAML settings
+
+If Vesper Secure supports SAML instead of OIDC:
+
+1. In the app registration, go to Enterprise applications → create a new application from gallery or configure one for SAML.
+2. Set the Identifier (Entity ID) and Reply URL (Assertion Consumer Service URL) to the values provided by Vesper Secure in the admin panel.
+3. Upload or copy the Federation Metadata / Certificate as required by Vesper Secure.
+4. Map attributes/claims (NameID, email, givenName, surname) as documented in the Vesper admin panel.
+
+Follow Vesper Secure's specific SAML attribute mapping guidance if present.
+
+---
+
+## Step 6 — Assign users or groups to the application
+
+1. Go to Enterprise applications → Select the application you created.
+2. Under Users and groups, add the Azure AD groups or users that should be allowed to authenticate to Vesper Secure.
+3. If you used group claims, ensure the selected groups match Vesper's access control configuration.
+
+Note: If you plan to allow sign-in for the entire tenant, you can skip assigning individual users, but consider restricting access via group assignments for better control.
+
+---
+
+## Step 7 — Copy values into the Vesper Secure admin panel
+
+In the Vesper Secure admin panel, go to Settings → Authentication → Configure Entra ID (or Azure AD) and enter:
+
+- Tenant ID: Directory (tenant) ID from Azure
+- Client ID: Application (client) ID
+- Client Secret: the secret value you created (if applicable)
+- Redirect URI: must match the redirect URI registered in Azure
+
+Click Test Connection (if available), then Save Configuration.
+
+---
+
+## Troubleshooting
+
+- Issue: "Can't grant permissions" — Ensure you are a Global Administrator and there are no Conditional Access policies preventing consent. If tenant-level consent restrictions exist, follow your corporate policy for granting permissions.
+- Issue: "Users not syncing" — Ensure the application has been granted admin consent for User.Read.All and Group.Read.All and that the groups assigned to the app contain users. Allow up to 15 minutes for initial sync.
+- Issue: "Redirect URI mismatch" — The redirect URI entered in the Vesper admin panel must exactly match a URI in Azure app registration (including trailing slash and protocol).
+
+---
+
+## Best practices
+
+- Use group-based access: create a dedicated "VesperSecure-Users" group in Azure AD and assign that group to the app.
+- Use short-lived client secrets and rotate them regularly, or prefer certificate-based authentication if available.
+- Test configuration with a small pilot group before rolling out to the entire organization.
+- Enable Conditional Access / MFA on your Entra ID policies to enforce stronger authentication for Vesper Secure access.
+
+---
+
+## Next steps
+
+After configuring Entra ID in Vesper Secure:
+
+1. Set up Firewall Integration (connect the EDL)
+2. Configure user management and monitoring
+3. Pilot with a subset of users, then roll out organization‑wide
+
+---
+
+## Additional resources
+
+- Microsoft Entra ID / Azure AD documentation: https://docs.microsoft.com/azure/active-directory
+- Vesper Secure admin panel: Settings → Authentication
+
+---
+
+<p>
 © 2025 Evenstar Security, LLC. All rights reserved.
 </p>
