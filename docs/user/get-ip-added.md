@@ -1,12 +1,6 @@
-<div class="hero" markdown>
-
-<p class="badge">USER GUIDE • QUICK SETUP</p>
-
 # How to Get Your IP Added
 
-Follow these simple steps to register your location and gain VPN access. Takes less than 5 minutes.
-
-</div>
+Follow these simple steps to register your location and gain VPN access. The registration itself takes less than 1 minute.
 
 ---
 
@@ -22,11 +16,7 @@ Make sure you:
 
 ## Step 1: Go to the Access Portal
 
-Open the Vesper Secure access portal:
-
-<a href="https://access.vespersecure.com" target="_blank" class="md-button md-button--primary" style="display: inline-block; width: 100%; text-align: center; font-weight: 800; margin: 1rem 0;">
-access.vespersecure.com →
-</a>
+Open the Vesper Secure access portal: [access.vespersecure.com](https://access.vespersecure.com)
 
 The portal will show login options for your organization's identity provider.
 
@@ -52,33 +42,25 @@ The portal will show login options for your organization's identity provider.
 
 Select whether this location is **Permanent** or **Temporary**:
 
-<div class="grid cards" markdown>
+### Permanent Place
 
--   <span class="icon-badge">🏠</span>
-    
-    ### Permanent Place
-    
-    **Choose this for:**
-    - Your home
-    - Your office
-    - Any place you regularly work from
-    
-    **Effect:** Works indefinitely until revoked
+**Choose this for:**
+- Your home
+- Your office
+- Any place you regularly work from
 
--   <span class="icon-badge">☕</span>
-    
-    ### Temporary Place
-    
-    **Choose this for:**
-    - Hotels
-    - Coffee shops
-    - Libraries
-    - Friend's house
-    - Any short-term location
-    
-    **Effect:** Expires after configured time (usually 24 hours)
+**Effect:** Works indefinitely until revoked
 
-</div>
+### Temporary Place
+
+**Choose this for:**
+- Hotels
+- Coffee shops
+- Libraries
+- Friend's house
+- Any short-term location
+
+**Effect:** Expires after configured time (usually 24 hours)
 
 !!! question "Which Should I Choose?"
     - If you'll work from here regularly → **Permanent**
@@ -86,40 +68,38 @@ Select whether this location is **Permanent** or **Temporary**:
 
 ---
 
-## Step 4: Submit Your Request
+## Step 4: Submit Your Registration
 
-1. Click **"Send my access request"**
+1. Click **"Register my location"**
 2. You'll see a confirmation message
+3. Your IP is now added to the External Dynamic List (EDL)
 
 ---
 
-## Step 5: Wait for Approval
+## Step 5: Wait for Firewall Refresh
 
-<div class="step-card" markdown>
-
-!!! warning "Please Wait 5 Minutes"
-    After submitting, wait up to 5 minutes for:
+!!! info "Please Wait Up to 60 Minutes"
+    After submitting, your IP is immediately added to the EDL. However, you need to wait for:
     
-    1. **Administrator approval** (may be automatic depending on your organization's policy)
-    2. **System update** - Firewall refreshes the approved IP list
+    1. **Firewall refresh** - Your firewall polls the EDL periodically (typically every 5-60 minutes)
+    2. **ACL update** - The firewall updates its access control lists
     
-    After 5 minutes, you should be able to connect to VPN.
-
-</div>
+    After the firewall refreshes, you should be able to connect to VPN.
 
 ---
 
 ## Step 6: Connect to VPN
 
-After waiting 5 minutes:
+After waiting for the firewall refresh:
 
 1. Open your VPN client as normal
 2. Connect using your usual VPN credentials
 3. Access should work!
 
 !!! info "Still Can't Connect?"
-    - Wait the full 5 minutes
+    - Wait for the full firewall refresh interval (check with your IT admin)
     - Try disconnecting and reconnecting VPN
+    - Verify your current IP hasn't changed
     - Check with your IT administrator if still blocked
 
 ---
@@ -128,13 +108,13 @@ After waiting 5 minutes:
 
 ### For Permanent Locations
 
-- ✅ Your IP is approved indefinitely
+- ✅ Your IP is registered indefinitely
 - ✅ You can connect to VPN anytime from this location
 - ✅ No need to re-register unless you move
 
 ### For Temporary Locations
 
-- ✅ Your IP is approved for configured duration (typically 24 hours)
+- ✅ Your IP is registered for configured duration (typically 24 hours)
 - ⏰ After expiration, you'll need to register again
 - 📧 You may receive a notification before it expires
 
@@ -152,9 +132,9 @@ After waiting 5 minutes:
 
 Before connecting to VPN from a new location while traveling:
 
-1. Visit [access.vespersecure.com](https://access.vespersecure.com){:target="_blank"}
+1. Visit [access.vespersecure.com](https://access.vespersecure.com)
 2. Choose **Temporary**
-3. Submit request and wait 5 minutes
+3. Submit registration and wait for firewall refresh (typically 5-60 minutes)
 4. Connect to VPN
 
 ### Can I register multiple locations?
@@ -172,9 +152,9 @@ If you permanently moved:
 ### What if I forget to register before traveling?
 
 No problem! Just register from your new location:
-1. Visit [access.vespersecure.com](https://access.vespersecure.com){:target="_blank"} from the new location
+1. Visit [access.vespersecure.com](https://access.vespersecure.com) from the new location
 2. Register it as Temporary
-3. Wait 5 minutes
+3. Wait for firewall refresh (typically 5-60 minutes)
 4. Connect to VPN
 
 ### Does this work on mobile devices?
@@ -187,10 +167,10 @@ No. Vesper Secure only controls access (whether you can connect). Once connected
 
 ### What if my request is denied?
 
-If your administrator denies your request:
+Administrators can revoke access to registered locations if needed. If your location is revoked:
 - You'll receive a notification with the reason
 - Contact your IT administrator for clarification
-- You may need to submit a new request with additional information
+- You may need to submit a new registration with additional information
 
 ---
 
@@ -200,7 +180,7 @@ If your administrator denies your request:
 
 Contact your organization's IT support team. Provide:
 - Your email address
-- Your current IP address (visit [whatismyipaddress.com](https://whatismyipaddress.com){:target="_blank"})
+- Your current IP address (visit [whatismyipaddress.com](https://whatismyipaddress.com))
 - Any error messages
 - Whether you're trying permanent or temporary access
 
@@ -211,12 +191,10 @@ Contact your organization's IT support team. Provide:
 
 ## Additional Resources
 
-- [Back to User Guide](index.md)
-- [User FAQ](faq.md)
+- [Back to User Guide](./index.md)
+- [User FAQ](./faq.md)
 - [Home Page](../index.md)
 
 ---
 
-<p style="text-align: center; color: #64748b; font-size: 0.875rem; margin-top: 2rem;">
-© 2025 Evenstar Security, LLC. All rights reserved.
-</p>
+*© 2025 Evenstar Security, LLC. All rights reserved.*
