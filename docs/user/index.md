@@ -1,34 +1,24 @@
-<div class="hero" markdown>
-
-<p class="badge">USER GUIDE</p>
-
 # User Guide
 
-How to get your IP address added to the approved list for VPN and resource access.
-
-</div>
+How to get your IP address added to the registered list for VPN and resource access.
 
 ---
 
 ## Overview
 
-As an end user, you need to register your IP address before you can access your organization's VPN or protected resources from a new location. This is a quick, one-time process for each location.
+As an end user, you need to register your IP address before you can access your organization's VPN or protected resources from a new location. This is a quick process - registration takes less than 1 minute, then you wait for your firewall to refresh.
 
-<div class="grid cards" markdown>
+### Get Your IP Added
 
--   <span class="icon-badge">📍</span>
-    
-    **[Get Your IP Added](get-ip-added.md)**
-    
-    Step-by-step instructions to register your IP address and get approved.
-    
--   <span class="icon-badge">❓</span>
-    
-    **[User FAQ](faq.md)**
-    
-    Common questions about registration, access, and troubleshooting.
+**[Get Your IP Added](./get-ip-added.md)**
 
-</div>
+Step-by-step instructions to register your IP address.
+
+### User FAQ
+
+**[User FAQ](./faq.md)**
+
+Common questions about registration, access, and troubleshooting.
 
 ---
 
@@ -36,17 +26,13 @@ As an end user, you need to register your IP address before you can access your 
 
 Need access right now? Here's the fast version:
 
-<div class="step-card" markdown>
-
-1. **Go to** [access.vespersecure.com](https://access.vespersecure.com){:target="_blank"}
+1. **Go to** [access.vespersecure.com](https://access.vespersecure.com)
 2. **Log in** with your corporate credentials (Google, Microsoft, or Okta)
 3. **Choose** Permanent (home/office) or Temporary (hotel/coffee shop)
-4. **Wait** 5 minutes for approval and system update
+4. **Wait** for firewall refresh (typically 5-60 minutes)
 5. **Connect** to VPN as normal
 
-</div>
-
-[:octicons-arrow-right-24: Detailed Instructions](get-ip-added.md){: .md-button .md-button--primary }
+[Detailed Instructions](./get-ip-added.md)
 
 ---
 
@@ -85,7 +71,7 @@ Your organization's administrator can see your registered locations.
 
 If you encounter issues:
 
-1. Check the [User FAQ](faq.md) for common questions
+1. Check the [User FAQ](./faq.md) for common questions
 2. Contact your **organization's IT support** (not Vesper Secure directly)
 3. Provide them with:
    - Your email address
@@ -97,6 +83,4 @@ If you encounter issues:
 
 ---
 
-<p style="text-align: center; color: #64748b; font-size: 0.875rem; margin-top: 2rem;">
-© 2025 Evenstar Security, LLC. All rights reserved.
-</p>
+*© 2025 Evenstar Security, LLC. All rights reserved.*

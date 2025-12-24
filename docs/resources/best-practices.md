@@ -23,16 +23,17 @@
 !!! success "Recommended"
     Use Microsoft Entra ID integration for automatic user provisioning and SSO.
 
-### Approval Policies
+### Monitoring Policies
 
 **For trusted organizations:**
-- Auto-approve permanent locations
-- Require review for temporary locations
+- Enable notifications for new registrations
+- Review active locations weekly
 
 **For high-security environments:**
-- Require admin approval for all requests
+- Enable alerts for all registrations
 - Enable MFA for access portal
 - Restrict to specific countries
+- Monitor for unusual patterns
 
 ### EDL Refresh Interval
 
@@ -110,7 +111,7 @@ Takes less than a minute!
 
 ### Daily Checks
 
-- Review pending approval requests
+- Review new registrations
 - Check EDL update status
 - Monitor firewall deny logs for patterns
 
@@ -118,7 +119,7 @@ Takes less than a minute!
 
 - Analyze temporary location usage
 - Identify users needing assistance
-- Review denial patterns
+- Review unusual registration patterns
 
 ### Monthly Audits
 
@@ -154,9 +155,9 @@ Set up alerts for:
 ### Audit Requirements
 
 Vesper provides logs for:
-- All access requests (with timestamps)
-- Approval/denial decisions
+- All user registrations (with timestamps)
 - Location types and durations
+- Revocation actions
 - Admin actions
 
 Export logs regularly for compliance retention.
@@ -182,7 +183,7 @@ Export logs regularly for compliance retention.
 Vesper scales automatically, but consider:
 - Firewall EDL size limits
 - Network bandwidth for EDL updates
-- Admin workload for manual approvals
+- Admin monitoring capacity
 
 ---
 

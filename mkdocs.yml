@@ -38,9 +38,6 @@ theme:
     text: Inter
     code: Roboto Mono
 
-extra_css:
-  - stylesheets/extra.css
-
 nav:
   - Home: index.md
   - Administrator Guide:

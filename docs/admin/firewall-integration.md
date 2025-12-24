@@ -12,7 +12,7 @@ Integrate Vesper Secure's External Dynamic List (EDL) with your firewall to auto
 
 ## Overview
 
-The External Dynamic List (EDL) is an HTTPS endpoint that serves approved IP addresses. Your firewall polls this endpoint and automatically updates access control lists.
+The External Dynamic List (EDL) is an HTTPS endpoint that serves registered IP addresses. Your firewall polls this endpoint and automatically updates access control lists.
 
 ### Supported Firewalls
 
@@ -204,8 +204,8 @@ Should return IP addresses or an empty list.
 
 ### Test User Access Flow
 
-1. Have a test user submit access request through Vesper portal
-2. Approve the request in admin panel
+1. Have a test user register through Vesper portal
+2. User's IP is automatically added to EDL
 3. Wait for EDL refresh interval (e.g., 5 minutes)
 4. Verify test user's IP appears in EDL:
    ```bash
@@ -261,15 +261,15 @@ Should return IP addresses or an empty list.
 3. Re-generate credentials in admin panel if needed
 4. Test with: `curl -v -u "user:pass" URL`
 
-### User Blocked After Approval
+### User Blocked After Registration
 
-**Symptoms:** User approved but still can't access
+**Symptoms:** User registered but still can't access
 
 **Solutions:**
 1. Wait for EDL refresh interval
 2. Force manual EDL refresh on firewall
 3. Verify firewall policy order (allow above deny)
-4. Check user's current IP matches approved IP
+4. Check user's current IP matches registered IP
 5. Verify user's access hasn't expired
 
 ---
@@ -278,7 +278,7 @@ Should return IP addresses or an empty list.
 
 After firewall integration:
 
-1. **[Configure User Management](user-management.md)** - Set up approval workflows
+1. **[Configure User Management](./user-management.md)** - Set up monitoring workflows
 2. **Test with pilot users** - Validate the complete flow
 3. **Monitor and adjust** - Review logs and optimize policies
 

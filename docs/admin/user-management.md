@@ -1,59 +1,37 @@
-<div class="hero" markdown>
-
-<p class="badge">ADMINISTRATOR GUIDE</p>
-
 # User Management
 
-Manage user access requests, approve registrations, and monitor active locations.
-
-</div>
+Monitor user registrations, manage locations, and revoke access when needed.
 
 ---
 
 ## Overview
 
-As an administrator, you'll manage user access through the Vesper Secure admin panel. This includes approving requests, monitoring active locations, and revoking access when needed.
+As an administrator, you'll monitor user registrations through the Vesper Secure admin panel. This includes reviewing active locations, monitoring usage patterns, and revoking access when needed. User IP addresses are automatically added to the EDL upon registration - no approval is required.
 
 ---
 
-## Approve Access Requests
+## Monitor User Registrations
 
-### View Pending Requests
+### View Recent Registrations
 
-1. Log in to [app.vespersecure.com](https://app.vespersecure.com){:target="_blank"}
-2. Go to **Requests** or check the dashboard for pending count
-3. Review each request showing:
+1. Log in to [app.vespersecure.com](https://app.vespersecure.com)
+2. Go to **Registrations** or check the dashboard for recent activity
+3. Review each registration showing:
    - User email/name
    - IP address
    - Location type (permanent or temporary)
-   - Request timestamp
+   - Registration timestamp
    - Reason (if provided)
 
-### Approve or Deny Requests
+### Review for Unusual Activity
 
-**To approve:**
-1. Click **Approve** on the request
-2. Optionally add a note for the user
-3. The IP will be added to the EDL within minutes
+Monitor registrations for:
+- Unusual geographic locations
+- Multiple registrations from the same IP
+- Suspicious patterns or timing
+- Requests from unexpected countries
 
-**To deny:**
-1. Click **Deny** on the request
-2. Add a reason for denial (user will see this)
-3. User can submit a new request if needed
-
-### Automatic Approval
-
-Configure automatic approval in **Settings** → **Policies**:
-
-- **Auto-approve permanent locations**: Immediately approve home/office locations
-- **Auto-approve temporary locations**: Immediately approve temporary locations
-- **Require approval for all**: All requests need manual review
-
-!!! tip "Recommended Settings"
-    For most organizations:
-    - Auto-approve permanent locations for trusted users
-    - Require approval for temporary locations
-    - Enable notifications for all requests
+If you notice suspicious activity, you can revoke the registration immediately.
 
 ---
 
@@ -112,8 +90,8 @@ To immediately revoke all of a user's access:
 1. Ensure user is added to SSO group (if using SSO)
 2. User receives access to portal automatically
 3. User registers their location(s)
-4. You approve the request
-5. User gains VPN access
+4. User's IP is automatically added to EDL
+5. User gains VPN access after firewall refresh
 
 ### Offboarding Departing Users
 
@@ -130,8 +108,7 @@ Track all actions for compliance and security:
 
 1. Go to **Reports** → **Audit Log**
 2. View logs of all activities:
-   - Access requests submitted
-   - Approvals and denials
+   - User registrations submitted
    - Location revocations
    - Admin actions
    - Configuration changes
@@ -150,7 +127,7 @@ Track all actions for compliance and security:
 
 Configure alerts in **Settings** → **Notifications**:
 
-- New access requests (if manual approval required)
+- New user registrations
 - EDL update failures
 - Unusual access patterns
 - Failed login attempts
@@ -159,9 +136,9 @@ Configure alerts in **Settings** → **Notifications**:
 ### Dashboard Metrics
 
 The dashboard shows:
-- Pending requests count
+- Recent registrations count
 - Active locations count
-- Recent approvals/denials
+- Recent revocations
 - EDL sync status
 - User activity trends
 
@@ -173,7 +150,7 @@ The dashboard shows:
 
 If a user needs immediate access:
 
-1. Manually approve their request
+1. User registers their location through the portal
 2. Force EDL refresh on your firewall (if supported)
 3. Or wait for next scheduled refresh
 4. User can connect after refresh
@@ -195,7 +172,6 @@ For multiple users:
 1. Go to **Users** → **Bulk Actions**
 2. Select users or upload CSV
 3. Choose action:
-   - Approve all pending
    - Revoke all locations
    - Send notification
 4. Confirm bulk action
@@ -210,25 +186,25 @@ For multiple users:
     - Clean up expired temporary locations
 
 !!! info "Communication"
-    - Notify users when denying requests (include reason)
-    - Set expectations for approval timeframes
-    - Provide user guide link in denial messages
+    - Notify users when revoking access (include reason)
+    - Set expectations for firewall refresh timeframes
+    - Provide user guide link in communications
 
 !!! warning "Security"
-    - Monitor for unusual patterns (many requests from one IP)
+    - Monitor for unusual patterns (many registrations from one IP)
     - Review temporary locations that are repeatedly extended
-    - Investigate requests from unexpected countries
+    - Investigate registrations from unexpected countries
 
-!!! tip "Automation"
-    - Use auto-approval for low-risk scenarios
+!!! tip "Monitoring"
     - Set reasonable temporary durations (24 hours typical)
-    - Enable notifications for manual review cases
+    - Enable notifications for new registrations
+    - Review active locations regularly
 
 ---
 
 ## Troubleshooting
 
-### User Not Seeing Access After Approval
+### User Not Seeing Access After Registration
 
 1. Check EDL sync status (should show "Success")
 2. Verify user's IP is in the EDL
@@ -236,10 +212,10 @@ For multiple users:
 4. Check firewall policy order
 5. Review firewall logs for blocks
 
-### Can't Find User's Request
+### Can't Find User's Registration
 
-1. Check if request was already approved/denied
-2. Look in audit logs for the request
+1. Check if registration is in active locations
+2. Look in audit logs for the registration
 3. Verify user submitted from correct portal
 4. Check user is in correct SSO group
 
@@ -259,19 +235,17 @@ Now that you've configured user management:
 1. **Test the complete flow** with pilot users
 2. **Distribute user guide** - Share the [User Guide](../user/index.md)
 3. **Monitor initial usage** - Be available for questions
-4. **Optimize policies** - Adjust based on usage patterns
+4. **Review patterns** - Watch for unusual activity
 
 ---
 
 ## Additional Resources
 
-- [Back to Administrator Guide](index.md)
+- [Back to Administrator Guide](./index.md)
 - [User Guide](../user/index.md) - Share this with end users
 - [Troubleshooting Guide](../resources/troubleshooting.md)
 - [Best Practices](../resources/best-practices.md)
 
 ---
 
-<p style="text-align: center; color: #64748b; font-size: 0.875rem; margin-top: 2rem;">
-© 2025 Evenstar Security, LLC. All rights reserved.
-</p>
+*© 2025 Evenstar Security, LLC. All rights reserved.*

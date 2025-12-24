@@ -67,37 +67,36 @@
 #### EDL is empty but users have registered
 
 **Symptoms:**
-- Users approved but EDL shows no IPs
-- VPN still blocked after approval
+- Users registered but EDL shows no IPs
+- VPN still blocked after registration
 
 **Causes:**
-- Requests pending approval
 - Temporary locations expired
 - EDL not refreshing
-- Users' requests failed
+- Users' registrations failed
 
 **Solutions:**
 
-1. **Check admin panel** - Are requests actually approved?
+1. **Check admin panel** - Are registrations showing as active?
 2. **Verify temporary locations haven't expired**
 3. **Force manual EDL refresh on firewall**
-4. **Check user's request status in admin panel**
+4. **Check user's registration status in admin panel**
 5. **Wait for next scheduled EDL refresh**
 
 ---
 
 ### User Access Issues
 
-#### User approved but still can't access VPN
+#### User registered but still can't access VPN
 
 **Symptoms:**
-- User request approved in Vesper
+- User registered in Vesper
 - User's IP still blocked by firewall
 
 **Causes:**
 - EDL hasn't refreshed yet
 - Firewall policy order incorrect
-- User's IP doesn't match approved IP
+- User's IP doesn't match registered IP
 - Temporary access expired
 
 **Solutions:**
