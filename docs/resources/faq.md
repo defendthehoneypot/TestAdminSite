@@ -115,4 +115,4 @@ Yes! Users can have multiple permanent locations and register temporary location
 
 ---
 
-[Back to Home](../index.md) • [Admin Setup](../admin-setup.md) • [User Instructions](../user-instructions.md)
+[Back to Home](../index.md) • [Administrator Guide](../admin/index.md) • [User Guide](../user/index.md)
