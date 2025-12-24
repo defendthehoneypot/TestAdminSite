@@ -72,8 +72,8 @@ Employees who need their IP addresses added to the allow list.
 
 ## Quick Links
 
-- **[Admin Panel](https://app.vespersecure.com)** - Configure your organization's Vesper Secure tenant and monitor users
-- **[User Portal](https://access.vespersecure.com)** - Register your IP address to access VPN and protected resources
+- **[Admin Panel](./admin/index.md)** - Configure your organization's Vesper Secure tenant and monitor users
+- **[User Portal](./user/index.md)** - Register your IP address to access VPN and protected resources
 - **[Troubleshooting](./resources/troubleshooting.md)** - Solutions to common issues
 - **[Best Practices](./resources/best-practices.md)** - Recommended configurations
 
