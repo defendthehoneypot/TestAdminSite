@@ -1,89 +1,122 @@
 <div class="hero" markdown>
 
-<p class="badge">SETUP GUIDES • BEST PRACTICES • USER ROLLOUT</p>
+<p class="badge">DYNAMIC IP LIST MANAGEMENT • FIREWALL ACL AUTOMATION</p>
 
-# Everything you need to deploy Vesper Secure in your environment  
+# Vesper Secure: Dynamic IP List Management for Firewalls
 
-This documentation is your step-by-step playbook for getting Vesper configured, connected to your firewall, and rolled out to your users—fast. Follow the guides below and you'll be live in minutes.
-
-<div class="grid cards" markdown>
-
-<div markdown>
-**[VesperSecure.com](https://www.vespersecure.com){:target="_blank"}**
-
-Marketing site, product overview, and what Vesper does.
-</div>
-
-<div markdown>
-**[app.vespersecure.com](https://app.vespersecure.com){:target="_blank"}**
-
-Manage your organization's Vesper Secure tenant (users, policies, and configuration).
-</div>
-
-</div>
+Vesper Secure is a dynamic IP list management system that serves approved IP addresses via a web service for firewall ACL ingestion. Your firewall automatically updates access control lists based on verified user locations.
 
 </div>
 
 ---
 
-## Documentation Pages  
+## What is Vesper Secure?
+
+Vesper Secure provides a simple solution to a common problem: **managing which IP addresses can access your VPN or protected resources**.
+
+Instead of manually maintaining static IP allow-lists, Vesper Secure:
+
+- Provides a **web portal** where users register their IP addresses
+- Creates a **dynamic External Dynamic List (EDL)** of approved IPs
+- Serves this list via **HTTPS** for your firewall to consume
+- **Automatically updates** your firewall ACLs as users register new locations
+
+---
+
+## How It Works
+
+<div class="step-card" markdown>
+
+### <span class="step-number">1</span> User Registers IP Address
+
+Users visit the Vesper Secure portal and authenticate using SSO (EntraID, Google, or Okta). They register their current location as either permanent (home/office) or temporary (hotel/coffee shop).
+
+### <span class="step-number">2</span> Administrator Approves
+
+Administrators review and approve access requests through the Vesper Secure admin panel. Approval can be manual or automatic based on your policies.
+
+### <span class="step-number">3</span> IP Added to EDL
+
+Once approved, the user's IP address is added to the External Dynamic List served at your organization's unique HTTPS endpoint.
+
+### <span class="step-number">4</span> Firewall Updates ACL
+
+Your firewall periodically polls the EDL (typically every 5-60 minutes) and automatically updates its access control lists to allow traffic from approved IPs.
+
+</div>
+
+---
+
+## Who Uses Vesper Secure?
+
+Vesper Secure serves two distinct audiences:
 
 <div class="grid cards" markdown>
 
 -   <div class="icon-badge">⚙️</div>
     
-    ### Admin Setup Guide
+    ### Administrators
     
-    Complete configuration guide for administrators. Set up authentication, integrate with your firewall, and manage your deployment.
+    IT and security professionals who configure and manage the system.
     
-    [:octicons-arrow-right-24: Open admin guide](admin-setup.md)
+    **You will:**
+    
+    - Configure SSO integration (EntraID, Google, Okta)
+    - Integrate the EDL with your firewall
+    - Set approval policies
+    - Manage user access requests
+    - Monitor and audit access
+    
+    [:octicons-arrow-right-24: Go to Administrator Guide](admin/index.md)
 
--   <div class="icon-badge">📣</div>
+-   <div class="icon-badge">👤</div>
     
-    ### User Instructions
+    ### End Users
     
-    Send this page to your users. Clear "how to log in" instructions, what to expect, and how to troubleshoot. Makes rollout smooth and support tickets rare.
+    Employees who need their IP addresses added to the allow list.
     
-    [:octicons-arrow-right-24: Open user instructions](user-instructions.md)
+    **You will:**
+    
+    - Visit the Vesper Secure portal
+    - Sign in with corporate credentials
+    - Register your current location
+    - Wait for approval and automatic ACL update
+    
+    [:octicons-arrow-right-24: Go to User Guide](user/index.md)
 
 </div>
 
 ---
 
-## Deployment Model
+## Quick Links
 
-<div class="step-card" markdown>
+<div class="grid cards" markdown>
 
-### <span class="step-number">✓</span> Clean rollout process
+<div markdown>
+**[Admin Panel](https://app.vespersecure.com){:target="_blank"}**
 
-Configure Vesper → connect firewall → distribute user instructions.
-
-**For Administrators:**
-
-1. <span class="step-number">1</span> **Configure Vesper Secure** - Set up authentication and policies
-2. <span class="step-number">2</span> **Integrate with firewall** - Add External Dynamic List (EDL)
-3. <span class="step-number">3</span> **Manage users** - Approve requests and monitor access
-
-[:octicons-arrow-right-24: Start with Admin Setup](admin-setup.md)
-
-**For End Users:**
-
-1. <span class="step-number">1</span> **Go to access portal** - Choose identity provider
-2. <span class="step-number">2</span> **Log in** - Use corporate credentials
-3. <span class="step-number">3</span> **Choose location type** - Permanent or temporary
-
-[:octicons-arrow-right-24: View User Instructions](user-instructions.md)
-
+Configure your organization's Vesper Secure tenant, manage users, and approve access requests.
 </div>
 
----
+<div markdown>
+**[User Portal](https://access.vespersecure.com){:target="_blank"}**
 
-## Looking for something specific?
+Register your IP address to access VPN and protected resources.
+</div>
 
-If you're an admin, jump straight into the tenant management console. If you're evaluating the product, use the homepage.
+<div markdown>
+**[Troubleshooting](resources/troubleshooting.md)**
 
-[Go to Admin Panel :octicons-link-external-16:](https://app.vespersecure.com){: .md-button .md-button--primary target="_blank"}
-[Visit Homepage :octicons-link-external-16:](https://www.vespersecure.com){: .md-button target="_blank"}
+Solutions to common issues with EDL integration and user access.
+</div>
+
+<div markdown>
+**[Best Practices](resources/best-practices.md)**
+
+Recommended configurations and deployment strategies.
+</div>
+
+</div>
 
 ---
 

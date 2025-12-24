@@ -66,7 +66,7 @@
 
 ### Documentation
 
-- Share [User Instructions](../user-instructions.md) page during onboarding
+- Share [User Guide](../user/index.md) page during onboarding
 - Include link in VPN setup guides
 - Add to IT knowledge base
 - Send reminder emails before travel periods
@@ -186,4 +186,4 @@ Vesper scales automatically, but consider:
 
 ---
 
-[Back to Home](../index.md) • [Admin Setup](../admin-setup.md) • [FAQ](faq.md)
+[Back to Home](../index.md) • [Administrator Guide](../admin/index.md) • [FAQ](faq.md)

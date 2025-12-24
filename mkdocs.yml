@@ -43,13 +43,20 @@ extra_css:
 
 nav:
   - Home: index.md
-  - Admin Setup: admin-setup.md
-  - User Instructions: user-instructions.md
+  - Administrator Guide:
+      - Overview: admin/index.md
+      - Setup & Configuration: admin/setup.md
+      - SSO Integration: admin/sso-integration.md
+      - Firewall Integration: admin/firewall-integration.md
+      - User Management: admin/user-management.md
+  - User Guide:
+      - Overview: user/index.md
+      - How to Get Your IP Added: user/get-ip-added.md
+      - FAQ for Users: user/faq.md
   - Resources:
       - FAQ: resources/faq.md
       - Best Practices: resources/best-practices.md
       - Troubleshooting: resources/troubleshooting.md
-  - About: about.md
 
 markdown_extensions:
   - pymdownx.highlight:

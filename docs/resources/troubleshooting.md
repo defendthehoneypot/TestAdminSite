@@ -307,4 +307,4 @@ Set up alerts for:
 
 ---
 
-[Back to Home](../index.md) • [Admin Setup](../admin-setup.md) • [FAQ](faq.md) • [Best Practices](best-practices.md)
+[Back to Home](../index.md) • [Administrator Guide](../admin/index.md) • [FAQ](faq.md) • [Best Practices](best-practices.md)
