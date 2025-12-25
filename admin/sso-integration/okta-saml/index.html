@@ -1,0 +1,3838 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Dynamic IP List Management for Firewall ACLs">
+      
+      
+        <meta name="author" content="TestAdminSite Team">
+      
+      
+        <link rel="canonical" href="https://defendthehoneypot.github.io/TestAdminSite/admin/sso-integration/okta-saml/">
+      
+      
+        <link rel="prev" href="../azure-saml/">
+      
+      
+        <link rel="next" href="../../firewall-integration/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../material/shield-lock-outline">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Okta SAML - VESPER SECURE</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cyan" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#set-up-okta-saml-sso" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="VESPER SECURE" class="md-header__button md-logo" aria-label="VESPER SECURE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 11c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9 10c3.75-1 7-5.46 7-9.78V6.3l-7-3.12L5 6.3v4.92C5 15.54 8.25 20 12 21m2.8-10V9.5C14.8 8.1 13.4 7 12 7S9.2 8.1 9.2 9.5V11c-.6 0-1.2.6-1.2 1.2v3.5c0 .7.6 1.3 1.2 1.3h5.5c.7 0 1.3-.6 1.3-1.2v-3.5c0-.7-.6-1.3-1.2-1.3m-1.3 0h-3V9.5c0-.8.7-1.3 1.5-1.3s1.5.5 1.5 1.3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VESPER SECURE
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Okta SAML
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="cyan" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="cyan" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+  Administrator Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../user/" class="md-tabs__link">
+          
+  
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../resources/faq/" class="md-tabs__link">
+          
+  
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="VESPER SECURE" class="md-nav__button md-logo" aria-label="VESPER SECURE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 11c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9 10c3.75-1 7-5.46 7-9.78V6.3l-7-3.12L5 6.3v4.92C5 15.54 8.25 20 12 21m2.8-10V9.5C14.8 8.1 13.4 7 12 7S9.2 8.1 9.2 9.5V11c-.6 0-1.2.6-1.2 1.2v3.5c0 .7.6 1.3 1.2 1.3h5.5c.7 0 1.3-.6 1.3-1.2v-3.5c0-.7-.6-1.3-1.2-1.3m-1.3 0h-3V9.5c0-.8.7-1.3 1.5-1.3s1.5.5 1.5 1.3z"/></svg>
+
+    </a>
+    VESPER SECURE
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administrator Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Administrator Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup & Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSO Integration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SSO Integration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../azure-saml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Azure AD SAML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Okta SAML
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Okta SAML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-youll-configure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What You'll Configure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-create-a-saml-application-in-okta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Create a SAML Application in Okta
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Create a SAML Application in Okta">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-access-okta-admin-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Access Okta Admin Console
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-create-new-saml-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Create New SAML Application
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-configure-general-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Configure General Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-configure-saml-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Configure SAML Settings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Configure SAML Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-configure-saml-general-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Configure SAML General Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-advanced-settings-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Advanced Settings (Optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-configure-attribute-statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Configure Attribute Statements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Configure Attribute Statements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-add-required-attribute-statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Add Required Attribute Statements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-add-group-attribute-statements-optional-but-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Add Group Attribute Statements (Optional but Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-review-and-continue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Review and Continue
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-complete-application-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Complete Application Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4: Complete Application Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-provide-feedback-to-okta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Provide Feedback to Okta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-navigate-to-application-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Navigate to Application Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-get-okta-identity-provider-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Get Okta Identity Provider Metadata
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 5: Get Okta Identity Provider Metadata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-access-saml-setup-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Access SAML Setup Instructions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-download-or-note-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Download or Note Metadata
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 Download or Note Metadata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-a-copy-metadata-url-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option A: Copy Metadata URL (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-b-download-metadata-xml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option B: Download Metadata XML
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-note-configuration-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Note Configuration Values
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-assign-users-and-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Assign Users and Groups
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 6: Assign Users and Groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-access-assignment-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Access Assignment Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-assign-groups-recommended-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Assign Groups (Recommended Approach)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-assign-individual-users-alternative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Assign Individual Users (Alternative)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-configure-vesper-secure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7: Configure Vesper Secure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 7: Configure Vesper Secure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-access-vesper-secure-admin-panel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Access Vesper Secure Admin Panel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-configure-okta-saml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Configure Okta SAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-provide-okta-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Provide Okta Metadata
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.3 Provide Okta Metadata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-a-metadata-url-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method A: Metadata URL (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-b-upload-metadata-xml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method B: Upload Metadata XML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-c-manual-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method C: Manual Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-configure-attribute-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 Configure Attribute Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-save-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.5 Save Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-test-sso-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8: Test SSO Connection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 8: Test SSO Connection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-test-from-okta-admin-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Test from Okta Admin Console
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-test-from-okta-end-user-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Test from Okta End-User Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-test-from-vesper-secure-login-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Test from Vesper Secure Login Page
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-verify-user-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 Verify User Profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-9-enable-for-all-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 9: Enable for All Users
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 9: Enable for All Users">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-communicate-to-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Communicate to Users
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-roll-out-in-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 Roll Out in Phases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-monitor-initial-logins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 Monitor Initial Logins
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-user-is-not-assigned-to-the-client-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: "User is not assigned to the client application"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-the-saml-response-is-invalid-or-signature-validation-failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: "The SAML response is invalid" or "Signature validation failed"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-user-profile-missing-first-name-or-last-name-in-vesper-secure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: User profile missing first name or last name in Vesper Secure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-group-membership-not-appearing-in-vesper-secure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: Group membership not appearing in Vesper Secure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-audience-restriction-validation-failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: "Audience restriction validation failed"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-the-response-was-received-at-an-invalid-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: "The response was received at an invalid URL"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-users-redirected-to-login-repeatedly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: Users redirected to login repeatedly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-certificate-expiration-warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: Certificate expiration warning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-experience" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Experience
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sign-on-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sign-On Policies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Attributes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple Environments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automatic-user-provisioning-scim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic User Provisioning (SCIM)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#certificate-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Certificate Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Certificate Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#monitor-certificate-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitor Certificate Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-certificate-in-vesper-secure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update Certificate in Vesper Secure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-okta-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration with Okta Features
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integration with Okta Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#okta-verify-mfa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Okta Verify MFA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#okta-network-zones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Okta Network Zones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#okta-threatinsight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Okta ThreatInsight
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firewall Integration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Firewall Integration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../firewall-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../firewall-integration/palo-alto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Palo Alto Networks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../firewall-integration/fortinet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fortinet FortiGate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../firewall-integration/cisco/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cisco ASA/FTD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../firewall-integration/check-point/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Check Point
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../firewall-integration/pfsense/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pfSense
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../firewall-integration/opnsense/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OPNsense
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../firewall-integration/juniper-srx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Juniper SRX
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../firewall-integration/generic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generic/Other Firewalls
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user/get-ip-added/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to Get Your IP Added
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ for Users
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Resources
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../resources/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../resources/best-practices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Practices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../resources/troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-youll-configure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What You'll Configure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-create-a-saml-application-in-okta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Create a SAML Application in Okta
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Create a SAML Application in Okta">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-access-okta-admin-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Access Okta Admin Console
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-create-new-saml-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Create New SAML Application
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-configure-general-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Configure General Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-configure-saml-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Configure SAML Settings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Configure SAML Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-configure-saml-general-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Configure SAML General Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-advanced-settings-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Advanced Settings (Optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-configure-attribute-statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Configure Attribute Statements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Configure Attribute Statements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-add-required-attribute-statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Add Required Attribute Statements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-add-group-attribute-statements-optional-but-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Add Group Attribute Statements (Optional but Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-review-and-continue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Review and Continue
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-complete-application-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Complete Application Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4: Complete Application Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-provide-feedback-to-okta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Provide Feedback to Okta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-navigate-to-application-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Navigate to Application Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-get-okta-identity-provider-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Get Okta Identity Provider Metadata
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 5: Get Okta Identity Provider Metadata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-access-saml-setup-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Access SAML Setup Instructions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-download-or-note-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Download or Note Metadata
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 Download or Note Metadata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-a-copy-metadata-url-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option A: Copy Metadata URL (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-b-download-metadata-xml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option B: Download Metadata XML
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-note-configuration-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Note Configuration Values
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-assign-users-and-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Assign Users and Groups
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 6: Assign Users and Groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-access-assignment-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Access Assignment Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-assign-groups-recommended-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Assign Groups (Recommended Approach)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-assign-individual-users-alternative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Assign Individual Users (Alternative)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-configure-vesper-secure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7: Configure Vesper Secure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 7: Configure Vesper Secure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-access-vesper-secure-admin-panel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Access Vesper Secure Admin Panel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-configure-okta-saml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Configure Okta SAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-provide-okta-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Provide Okta Metadata
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.3 Provide Okta Metadata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-a-metadata-url-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method A: Metadata URL (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-b-upload-metadata-xml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method B: Upload Metadata XML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-c-manual-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method C: Manual Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-configure-attribute-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 Configure Attribute Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-save-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.5 Save Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-test-sso-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8: Test SSO Connection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 8: Test SSO Connection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-test-from-okta-admin-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Test from Okta Admin Console
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-test-from-okta-end-user-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Test from Okta End-User Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-test-from-vesper-secure-login-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Test from Vesper Secure Login Page
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-verify-user-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 Verify User Profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-9-enable-for-all-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 9: Enable for All Users
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 9: Enable for All Users">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-communicate-to-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Communicate to Users
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-roll-out-in-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 Roll Out in Phases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-monitor-initial-logins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 Monitor Initial Logins
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-user-is-not-assigned-to-the-client-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: "User is not assigned to the client application"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-the-saml-response-is-invalid-or-signature-validation-failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: "The SAML response is invalid" or "Signature validation failed"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-user-profile-missing-first-name-or-last-name-in-vesper-secure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: User profile missing first name or last name in Vesper Secure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-group-membership-not-appearing-in-vesper-secure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: Group membership not appearing in Vesper Secure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-audience-restriction-validation-failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: "Audience restriction validation failed"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-the-response-was-received-at-an-invalid-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: "The response was received at an invalid URL"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-users-redirected-to-login-repeatedly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: Users redirected to login repeatedly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-certificate-expiration-warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: Certificate expiration warning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-experience" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Experience
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sign-on-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sign-On Policies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Attributes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple Environments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automatic-user-provisioning-scim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic User Provisioning (SCIM)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#certificate-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Certificate Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Certificate Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#monitor-certificate-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitor Certificate Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-certificate-in-vesper-secure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update Certificate in Vesper Secure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-okta-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration with Okta Features
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integration with Okta Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#okta-verify-mfa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Okta Verify MFA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#okta-network-zones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Okta Network Zones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#okta-threatinsight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Okta ThreatInsight
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="set-up-okta-saml-sso">Set Up Okta SAML SSO</h1>
+<p>Configure SAML-based Single Sign-On with Okta to enable secure authentication for Vesper Secure users.</p>
+<hr />
+<h2 id="overview">Overview</h2>
+<p>This guide walks you through configuring SAML 2.0 SSO between Okta and Vesper Secure. After completion, your users will authenticate using their Okta credentials with support for MFA and adaptive authentication policies.</p>
+<p><strong>Estimated time to complete</strong>: 15-25 minutes</p>
+<h3 id="what-youll-configure">What You'll Configure</h3>
+<ul>
+<li>SAML 2.0 application in Okta Admin Console</li>
+<li>SAML single sign-on settings</li>
+<li>User attribute statements</li>
+<li>Group attribute statements for access control</li>
+<li>User and group assignments</li>
+<li>Vesper Secure SSO integration</li>
+</ul>
+<hr />
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before you begin, ensure you have:</p>
+<ul>
+<li><strong>Okta Administrator Access</strong>: Super Admin or Application Administrator role in Okta</li>
+<li><strong>Okta Subscription</strong>: Active Okta subscription (Workforce Identity, Customer Identity, or trial)</li>
+<li><strong>Vesper Secure Admin Access</strong>: Administrator access to <a href="https://app.vespersecure.com">Vesper Secure admin panel</a></li>
+<li><strong>User Groups Configured</strong>: Okta groups created for users who need Vesper Secure access</li>
+<li><strong>Two Browser Windows</strong>: One for Okta Admin Console and one for Vesper Secure admin panel</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Required Okta Permissions</p>
+<p>You must have one of the following roles in Okta:
+- Super Administrator
+- Application Administrator
+- Organization Administrator</p>
+</div>
+<hr />
+<h2 id="step-1-create-a-saml-application-in-okta">Step 1: Create a SAML Application in Okta</h2>
+<h3 id="11-access-okta-admin-console">1.1 Access Okta Admin Console</h3>
+<ol>
+<li>Sign in to your <a href="https://your-domain.okta.com/admin">Okta Admin Console</a>  </li>
+<li>From the left navigation, go to <strong>Applications</strong> → <strong>Applications</strong>  </li>
+</ol>
+<h3 id="12-create-new-saml-application">1.2 Create New SAML Application</h3>
+<ol>
+<li>Click <strong>Create App Integration</strong>  </li>
+<li>Select <strong>SAML 2.0</strong> as the sign-in method  </li>
+<li>Click <strong>Next</strong>  </li>
+</ol>
+<h3 id="13-configure-general-settings">1.3 Configure General Settings</h3>
+<p>On the <strong>General Settings</strong> page:</p>
+<ol>
+<li><strong>App name</strong>: Enter <code>Vesper Secure</code>  </li>
+<li><strong>App logo</strong> (optional): Upload a logo if desired  </li>
+<li><strong>App visibility</strong>:  </li>
+<li>Check <strong>Do not display application icon to users</strong> if you don't want it in the Okta End-User Dashboard</li>
+<li>Or leave unchecked to show it to users</li>
+<li>Click <strong>Next</strong>  </li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Application Name</p>
+<p>Use a clear name like "Vesper Secure" so users can easily identify the application in their Okta dashboard.</p>
+</div>
+<hr />
+<h2 id="step-2-configure-saml-settings">Step 2: Configure SAML Settings</h2>
+<h3 id="21-configure-saml-general-settings">2.1 Configure SAML General Settings</h3>
+<p>On the <strong>Configure SAML</strong> page, enter the following values:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Single sign-on URL</strong></td>
+<td><code>https://app.vespersecure.com/auth/saml/okta/callback</code></td>
+<td>Where Okta sends SAML responses</td>
+</tr>
+<tr>
+<td><strong>Audience URI (SP Entity ID)</strong></td>
+<td><code>https://app.vespersecure.com/auth/saml/okta</code></td>
+<td>Unique identifier for Vesper Secure</td>
+</tr>
+<tr>
+<td><strong>Default RelayState</strong></td>
+<td>Leave empty</td>
+<td>Optional, not required</td>
+</tr>
+<tr>
+<td><strong>Name ID format</strong></td>
+<td><code>EmailAddress</code></td>
+<td>Select from dropdown</td>
+</tr>
+<tr>
+<td><strong>Application username</strong></td>
+<td><code>Email</code></td>
+<td>Select from dropdown</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Exact URLs Required</p>
+<p>The Single sign-on URL and Audience URI must match exactly, including the protocol (<code>https://</code>) and paths. Any mismatch will cause authentication to fail.</p>
+</div>
+<h3 id="22-advanced-settings-optional">2.2 Advanced Settings (Optional)</h3>
+<p>You can leave these at their defaults or configure as needed:</p>
+<ul>
+<li><strong>Response</strong>: <code>Signed</code></li>
+<li><strong>Assertion Signature</strong>: <code>Signed</code></li>
+<li><strong>Signature Algorithm</strong>: <code>RSA-SHA256</code></li>
+<li><strong>Digest Algorithm</strong>: <code>SHA256</code></li>
+<li><strong>Assertion Encryption</strong>: <code>Unencrypted</code> (unless required by your security policy)</li>
+</ul>
+<hr />
+<h2 id="step-3-configure-attribute-statements">Step 3: Configure Attribute Statements</h2>
+<p>Attribute statements map Okta user profile attributes to SAML attributes that Vesper Secure will receive.</p>
+<h3 id="31-add-required-attribute-statements">3.1 Add Required Attribute Statements</h3>
+<p>In the <strong>Attribute Statements (optional)</strong> section, click <strong>Add Another</strong> to add each of the following attributes:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Name format</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>email</code></td>
+<td><code>Unspecified</code></td>
+<td><code>user.email</code></td>
+</tr>
+<tr>
+<td><code>firstName</code></td>
+<td><code>Unspecified</code></td>
+<td><code>user.firstName</code></td>
+</tr>
+<tr>
+<td><code>lastName</code></td>
+<td><code>Unspecified</code></td>
+<td><code>user.lastName</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">Attribute Mapping</p>
+<p>These attribute names must match exactly what Vesper Secure expects. The "Name format" should be set to "Unspecified" for all attributes.</p>
+</div>
+<h3 id="32-add-group-attribute-statements-optional-but-recommended">3.2 Add Group Attribute Statements (Optional but Recommended)</h3>
+<p>To enable group-based access control in Vesper Secure:</p>
+<ol>
+<li>Scroll to the <strong>Group Attribute Statements (optional)</strong> section  </li>
+<li>Click <strong>Add Another</strong>  </li>
+<li>Configure the group attribute:  </li>
+<li><strong>Name</strong>: <code>groups</code></li>
+<li><strong>Name format</strong>: <code>Unspecified</code></li>
+<li><strong>Filter</strong>: Select your preferred filter option:<ul>
+<li><strong>Matches regex</strong>: <code>.*</code> (sends all groups) - recommended for flexibility</li>
+<li><strong>Starts with</strong>: <code>VesperSecure</code> (sends only groups starting with "VesperSecure")</li>
+<li><strong>Equals</strong>: Specific group name (sends only that specific group)</li>
+</ul>
+</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Group Filtering Best Practice</p>
+<p>Use "Starts with" filter with a prefix like "VesperSecure" to send only relevant groups. This reduces the SAML response size and ensures only intended groups are shared.</p>
+</div>
+<h3 id="33-review-and-continue">3.3 Review and Continue</h3>
+<ol>
+<li>Review all attribute statements to ensure they're correct  </li>
+<li>Click <strong>Next</strong> to continue to the feedback section  </li>
+</ol>
+<hr />
+<h2 id="step-4-complete-application-setup">Step 4: Complete Application Setup</h2>
+<h3 id="41-provide-feedback-to-okta">4.1 Provide Feedback to Okta</h3>
+<p>On the <strong>Feedback</strong> page:</p>
+<ol>
+<li>Select <strong>I'm an Okta customer adding an internal app</strong>  </li>
+<li>Select <strong>This is an internal app that we have created</strong>  </li>
+<li>Click <strong>Finish</strong>  </li>
+</ol>
+<h3 id="42-navigate-to-application-settings">4.2 Navigate to Application Settings</h3>
+<p>You'll be redirected to your new application's page. Keep this page open - you'll need information from it.</p>
+<hr />
+<h2 id="step-5-get-okta-identity-provider-metadata">Step 5: Get Okta Identity Provider Metadata</h2>
+<h3 id="51-access-saml-setup-instructions">5.1 Access SAML Setup Instructions</h3>
+<ol>
+<li>In your Vesper Secure application in Okta, go to the <strong>Sign On</strong> tab  </li>
+<li>Click <strong>View SAML setup instructions</strong> (or <strong>View Setup Instructions</strong>)  </li>
+<li>A new page will open with the SAML configuration details  </li>
+</ol>
+<h3 id="52-download-or-note-metadata">5.2 Download or Note Metadata</h3>
+<p>You have two options for providing Okta metadata to Vesper Secure:</p>
+<h4 id="option-a-copy-metadata-url-recommended">Option A: Copy Metadata URL (Recommended)</h4>
+<p>In the setup instructions page, you'll see a section called <strong>Identity Provider metadata</strong>:</p>
+<ol>
+<li>Right-click on the metadata URL (usually looks like <code>https://your-domain.okta.com/app/xxx/sso/saml/metadata</code>)  </li>
+<li>Copy the link address  </li>
+<li>Save this URL - you'll use it in Vesper Secure  </li>
+</ol>
+<h4 id="option-b-download-metadata-xml">Option B: Download Metadata XML</h4>
+<p>Alternatively, you can download the XML file:</p>
+<ol>
+<li>In the setup instructions, find the <strong>IDP metadata</strong> section  </li>
+<li>Copy the entire XML content  </li>
+<li>Save it as a file named <code>okta-metadata.xml</code>  </li>
+<li>You'll upload this to Vesper Secure later  </li>
+</ol>
+<h3 id="53-note-configuration-values">5.3 Note Configuration Values</h3>
+<p>For reference, note these values from the setup instructions (also available in the metadata):</p>
+<ul>
+<li><strong>Identity Provider Single Sign-On URL</strong>: <code>https://your-domain.okta.com/app/xxx/sso/saml</code></li>
+<li><strong>Identity Provider Issuer</strong>: <code>http://www.okta.com/xxx</code></li>
+<li><strong>X.509 Certificate</strong>: The certificate displayed on the page</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Metadata vs Manual Configuration</p>
+<p>Using the metadata URL or XML file is recommended as it automatically populates all required values. Manual configuration requires copying each value individually.</p>
+</div>
+<hr />
+<h2 id="step-6-assign-users-and-groups">Step 6: Assign Users and Groups</h2>
+<h3 id="61-access-assignment-settings">6.1 Access Assignment Settings</h3>
+<ol>
+<li>In your Vesper Secure application, click the <strong>Assignments</strong> tab  </li>
+<li>You'll see options to assign the application to users and groups  </li>
+</ol>
+<h3 id="62-assign-groups-recommended-approach">6.2 Assign Groups (Recommended Approach)</h3>
+<p>For easier management, assign Okta groups:</p>
+<ol>
+<li>Click <strong>Assign</strong> → <strong>Assign to Groups</strong>  </li>
+<li>Find your desired group(s) (e.g., "VesperSecure-Users")  </li>
+<li>Click <strong>Assign</strong> next to each group  </li>
+<li>Click <strong>Done</strong>  </li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Best Practice: Use Groups</p>
+<p>Create a dedicated Okta group (e.g., "VesperSecure-Users" or "VesperSecure-Admins") and assign that group to the application. This makes access management easier - simply add/remove users from the group.</p>
+</div>
+<h3 id="63-assign-individual-users-alternative">6.3 Assign Individual Users (Alternative)</h3>
+<p>If you prefer to assign individual users:</p>
+<ol>
+<li>Click <strong>Assign</strong> → <strong>Assign to People</strong>  </li>
+<li>Find the user you want to assign  </li>
+<li>Click <strong>Assign</strong> next to their name  </li>
+<li>Configure any user-specific settings if needed  </li>
+<li>Click <strong>Save and Go Back</strong>  </li>
+<li>Repeat for additional users  </li>
+<li>Click <strong>Done</strong> when finished  </li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Assignment Required</p>
+<p>Users must be assigned to the application to authenticate via SSO. Unassigned users will receive an error when attempting to sign in.</p>
+</div>
+<hr />
+<h2 id="step-7-configure-vesper-secure">Step 7: Configure Vesper Secure</h2>
+<h3 id="71-access-vesper-secure-admin-panel">7.1 Access Vesper Secure Admin Panel</h3>
+<ol>
+<li>Open a new browser tab and navigate to <a href="https://app.vespersecure.com">https://app.vespersecure.com</a>  </li>
+<li>Sign in with your Vesper Secure administrator credentials  </li>
+<li>Navigate to <strong>Settings</strong> → <strong>Authentication</strong> → <strong>SSO Configuration</strong>  </li>
+</ol>
+<h3 id="72-configure-okta-saml">7.2 Configure Okta SAML</h3>
+<ol>
+<li>Click <strong>+ Add SSO Provider</strong> or <strong>Configure Okta SAML</strong>  </li>
+<li>Fill in the configuration form:  </li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Provider Name</strong></td>
+<td>Okta</td>
+</tr>
+<tr>
+<td><strong>Identity Provider</strong></td>
+<td>Okta SAML 2.0</td>
+</tr>
+<tr>
+<td><strong>Entity ID</strong></td>
+<td><code>https://app.vespersecure.com/auth/saml/okta</code></td>
+</tr>
+<tr>
+<td><strong>Single Sign-On URL</strong></td>
+<td><code>https://app.vespersecure.com/auth/saml/okta/callback</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="73-provide-okta-metadata">7.3 Provide Okta Metadata</h3>
+<p>Choose one of the following methods:</p>
+<h4 id="method-a-metadata-url-recommended">Method A: Metadata URL (Recommended)</h4>
+<ol>
+<li>Select <strong>Import from Metadata URL</strong>  </li>
+<li>Paste the Okta metadata URL you copied in Step 5  </li>
+<li>Click <strong>Import</strong>  </li>
+<li>The following fields should auto-populate:  </li>
+<li>Identity Provider Issuer</li>
+<li>Identity Provider SSO URL</li>
+<li>Identity Provider Certificate</li>
+</ol>
+<h4 id="method-b-upload-metadata-xml">Method B: Upload Metadata XML</h4>
+<ol>
+<li>Select <strong>Upload Metadata XML</strong>  </li>
+<li>Click <strong>Choose File</strong> and select the <code>okta-metadata.xml</code> file you saved  </li>
+<li>Click <strong>Upload</strong>  </li>
+<li>Fields will auto-populate from the XML  </li>
+</ol>
+<h4 id="method-c-manual-configuration">Method C: Manual Configuration</h4>
+<p>If neither metadata option works:</p>
+<ol>
+<li>Select <strong>Manual Configuration</strong>  </li>
+<li>Enter the values from Step 5:  </li>
+<li><strong>Identity Provider Issuer</strong>: <code>http://www.okta.com/xxx</code></li>
+<li><strong>Identity Provider SSO URL</strong>: <code>https://your-domain.okta.com/app/xxx/sso/saml</code></li>
+<li><strong>Identity Provider Certificate</strong>: Paste the X.509 certificate (including BEGIN and END lines)</li>
+</ol>
+<h3 id="74-configure-attribute-mapping">7.4 Configure Attribute Mapping</h3>
+<p>Verify the attribute mapping matches your Okta configuration:</p>
+<table>
+<thead>
+<tr>
+<th>Vesper Secure Field</th>
+<th>SAML Attribute</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>User ID</strong></td>
+<td>NameID (email)</td>
+</tr>
+<tr>
+<td><strong>Email</strong></td>
+<td><code>email</code></td>
+</tr>
+<tr>
+<td><strong>First Name</strong></td>
+<td><code>firstName</code></td>
+</tr>
+<tr>
+<td><strong>Last Name</strong></td>
+<td><code>lastName</code></td>
+</tr>
+<tr>
+<td><strong>Groups</strong></td>
+<td><code>groups</code> (if configured)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="75-save-configuration">7.5 Save Configuration</h3>
+<ol>
+<li>Review all settings carefully  </li>
+<li>Click <strong>Test Connection</strong> (if available) to verify the configuration  </li>
+<li>Click <strong>Save</strong> to enable Okta SSO  </li>
+</ol>
+<div class="admonition success">
+<p class="admonition-title">Configuration Complete</p>
+<p>Okta SAML SSO is now configured. Proceed to testing to verify everything works correctly.</p>
+</div>
+<hr />
+<h2 id="step-8-test-sso-connection">Step 8: Test SSO Connection</h2>
+<h3 id="81-test-from-okta-admin-console">8.1 Test from Okta Admin Console</h3>
+<ol>
+<li>In Okta Admin Console, go to your Vesper Secure application  </li>
+<li>Click the <strong>General</strong> tab  </li>
+<li>In the <strong>App Embed Link</strong> section, you'll see a link like:  </li>
+<li><code>https://your-domain.okta.com/home/oidc_client/xxx/xxx</code></li>
+<li>Copy this link and open it in a new incognito/private browser window  </li>
+<li>You should be redirected to Vesper Secure and automatically signed in  </li>
+</ol>
+<h3 id="82-test-from-okta-end-user-dashboard">8.2 Test from Okta End-User Dashboard</h3>
+<ol>
+<li>Open a new incognito/private browser window  </li>
+<li>Navigate to your Okta end-user dashboard (e.g., <code>https://your-domain.okta.com</code>)  </li>
+<li>Sign in with your Okta credentials  </li>
+<li>Look for the Vesper Secure application tile (if you made it visible)  </li>
+<li>Click on the Vesper Secure tile  </li>
+<li>You should be redirected to Vesper Secure and automatically signed in  </li>
+</ol>
+<h3 id="83-test-from-vesper-secure-login-page">8.3 Test from Vesper Secure Login Page</h3>
+<ol>
+<li>Open a new incognito/private browser window  </li>
+<li>Navigate to <a href="https://app.vespersecure.com">https://app.vespersecure.com</a>  </li>
+<li>Click <strong>Sign in with Okta</strong> or <strong>SSO Sign In</strong>  </li>
+<li>Enter your Okta organization URL if prompted  </li>
+<li>Enter your Okta credentials (you may be prompted for MFA)  </li>
+<li>Upon successful authentication, you should be redirected back to Vesper Secure and logged in  </li>
+</ol>
+<h3 id="84-verify-user-profile">8.4 Verify User Profile</h3>
+<p>After successful login:</p>
+<ol>
+<li>Check your user profile in Vesper Secure  </li>
+<li>Verify that your email, first name, and last name are populated correctly  </li>
+<li>If using group claims, verify your group memberships appear correctly  </li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Testing Tips</p>
+<ul>
+<li>Use an incognito/private browser window to avoid cached sessions</li>
+<li>Test with both administrator and regular user accounts</li>
+<li>Verify that users NOT assigned to the application cannot sign in</li>
+<li>Test group-based access if you configured group attributes</li>
+</ul>
+</div>
+<hr />
+<h2 id="step-9-enable-for-all-users">Step 9: Enable for All Users</h2>
+<p>Once testing is successful:</p>
+<h3 id="91-communicate-to-users">9.1 Communicate to Users</h3>
+<p>Before rolling out, inform your users:</p>
+<ul>
+<li>SSO is now available for Vesper Secure</li>
+<li>They can access it via Okta dashboard or "Sign in with Okta" button</li>
+<li>Their Okta credentials (including MFA) will be required</li>
+<li>Any existing Vesper Secure passwords will no longer work (if migrating)</li>
+</ul>
+<h3 id="92-roll-out-in-phases">9.2 Roll Out in Phases</h3>
+<p>Consider a phased rollout:</p>
+<ol>
+<li><strong>Phase 1</strong>: Pilot group (already tested)  </li>
+<li><strong>Phase 2</strong>: Department or team  </li>
+<li><strong>Phase 3</strong>: Entire organization  </li>
+</ol>
+<h3 id="93-monitor-initial-logins">9.3 Monitor Initial Logins</h3>
+<p>After rollout:</p>
+<ul>
+<li>Monitor system logs in Okta (Reports → System Log)</li>
+<li>Check for any failed authentication attempts</li>
+<li>Address any user issues promptly</li>
+</ul>
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="issue-user-is-not-assigned-to-the-client-application">Issue: "User is not assigned to the client application"</h3>
+<p><strong>Cause</strong>: The user attempting to sign in is not assigned to the Vesper Secure application in Okta.</p>
+<p><strong>Solution</strong>:
+1. Go to the Vesper Secure application in Okta Admin Console<br />
+2. Click the <strong>Assignments</strong> tab<br />
+3. Assign the user or a group containing the user<br />
+4. Have the user try signing in again  </p>
+<h3 id="issue-the-saml-response-is-invalid-or-signature-validation-failed">Issue: "The SAML response is invalid" or "Signature validation failed"</h3>
+<p><strong>Cause</strong>: Certificate mismatch or expired certificate.</p>
+<p><strong>Solution</strong>:
+1. Verify the certificate in Vesper Secure matches the current Okta certificate<br />
+2. In Okta, go to your application → <strong>Sign On</strong> tab → <strong>View SAML setup instructions</strong><br />
+3. Copy the latest X.509 certificate<br />
+4. Update the certificate in Vesper Secure<br />
+5. Test SSO again  </p>
+<h3 id="issue-user-profile-missing-first-name-or-last-name-in-vesper-secure">Issue: User profile missing first name or last name in Vesper Secure</h3>
+<p><strong>Cause</strong>: Attribute statements are not configured correctly or the user's Okta profile is incomplete.</p>
+<p><strong>Solution</strong>:
+1. Verify the user has <code>firstName</code> and <code>lastName</code> populated in their Okta profile<br />
+2. Check the attribute statements in your SAML application configuration<br />
+3. Ensure attribute names are exactly <code>firstName</code> and <code>lastName</code> (case-sensitive)<br />
+4. Have the user sign out and sign in again  </p>
+<h3 id="issue-group-membership-not-appearing-in-vesper-secure">Issue: Group membership not appearing in Vesper Secure</h3>
+<p><strong>Cause</strong>: Group attribute statements are not configured or the user is not a member of matching groups.</p>
+<p><strong>Solution</strong>:
+1. Verify group attribute statement is configured with name <code>groups</code><br />
+2. Check the filter - ensure it matches the groups the user is a member of<br />
+3. Verify the user is a member of Okta groups<br />
+4. Check that those groups are assigned to the Vesper Secure application<br />
+5. Have the user sign out and sign in again  </p>
+<h3 id="issue-audience-restriction-validation-failed">Issue: "Audience restriction validation failed"</h3>
+<p><strong>Cause</strong>: The Audience URI (SP Entity ID) in Okta doesn't match what Vesper Secure expects.</p>
+<p><strong>Solution</strong>:
+1. In Okta, edit your SAML application settings<br />
+2. Verify the <strong>Audience URI (SP Entity ID)</strong> is exactly: <code>https://app.vespersecure.com/auth/saml/okta</code><br />
+3. Check for typos, trailing slashes, or case differences<br />
+4. Save changes and test again  </p>
+<h3 id="issue-the-response-was-received-at-an-invalid-url">Issue: "The response was received at an invalid URL"</h3>
+<p><strong>Cause</strong>: The Single sign-on URL in Okta doesn't match the actual callback URL.</p>
+<p><strong>Solution</strong>:
+1. In Okta, edit your SAML application settings<br />
+2. Verify the <strong>Single sign-on URL</strong> is exactly: <code>https://app.vespersecure.com/auth/saml/okta/callback</code><br />
+3. Ensure it uses <code>https://</code> not <code>http://</code><br />
+4. Save changes and test again  </p>
+<h3 id="issue-users-redirected-to-login-repeatedly">Issue: Users redirected to login repeatedly</h3>
+<p><strong>Cause</strong>: Session cookie issues or incorrect RelayState configuration.</p>
+<p><strong>Solution</strong>:
+1. Clear browser cookies and cache<br />
+2. Try in an incognito/private window<br />
+3. In Okta SAML settings, verify <strong>Default RelayState</strong> is empty<br />
+4. Check Vesper Secure logs for detailed error messages  </p>
+<h3 id="issue-certificate-expiration-warning">Issue: Certificate expiration warning</h3>
+<p><strong>Cause</strong>: The SAML signing certificate is approaching expiration.</p>
+<p><strong>Solution</strong>:
+1. Okta certificates typically auto-rotate before expiration<br />
+2. When Okta generates a new certificate, re-import the metadata in Vesper Secure<br />
+3. Test SSO after updating to ensure it works with the new certificate<br />
+4. Set up monitoring for certificate changes in Okta  </p>
+<hr />
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="security">Security</h3>
+<ul>
+<li><strong>Enable MFA</strong>: Require multi-factor authentication in Okta sign-on policies for Vesper Secure access</li>
+<li><strong>Use Sign-On Policies</strong>: Configure location-based, network-based, or device-based access policies</li>
+<li><strong>Monitor Access</strong>: Regularly review Okta system logs for suspicious activity</li>
+<li><strong>Rotate Certificates</strong>: Although Okta auto-rotates certificates, monitor for changes</li>
+<li><strong>Least Privilege</strong>: Only assign necessary users/groups to the application</li>
+</ul>
+<h3 id="management">Management</h3>
+<ul>
+<li><strong>Use Groups</strong>: Assign groups rather than individual users for easier management</li>
+<li><strong>Document Configuration</strong>: Keep records of your Entity ID, callback URL, and attribute mappings</li>
+<li><strong>Test Regularly</strong>: Periodically test SSO authentication to ensure it's working</li>
+<li><strong>Group Naming Convention</strong>: Use a clear prefix for Vesper Secure groups (e.g., "VesperSecure-")</li>
+<li><strong>Backup Configuration</strong>: Take screenshots or export your SAML configuration settings</li>
+</ul>
+<h3 id="user-experience">User Experience</h3>
+<ul>
+<li><strong>Clear Communication</strong>: Inform users about SSO before deployment</li>
+<li><strong>Add to Dashboard</strong>: Make the Vesper Secure tile visible in Okta dashboard for easy access</li>
+<li><strong>Provide Documentation</strong>: Create internal documentation or training materials</li>
+<li><strong>Test with Real Users</strong>: Have pilot users test before full rollout</li>
+<li><strong>Support Plan</strong>: Ensure your helpdesk knows how to troubleshoot SSO issues</li>
+</ul>
+<hr />
+<h2 id="advanced-configuration">Advanced Configuration</h2>
+<h3 id="sign-on-policies">Sign-On Policies</h3>
+<p>You can require additional conditions for Vesper Secure access:</p>
+<ol>
+<li>In Okta Admin Console, go to <strong>Security</strong> → <strong>Authentication Policies</strong>  </li>
+<li>Create a new policy or edit an existing one  </li>
+<li>Add the Vesper Secure application to the policy  </li>
+<li>Configure rules such as:  </li>
+<li>Require MFA</li>
+<li>Require password and MFA from specific network zones</li>
+<li>Block access from certain locations</li>
+<li>Require re-authentication after specified time</li>
+</ol>
+<h3 id="custom-attributes">Custom Attributes</h3>
+<p>If you need to pass custom attributes to Vesper Secure:</p>
+<ol>
+<li>Add custom attributes to your Okta user profile schema (Directory → Profile Editor)  </li>
+<li>Populate the custom attributes for your users  </li>
+<li>Add custom attribute statements in your SAML application configuration  </li>
+<li>Coordinate with Vesper Secure support for custom attribute mapping  </li>
+</ol>
+<h3 id="multiple-environments">Multiple Environments</h3>
+<p>If you have separate Vesper Secure environments (dev, staging, production):</p>
+<ol>
+<li>Create separate SAML applications in Okta for each environment  </li>
+<li>Use unique Entity IDs for each (e.g., <code>https://dev.vespersecure.com/auth/saml/okta</code>)  </li>
+<li>Use different callback URLs for each environment  </li>
+<li>Assign different user groups to each environment application  </li>
+</ol>
+<h3 id="automatic-user-provisioning-scim">Automatic User Provisioning (SCIM)</h3>
+<p>If Vesper Secure supports SCIM provisioning (check with support):</p>
+<ol>
+<li>In your application, go to the <strong>Provisioning</strong> tab  </li>
+<li>Click <strong>Configure API Integration</strong>  </li>
+<li>Enable API integration  </li>
+<li>Enter the SCIM endpoint URL and authentication details from Vesper Secure  </li>
+<li>Configure provisioning settings (create users, update attributes, deactivate users)  </li>
+</ol>
+<hr />
+<h2 id="certificate-management">Certificate Management</h2>
+<h3 id="monitor-certificate-changes">Monitor Certificate Changes</h3>
+<p>Okta automatically rotates SAML signing certificates before they expire:</p>
+<ol>
+<li>Okta will notify admins before certificate rotation  </li>
+<li>After rotation, you may need to update Vesper Secure with the new certificate  </li>
+<li>Set up Okta workflows or alerts to notify you of certificate changes  </li>
+</ol>
+<h3 id="update-certificate-in-vesper-secure">Update Certificate in Vesper Secure</h3>
+<p>When Okta rotates the certificate:</p>
+<ol>
+<li>In Okta, go to your Vesper Secure application → <strong>Sign On</strong> tab  </li>
+<li>View the SAML setup instructions to get the new certificate  </li>
+<li>In Vesper Secure, update the IdP certificate or re-import the metadata  </li>
+<li>Test SSO to ensure it works with the new certificate  </li>
+<li>Both old and new certificates can coexist briefly during transition  </li>
+</ol>
+<hr />
+<h2 id="integration-with-okta-features">Integration with Okta Features</h2>
+<h3 id="okta-verify-mfa">Okta Verify MFA</h3>
+<p>Require Okta Verify (or other MFA factors) for Vesper Secure access:</p>
+<ol>
+<li>Go to <strong>Security</strong> → <strong>Authentication Policies</strong>  </li>
+<li>Select or create a policy for Vesper Secure  </li>
+<li>Add a rule that requires MFA  </li>
+<li>Specify allowed MFA factors (Okta Verify, SMS, Voice, etc.)  </li>
+</ol>
+<h3 id="okta-network-zones">Okta Network Zones</h3>
+<p>Restrict access based on network location:</p>
+<ol>
+<li>Define network zones in <strong>Security</strong> → <strong>Networks</strong>  </li>
+<li>Create IP zones for trusted networks (office, VPN, etc.)  </li>
+<li>In authentication policies, require MFA or block access from untrusted zones  </li>
+</ol>
+<h3 id="okta-threatinsight">Okta ThreatInsight</h3>
+<p>Enable ThreatInsight to detect and respond to suspicious authentications:</p>
+<ol>
+<li>Go to <strong>Security</strong> → <strong>General</strong>  </li>
+<li>Enable <strong>Okta ThreatInsight</strong>  </li>
+<li>Configure whether to log only or block suspicious requests  </li>
+</ol>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<p>After successfully configuring Okta SAML SSO:</p>
+<ol>
+<li><strong><a href="../../firewall-integration/">Set up Firewall Integration</a></strong> - Connect the Dynamic IP List to your firewall  </li>
+<li><strong><a href="../../user-management/">Configure User Management</a></strong> - Monitor and manage user access  </li>
+<li><strong>Configure Sign-On Policies</strong> - Add additional security policies in Okta  </li>
+<li><strong>Review System Logs</strong> - Regularly check Okta logs for authentication events  </li>
+</ol>
+<hr />
+<h2 id="additional-resources">Additional Resources</h2>
+<ul>
+<li><a href="../">Back to SSO Integration Overview</a></li>
+<li><a href="../../">Back to Administrator Guide</a></li>
+<li><a href="../../../resources/troubleshooting/">Troubleshooting Guide</a></li>
+<li><a href="https://help.okta.com/">Okta Documentation</a></li>
+<li><a href="https://developer.okta.com/docs/concepts/saml/">Okta SAML Technical Overview</a></li>
+</ul>
+<hr />
+<p><em>© 2025 Evenstar Security, LLC. All rights reserved.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/defendthehoneypot/TestAdminSite" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.instant", "navigation.tracking", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2780 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Dynamic IP List Management for Firewall ACLs">
+      
+      
+        <meta name="author" content="TestAdminSite Team">
+      
+      
+        <link rel="canonical" href="https://defendthehoneypot.github.io/TestAdminSite/admin/firewall-integration/fortinet/">
+      
+      
+        <link rel="prev" href="../palo-alto/">
+      
+      
+        <link rel="next" href="../cisco/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../material/shield-lock-outline">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Fortinet FortiGate - VESPER SECURE</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cyan" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="VESPER SECURE" class="md-header__button md-logo" aria-label="VESPER SECURE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 11c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9 10c3.75-1 7-5.46 7-9.78V6.3l-7-3.12L5 6.3v4.92C5 15.54 8.25 20 12 21m2.8-10V9.5C14.8 8.1 13.4 7 12 7S9.2 8.1 9.2 9.5V11c-.6 0-1.2.6-1.2 1.2v3.5c0 .7.6 1.3 1.2 1.3h5.5c.7 0 1.3-.6 1.3-1.2v-3.5c0-.7-.6-1.3-1.2-1.3m-1.3 0h-3V9.5c0-.8.7-1.3 1.5-1.3s1.5.5 1.5 1.3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VESPER SECURE
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Fortinet FortiGate
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="cyan" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="cyan" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+  Administrator Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../user/" class="md-tabs__link">
+          
+  
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../resources/faq/" class="md-tabs__link">
+          
+  
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="VESPER SECURE" class="md-nav__button md-logo" aria-label="VESPER SECURE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 11c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9 10c3.75-1 7-5.46 7-9.78V6.3l-7-3.12L5 6.3v4.92C5 15.54 8.25 20 12 21m2.8-10V9.5C14.8 8.1 13.4 7 12 7S9.2 8.1 9.2 9.5V11c-.6 0-1.2.6-1.2 1.2v3.5c0 .7.6 1.3 1.2 1.3h5.5c.7 0 1.3-.6 1.3-1.2v-3.5c0-.7-.6-1.3-1.2-1.3m-1.3 0h-3V9.5c0-.8.7-1.3 1.5-1.3s1.5.5 1.5 1.3z"/></svg>
+
+    </a>
+    VESPER SECURE
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administrator Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Administrator Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup & Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSO Integration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SSO Integration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sso-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sso-integration/azure-saml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Azure AD SAML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sso-integration/okta-saml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Okta SAML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firewall Integration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Firewall Integration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../palo-alto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Palo Alto Networks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fortinet FortiGate
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fortinet FortiGate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-youll-configure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What You'll Configure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time Required
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-begin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before You Begin
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-create-external-resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Create External Resource
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Create External Resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#navigate-to-external-connectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigate to External Connectors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-external-connector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure External Connector
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-connectivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Connectivity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-create-address-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Create Address Object
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Create Address Object">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#navigate-to-addresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigate to Addresses
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-dynamic-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Dynamic Address
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-address-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Save Address Object
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-verify-external-connector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Verify External Connector
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-create-firewall-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Create Firewall Policy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4: Create Firewall Policy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#navigate-to-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigate to Policies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-allow-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Allow Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-security-profiles-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable Security Profiles (Optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Save Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-create-block-policy-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Create Block Policy (Optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation-and-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation and Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Validation and Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verify-external-connector-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify External Connector Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-connector-manually" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Connector Manually
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-address-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify Address Object
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-with-user-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test with User Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review-firewall-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Firewall Logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#external-connector-shows-failed-or-disconnected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External Connector Shows "Failed" or "Disconnected"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#address-object-is-empty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Address Object is Empty
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traffic-not-being-allowed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traffic Not Being Allowed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-vdoms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using VDOMs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-availability-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        High Availability Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-vpn-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple VPN Interfaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Resources
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fortinet-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fortinet Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cisco/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cisco ASA/FTD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../check-point/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Check Point
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pfsense/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pfSense
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../opnsense/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OPNsense
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../juniper-srx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Juniper SRX
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../generic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generic/Other Firewalls
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user/get-ip-added/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to Get Your IP Added
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ for Users
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Resources
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../resources/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../resources/best-practices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Practices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../resources/troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-youll-configure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What You'll Configure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time Required
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-begin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before You Begin
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-create-external-resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Create External Resource
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Create External Resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#navigate-to-external-connectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigate to External Connectors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-external-connector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure External Connector
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-connectivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Connectivity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-create-address-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Create Address Object
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Create Address Object">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#navigate-to-addresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigate to Addresses
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-dynamic-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Dynamic Address
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-address-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Save Address Object
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-verify-external-connector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Verify External Connector
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-create-firewall-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Create Firewall Policy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4: Create Firewall Policy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#navigate-to-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigate to Policies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-allow-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Allow Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-security-profiles-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable Security Profiles (Optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Save Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-create-block-policy-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Create Block Policy (Optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation-and-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation and Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Validation and Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verify-external-connector-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify External Connector Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-connector-manually" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Connector Manually
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-address-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify Address Object
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-with-user-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test with User Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review-firewall-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Firewall Logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#external-connector-shows-failed-or-disconnected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External Connector Shows "Failed" or "Disconnected"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#address-object-is-empty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Address Object is Empty
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traffic-not-being-allowed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traffic Not Being Allowed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-vdoms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using VDOMs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-availability-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        High Availability Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-vpn-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple VPN Interfaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Resources
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fortinet-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fortinet Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Fortinet FortiGate</h1>
+
+<div class="hero" markdown>
+
+<p class="badge">ADMINISTRATOR GUIDE</p>
+
+# Fortinet FortiGate Integration
+
+Configure Fortinet FortiGate firewalls to use Vesper Secure's Dynamic IP List for automated ACL updates.
+
+</div>
+
+<hr />
+<h2 id="overview">Overview</h2>
+<p>Fortinet FortiGate firewalls support External Connectors (also called Fabric Connectors) that can pull IP addresses from external sources. This guide covers FortiOS 6.0 and later versions.</p>
+<h3 id="what-youll-configure">What You'll Configure</h3>
+<ol>
+<li>External Connector to pull IPs from Vesper Dynamic IP List  </li>
+<li>Dynamic address object based on the connector  </li>
+<li>Firewall policy to allow registered IPs  </li>
+<li>Testing and validation  </li>
+</ol>
+<h3 id="time-required">Time Required</h3>
+<p><strong>15-20 minutes</strong> for complete configuration and testing.</p>
+<hr />
+<h2 id="before-you-begin">Before You Begin</h2>
+<p>Ensure you have:</p>
+<ul>
+<li>[ ] Dynamic IP List URL, username, and password from <a href="../../setup/">Setup &amp; Configuration</a></li>
+<li>[ ] FortiGate firewall admin access</li>
+<li>[ ] Outbound HTTPS (port 443) allowed from firewall to <code>list.vespersecure.com</code></li>
+<li>[ ] Knowledge of your VPN gateway interface and IP</li>
+</ul>
+<hr />
+<h2 id="step-1-create-external-resource">Step 1: Create External Resource</h2>
+<h3 id="navigate-to-external-connectors">Navigate to External Connectors</h3>
+<ol>
+<li>Log in to FortiGate web interface  </li>
+<li>Go to <strong>Security Fabric</strong> → <strong>External Connectors</strong>  </li>
+<li>Click <strong>Create New</strong> → <strong>IP Address</strong>  </li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">FortiOS Versions</p>
+<p>In some FortiOS versions, this may be under <strong>Security Fabric</strong> → <strong>Fabric Connectors</strong> or <strong>External Resources</strong>.</p>
+</div>
+<h3 id="configure-external-connector">Configure External Connector</h3>
+<p>Configure the following settings:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Name: Vesper_Secure_EDL
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Type: IP Address
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Update Method: HTTP(S)
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>URL: https://list.vespersecure.com/organizationid
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Authentication: Basic
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>Username: organizationid
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>Password: ••••••••
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>Refresh Rate: 5 minutes
+</code></pre></div>
+<p><strong>Field Details:</strong></p>
+<ul>
+<li><strong>Name</strong>: Use a descriptive name without spaces (e.g., <code>Vesper_Secure_EDL</code>)</li>
+<li><strong>Type</strong>: Must be "IP Address"</li>
+<li><strong>Update Method</strong>: Select "HTTP(S)"</li>
+<li><strong>URL</strong>: Your unique Dynamic IP List URL from Vesper admin panel</li>
+<li><strong>Authentication</strong>: Select "Basic"</li>
+<li><strong>Username</strong>: Your organization ID</li>
+<li><strong>Password</strong>: Dynamic IP List password from Vesper admin panel</li>
+<li><strong>Refresh Rate</strong>: </li>
+<li>5 minutes for fastest access grants</li>
+<li>1 hour for reduced firewall load</li>
+<li>15 minutes recommended for balanced approach</li>
+</ul>
+<h3 id="test-connectivity">Test Connectivity</h3>
+<ol>
+<li>Click <strong>Test Connectivity</strong> before saving (if available)  </li>
+<li>Verify connection succeeds  </li>
+<li>Click <strong>OK</strong> to save the external connector  </li>
+</ol>
+<hr />
+<h2 id="step-2-create-address-object">Step 2: Create Address Object</h2>
+<h3 id="navigate-to-addresses">Navigate to Addresses</h3>
+<ol>
+<li>Go to <strong>Policy &amp; Objects</strong> → <strong>Addresses</strong>  </li>
+<li>Click <strong>Create New</strong> → <strong>Address</strong>  </li>
+</ol>
+<h3 id="configure-dynamic-address">Configure Dynamic Address</h3>
+<p>Create an address object with these settings:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Name: Vesper-Allowed-IPs
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Type: Dynamic
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Sub-type: Fabric Connector Address
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Connector: Vesper_Secure_EDL
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Interface: any
+</code></pre></div>
+<p><strong>Field Details:</strong></p>
+<ul>
+<li><strong>Name</strong>: Descriptive name for the address object</li>
+<li><strong>Type</strong>: Select "Dynamic" (not Static)</li>
+<li><strong>Sub-type</strong>: Select "Fabric Connector Address"</li>
+<li><strong>Connector</strong>: Select the connector you created (<code>Vesper_Secure_EDL</code>)</li>
+<li><strong>Interface</strong>: Leave as "any" or select specific interface if needed</li>
+</ul>
+<h3 id="save-address-object">Save Address Object</h3>
+<p>Click <strong>OK</strong> to save the address object.</p>
+<hr />
+<h2 id="step-3-verify-external-connector">Step 3: Verify External Connector</h2>
+<p>Before creating policies, verify the connector is working:</p>
+<ol>
+<li>Go to <strong>Security Fabric</strong> → <strong>External Connectors</strong>  </li>
+<li>Find your <code>Vesper_Secure_EDL</code> connector  </li>
+<li>Check the status shows green/connected  </li>
+<li>Click on the connector name to view details  </li>
+<li>Verify it shows IP addresses (if any users have registered)  </li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Empty List is OK</p>
+<p>If no users have registered yet, the connector may show 0 addresses. This is normal - it will populate as users register.</p>
+</div>
+<hr />
+<h2 id="step-4-create-firewall-policy">Step 4: Create Firewall Policy</h2>
+<h3 id="navigate-to-policies">Navigate to Policies</h3>
+<ol>
+<li>Go to <strong>Policy &amp; Objects</strong> → <strong>Firewall Policy</strong>  </li>
+<li>Click <strong>Create New</strong>  </li>
+<li>Position the policy <strong>above</strong> any general deny rules  </li>
+</ol>
+<h3 id="configure-allow-policy">Configure Allow Policy</h3>
+<p>Create a firewall policy with these settings:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Name: Allow-Vesper-Verified-Users
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Incoming Interface: wan1 (or your external interface)
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Outgoing Interface: vpn (or your VPN interface)
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>Source: Vesper-Allowed-IPs
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>Destination: VPN-Gateway-IP (or all)
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>Service: HTTPS, IPSEC
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>Schedule: always
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>Action: Accept
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>NAT: (configure as needed)
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>Log Allowed Traffic: All Sessions
+</code></pre></div>
+<p><strong>Field Details:</strong></p>
+<ul>
+<li><strong>Name</strong>: Descriptive name for the policy</li>
+<li><strong>Incoming Interface</strong>: Interface where external traffic arrives (e.g., wan1, port1)</li>
+<li><strong>Outgoing Interface</strong>: Interface connected to VPN gateway</li>
+<li><strong>Source</strong>: Select the address object you created (<code>Vesper-Allowed-IPs</code>)</li>
+<li><strong>Destination</strong>: Your VPN gateway IP or address object (or use "all")</li>
+<li><strong>Service</strong>: Include VPN protocols:</li>
+<li>HTTPS (for SSL VPN)</li>
+<li>IPSEC (for IPSec VPN)</li>
+<li>Or create custom service for specific ports</li>
+<li><strong>Schedule</strong>: "always"</li>
+<li><strong>Action</strong>: Accept</li>
+<li><strong>NAT</strong>: Configure source NAT if required by your environment</li>
+<li><strong>Log Allowed Traffic</strong>: Enable "All Sessions" for auditing</li>
+</ul>
+<h3 id="enable-security-profiles-optional">Enable Security Profiles (Optional)</h3>
+<p>Under <strong>Security Profiles</strong>, optionally enable:
+- Antivirus
+- Web Filtering<br />
+- Application Control
+- IPS</p>
+<div class="admonition warning">
+<p class="admonition-title">Policy Order Matters</p>
+<p>This allow policy <strong>must</strong> be placed <strong>above</strong> any deny rules that would block the traffic. Use the up/down arrows to reorder policies.</p>
+</div>
+<h3 id="save-policy">Save Policy</h3>
+<p>Click <strong>OK</strong> to save the firewall policy.</p>
+<hr />
+<h2 id="step-5-create-block-policy-optional">Step 5: Create Block Policy (Optional)</h2>
+<p>Add an explicit deny rule below the allow rule to block unverified IPs:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Name: Block-Unverified-VPN-Access
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Incoming Interface: wan1
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Outgoing Interface: vpn
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>Source: all
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>Destination: VPN-Gateway-IP
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>Service: HTTPS, IPSEC
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>Action: Deny
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>Log Blocked Traffic: All Sessions
+</code></pre></div>
+<p>This helps with logging and troubleshooting by explicitly capturing denied attempts.</p>
+<hr />
+<h2 id="validation-and-testing">Validation and Testing</h2>
+<h3 id="verify-external-connector-status">Verify External Connector Status</h3>
+<ol>
+<li>Go to <strong>Security Fabric</strong> → <strong>External Connectors</strong>  </li>
+<li>Check your connector shows "Connected" or green status  </li>
+<li>Click on it to view the current IP addresses  </li>
+<li>Verify "Last Updated" timestamp is recent  </li>
+</ol>
+<h3 id="test-connector-manually">Test Connector Manually</h3>
+<p>You can force a manual update:</p>
+<ol>
+<li>Go to <strong>Security Fabric</strong> → <strong>External Connectors</strong>  </li>
+<li>Right-click on your connector  </li>
+<li>Select <strong>Refresh</strong> or <strong>Update Now</strong> (if available)  </li>
+<li>Wait a few seconds and verify update timestamp  </li>
+</ol>
+<h3 id="verify-address-object">Verify Address Object</h3>
+<ol>
+<li>Go to <strong>Policy &amp; Objects</strong> → <strong>Addresses</strong>  </li>
+<li>Find your <code>Vesper-Allowed-IPs</code> address object  </li>
+<li>Hover over or click to view current IP addresses  </li>
+<li>Verify IPs are being populated from the connector  </li>
+</ol>
+<h3 id="test-with-user-registration">Test with User Registration</h3>
+<ol>
+<li>Have a test user register their IP through Vesper portal  </li>
+<li>Wait for refresh interval (5 minutes to 1 hour depending on your setting)  </li>
+<li>Force a manual refresh of the external connector  </li>
+<li>Verify the test user's IP appears in the address object  </li>
+<li>Test VPN connection from the test user's location  </li>
+</ol>
+<h3 id="review-firewall-logs">Review Firewall Logs</h3>
+<ol>
+<li>Go to <strong>Log &amp; Report</strong> → <strong>Forward Traffic</strong>  </li>
+<li>Look for connections from registered IPs  </li>
+<li>Verify they're being allowed by your Vesper policy  </li>
+<li>Check that unregistered IPs are being denied (if you created a deny rule)  </li>
+</ol>
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="external-connector-shows-failed-or-disconnected">External Connector Shows "Failed" or "Disconnected"</h3>
+<p><strong>Symptoms:</strong><br />
+- Connector status shows red or failed<br />
+- No IPs being populated<br />
+- Error in connector details</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Check Outbound Connectivity:</strong>  </li>
+<li>Go to <strong>Dashboard</strong> → <strong>CLI Console</strong></li>
+<li>Execute: <code>execute ping list.vespersecure.com</code></li>
+<li>
+<p>Verify connectivity</p>
+</li>
+<li>
+<p><strong>Verify DNS Resolution:</strong><br />
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>execute dns lookup list.vespersecure.com
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Check Interface Selection:</strong>  </p>
+</li>
+<li>Verify the correct management or WAN interface can reach the internet</li>
+<li>
+<p>Go to <strong>System</strong> → <strong>Settings</strong> and check source IP for updates</p>
+</li>
+<li>
+<p><strong>Test with Diagnostics:</strong><br />
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>diagnose test application fcnacd 4
+</code></pre></div>
+   This shows external connector debug information.</p>
+</li>
+<li>
+<p><strong>Verify Credentials:</strong>  </p>
+</li>
+<li>Double-check username and password in connector configuration</li>
+<li>Ensure no extra spaces</li>
+<li>
+<p>Test manually: <code>curl -u "user:pass" https://list.vespersecure.com/organizationid</code></p>
+</li>
+<li>
+<p><strong>Check Routing:</strong>  </p>
+</li>
+<li>Ensure firewall has a route to reach list.vespersecure.com</li>
+<li>Verify default gateway is configured</li>
+</ol>
+<h3 id="address-object-is-empty">Address Object is Empty</h3>
+<p><strong>Symptoms:</strong>
+- Connector shows connected but address object has no IPs<br />
+- Policy not matching traffic</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Verify Users Have Registered:</strong>  </li>
+<li>Check Vesper admin panel</li>
+<li>
+<p>Confirm active registrations exist</p>
+</li>
+<li>
+<p><strong>Force Connector Refresh:</strong>  </p>
+</li>
+<li>Right-click connector and refresh</li>
+<li>
+<p>Wait for update to complete</p>
+</li>
+<li>
+<p><strong>Check Connector Configuration:</strong>  </p>
+</li>
+<li>Verify URL is correct</li>
+<li>
+<p>Ensure connector type is "IP Address"</p>
+</li>
+<li>
+<p><strong>Review Logs:</strong>  </p>
+</li>
+<li>Go to <strong>Log &amp; Report</strong> → <strong>System Events</strong></li>
+<li>Filter for external connector events</li>
+<li>Look for errors</li>
+</ol>
+<h3 id="traffic-not-being-allowed">Traffic Not Being Allowed</h3>
+<p><strong>Symptoms:</strong>
+- User registered but still can't connect<br />
+- Logs show denies</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Verify Policy Order:</strong>  </li>
+<li>Go to <strong>Policy &amp; Objects</strong> → <strong>Firewall Policy</strong></li>
+<li>Ensure Vesper allow policy is <strong>above</strong> deny rules</li>
+<li>
+<p>Drag to reorder if necessary</p>
+</li>
+<li>
+<p><strong>Check Policy Configuration:</strong>  </p>
+</li>
+<li>Verify source address is set to <code>Vesper-Allowed-IPs</code></li>
+<li>Confirm interfaces are correct</li>
+<li>
+<p>Ensure services include necessary VPN protocols</p>
+</li>
+<li>
+<p><strong>Verify IP is in Address Object:</strong>  </p>
+</li>
+<li>Go to <strong>Policy &amp; Objects</strong> → <strong>Addresses</strong></li>
+<li>Check <code>Vesper-Allowed-IPs</code> contains the user's IP</li>
+<li>
+<p>Have user confirm their current IP</p>
+</li>
+<li>
+<p><strong>Review Policy Logs:</strong>  </p>
+</li>
+<li>Go to <strong>Log &amp; Report</strong> → <strong>Forward Traffic</strong></li>
+<li>Find the blocked session</li>
+<li>Check which policy is blocking</li>
+<li>Verify hit count on Vesper allow policy</li>
+</ol>
+<h3 id="authentication-errors">Authentication Errors</h3>
+<p><strong>Symptoms:</strong>
+- Connector shows authentication failed<br />
+- 401 Unauthorized in logs</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li>Edit the external connector  </li>
+<li>Re-enter username and password carefully  </li>
+<li>Ensure no extra spaces  </li>
+<li>Test credentials with curl: <code>curl -v -u "user:pass" URL</code>  </li>
+<li>Re-generate credentials in Vesper admin panel if needed  </li>
+</ol>
+<hr />
+<h2 id="advanced-configuration">Advanced Configuration</h2>
+<h3 id="using-vdoms">Using VDOMs</h3>
+<p>If using Virtual Domains (VDOMs):</p>
+<ol>
+<li>Create the external connector in each VDOM that needs access  </li>
+<li>Each VDOM maintains its own connector instance  </li>
+<li>Configure policies within each VDOM  </li>
+</ol>
+<h3 id="high-availability-configuration">High Availability Configuration</h3>
+<p>For HA cluster:</p>
+<ol>
+<li>Configure external connector on the primary unit  </li>
+<li>Configuration syncs to secondary automatically  </li>
+<li>Both units independently fetch the Dynamic IP List  </li>
+<li>Verify connectivity from both units  </li>
+</ol>
+<h3 id="multiple-vpn-interfaces">Multiple VPN Interfaces</h3>
+<p>If you have multiple VPN gateways:</p>
+<ol>
+<li>Use the same address object in multiple policies  </li>
+<li>Create separate policies for each VPN interface  </li>
+<li>Maintain consistent policy ordering  </li>
+</ol>
+<hr />
+<h2 id="best-practices">Best Practices</h2>
+<div class="admonition success">
+<p class="admonition-title">Recommended Settings</p>
+<ul>
+<li><strong>Refresh Rate</strong>: 15 minutes for balanced approach</li>
+<li><strong>Logging</strong>: Enable logging on both allow and deny policies</li>
+<li><strong>Policy Order</strong>: Review quarterly to ensure correct ordering</li>
+<li><strong>Testing</strong>: Test with pilot users before full rollout</li>
+</ul>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Monitoring</p>
+<ul>
+<li>Monitor external connector status daily</li>
+<li>Set up alerts for connector failures</li>
+<li>Review forward traffic logs regularly</li>
+<li>Keep backup static IP list for critical admins</li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Optimization</p>
+<ul>
+<li>Use security profiles on allow policy for additional protection</li>
+<li>Consider creating address groups if managing multiple DIPLs</li>
+<li>Document your configuration for future reference</li>
+<li>Schedule regular connectivity tests</li>
+</ul>
+</div>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<p>After FortiGate integration:</p>
+<ol>
+<li><strong><a href="../../user-management/">Configure User Management</a></strong> - Monitor user registrations  </li>
+<li><strong><a href="../../user-management/#onboarding-new-users">Test with pilot users</a></strong> - Validate the complete flow  </li>
+<li><strong><a href="../../../resources/best-practices/">Review best practices</a></strong> - Optimize your deployment  </li>
+</ol>
+<hr />
+<h2 id="additional-resources">Additional Resources</h2>
+<ul>
+<li><a href="../">Back to Firewall Integration Overview</a></li>
+<li><a href="../../">Administrator Guide</a></li>
+<li><a href="../../../resources/troubleshooting/">Troubleshooting Guide</a></li>
+<li><a href="../../../resources/best-practices/">Best Practices</a></li>
+</ul>
+<h3 id="fortinet-documentation">Fortinet Documentation</h3>
+<ul>
+<li><a href="https://docs.fortinet.com">External Connectors Configuration Guide</a></li>
+<li><a href="https://docs.fortinet.com">Dynamic Address Objects</a></li>
+<li><a href="https://docs.fortinet.com">Firewall Policy Best Practices</a></li>
+</ul>
+<hr />
+<p style="text-align: center; color: #64748b; font-size: 0.875rem; margin-top: 2rem;">
+© 2025 Evenstar Security, LLC. All rights reserved.
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/defendthehoneypot/TestAdminSite" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.instant", "navigation.tracking", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

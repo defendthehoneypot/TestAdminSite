@@ -1,0 +1,3014 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Dynamic IP List Management for Firewall ACLs">
+      
+      
+        <meta name="author" content="TestAdminSite Team">
+      
+      
+        <link rel="canonical" href="https://defendthehoneypot.github.io/TestAdminSite/admin/firewall-integration/pfsense/">
+      
+      
+        <link rel="prev" href="../check-point/">
+      
+      
+        <link rel="next" href="../opnsense/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../material/shield-lock-outline">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>pfSense - VESPER SECURE</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cyan" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="VESPER SECURE" class="md-header__button md-logo" aria-label="VESPER SECURE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 11c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9 10c3.75-1 7-5.46 7-9.78V6.3l-7-3.12L5 6.3v4.92C5 15.54 8.25 20 12 21m2.8-10V9.5C14.8 8.1 13.4 7 12 7S9.2 8.1 9.2 9.5V11c-.6 0-1.2.6-1.2 1.2v3.5c0 .7.6 1.3 1.2 1.3h5.5c.7 0 1.3-.6 1.3-1.2v-3.5c0-.7-.6-1.3-1.2-1.3m-1.3 0h-3V9.5c0-.8.7-1.3 1.5-1.3s1.5.5 1.5 1.3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VESPER SECURE
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              pfSense
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="cyan" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="cyan" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+  Administrator Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../user/" class="md-tabs__link">
+          
+  
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../resources/faq/" class="md-tabs__link">
+          
+  
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="VESPER SECURE" class="md-nav__button md-logo" aria-label="VESPER SECURE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 11c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9 10c3.75-1 7-5.46 7-9.78V6.3l-7-3.12L5 6.3v4.92C5 15.54 8.25 20 12 21m2.8-10V9.5C14.8 8.1 13.4 7 12 7S9.2 8.1 9.2 9.5V11c-.6 0-1.2.6-1.2 1.2v3.5c0 .7.6 1.3 1.2 1.3h5.5c.7 0 1.3-.6 1.3-1.2v-3.5c0-.7-.6-1.3-1.2-1.3m-1.3 0h-3V9.5c0-.8.7-1.3 1.5-1.3s1.5.5 1.5 1.3z"/></svg>
+
+    </a>
+    VESPER SECURE
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administrator Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Administrator Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup & Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSO Integration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SSO Integration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sso-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sso-integration/azure-saml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Azure AD SAML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sso-integration/okta-saml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Okta SAML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firewall Integration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Firewall Integration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../palo-alto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Palo Alto Networks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fortinet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fortinet FortiGate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cisco/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cisco ASA/FTD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../check-point/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Check Point
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pfSense
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pfSense
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-youll-configure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What You'll Configure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time Required
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-begin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before You Begin
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method-1-native-url-table-aliases-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 1: Native URL Table Aliases (Recommended)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Method 1: Native URL Table Aliases (Recommended)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-create-url-table-alias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Create URL Table Alias
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Create URL Table Alias">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#navigate-to-aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigate to Aliases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-the-alias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure the Alias
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-the-alias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Save the Alias
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-verify-alias-download" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Verify Alias Download
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Verify Alias Download">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-alias-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check Alias Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-create-firewall-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Create Firewall Rule
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Create Firewall Rule">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#navigate-to-firewall-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigate to Firewall Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-allow-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Allow Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-options-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Options (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-the-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Save the Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-create-block-rule-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Create Block Rule (Optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method-2-pfblockerng-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 2: pfBlockerNG (Advanced)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Method 2: pfBlockerNG (Advanced)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-install-pfblockerng" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Install pfBlockerNG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-configure-pfblockerng-for-vesper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Configure pfBlockerNG for Vesper
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Configure pfBlockerNG for Vesper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#navigate-to-pfblockerng" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigate to pfBlockerNG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-ip-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure IP List
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-list-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure List Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-enable-pfblockerng" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Enable pfBlockerNG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-create-firewall-rule-with-pfblockerng" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Create Firewall Rule with pfBlockerNG
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation-and-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation and Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Validation and Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verify-alias-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify Alias Contents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-url-fetch-manually" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test URL Fetch Manually
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-with-user-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test with User Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-firewall-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check Firewall Logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alias-download-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alias Download Fails
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#special-characters-in-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Special Characters in Password
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traffic-not-being-allowed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traffic Not Being Allowed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alias-updates-too-slow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alias Updates Too Slow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automatic-alias-refresh-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic Alias Refresh Script
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-availability-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        High Availability Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipv6-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IPv6 Support
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-vpn-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple VPN Servers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Resources
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pfsense-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pfSense Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../opnsense/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OPNsense
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../juniper-srx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Juniper SRX
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../generic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generic/Other Firewalls
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user/get-ip-added/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to Get Your IP Added
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ for Users
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Resources
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../resources/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../resources/best-practices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Practices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../resources/troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-youll-configure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What You'll Configure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time Required
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-begin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before You Begin
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method-1-native-url-table-aliases-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 1: Native URL Table Aliases (Recommended)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Method 1: Native URL Table Aliases (Recommended)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-create-url-table-alias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Create URL Table Alias
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Create URL Table Alias">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#navigate-to-aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigate to Aliases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-the-alias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure the Alias
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-the-alias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Save the Alias
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-verify-alias-download" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Verify Alias Download
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Verify Alias Download">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-alias-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check Alias Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-create-firewall-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Create Firewall Rule
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Create Firewall Rule">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#navigate-to-firewall-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigate to Firewall Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-allow-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Allow Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-options-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Options (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-the-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Save the Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-create-block-rule-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Create Block Rule (Optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method-2-pfblockerng-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 2: pfBlockerNG (Advanced)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Method 2: pfBlockerNG (Advanced)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-install-pfblockerng" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Install pfBlockerNG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-configure-pfblockerng-for-vesper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Configure pfBlockerNG for Vesper
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Configure pfBlockerNG for Vesper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#navigate-to-pfblockerng" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigate to pfBlockerNG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-ip-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure IP List
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-list-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure List Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-enable-pfblockerng" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Enable pfBlockerNG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-create-firewall-rule-with-pfblockerng" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Create Firewall Rule with pfBlockerNG
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation-and-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation and Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Validation and Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verify-alias-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify Alias Contents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-url-fetch-manually" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test URL Fetch Manually
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-with-user-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test with User Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-firewall-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check Firewall Logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alias-download-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alias Download Fails
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#special-characters-in-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Special Characters in Password
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traffic-not-being-allowed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traffic Not Being Allowed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alias-updates-too-slow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alias Updates Too Slow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automatic-alias-refresh-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic Alias Refresh Script
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-availability-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        High Availability Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipv6-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IPv6 Support
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-vpn-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple VPN Servers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Resources
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pfsense-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pfSense Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>pfSense</h1>
+
+<div class="hero" markdown>
+
+<p class="badge">ADMINISTRATOR GUIDE</p>
+
+# pfSense Integration
+
+Configure pfSense firewalls to use Vesper Secure's Dynamic IP List for automated ACL updates.
+
+</div>
+
+<hr />
+<h2 id="overview">Overview</h2>
+<p>pfSense (2.4+) provides native URL Table Aliases that can fetch IP addresses from HTTP/HTTPS URLs. Additionally, the pfBlockerNG package offers enhanced Dynamic IP List-like functionality. This guide covers both approaches.</p>
+<h3 id="what-youll-configure">What You'll Configure</h3>
+<ol>
+<li>URL Table Alias pointing to Vesper Dynamic IP List  </li>
+<li>Firewall rule to allow registered IPs  </li>
+<li>Optional pfBlockerNG integration for advanced features  </li>
+<li>Testing and validation  </li>
+</ol>
+<h3 id="time-required">Time Required</h3>
+<p><strong>15-20 minutes</strong> for basic configuration, <strong>25-30 minutes</strong> with pfBlockerNG.</p>
+<hr />
+<h2 id="before-you-begin">Before You Begin</h2>
+<p>Ensure you have:</p>
+<ul>
+<li>[ ] Dynamic IP List URL, username, and password from <a href="../../setup/">Setup &amp; Configuration</a></li>
+<li>[ ] pfSense 2.4 or later</li>
+<li>[ ] pfSense web interface admin access</li>
+<li>[ ] Outbound HTTPS (port 443) allowed from pfSense to <code>list.vespersecure.com</code></li>
+<li>[ ] Knowledge of your VPN configuration</li>
+</ul>
+<hr />
+<h2 id="method-1-native-url-table-aliases-recommended">Method 1: Native URL Table Aliases (Recommended)</h2>
+<p>This method uses pfSense's built-in URL Table functionality without additional packages.</p>
+<h3 id="step-1-create-url-table-alias">Step 1: Create URL Table Alias</h3>
+<h4 id="navigate-to-aliases">Navigate to Aliases</h4>
+<ol>
+<li>Log in to pfSense web interface  </li>
+<li>Go to <strong>Firewall</strong> → <strong>Aliases</strong> → <strong>IP</strong> tab  </li>
+<li>Click <strong>Add</strong> (+ icon)  </li>
+</ol>
+<h4 id="configure-the-alias">Configure the Alias</h4>
+<p>Configure the following settings:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Name: Vesper_Allowed_IPs
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Description: Vesper Secure verified user IPs
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Type: URL Table (IPs)
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Refresh Frequency: 1 day
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>URL: https://organizationid:password@list.vespersecure.com/organizationid
+</code></pre></div>
+<p><strong>Field Details:</strong></p>
+<ul>
+<li><strong>Name</strong>: Use a descriptive name without spaces (e.g., <code>Vesper_Allowed_IPs</code>)</li>
+<li><strong>Description</strong>: Add a clear description for documentation</li>
+<li><strong>Type</strong>: Select <strong>"URL Table (IPs)"</strong> from dropdown</li>
+<li><strong>Refresh Frequency</strong>: </li>
+<li>1 day (default, updates daily)</li>
+<li>Note: pfSense URL aliases don't support frequent updates natively</li>
+<li><strong>URL</strong>: Your Dynamic IP List URL with embedded credentials</li>
+<li>Format: <code>https://username:password@list.vespersecure.com/organizationid</code></li>
+<li>Replace <code>username</code> with your organization ID</li>
+<li>Replace <code>password</code> with your Dynamic IP List password</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Credentials in URL</p>
+<p>pfSense requires embedding credentials in the URL for authentication. While this is less secure than separate credential storage, the URL is stored in pfSense's encrypted configuration.</p>
+</div>
+<h4 id="save-the-alias">Save the Alias</h4>
+<ol>
+<li>Click <strong>Save</strong>  </li>
+<li>Click <strong>Apply Changes</strong> at the top of the page  </li>
+<li>pfSense will immediately attempt to fetch the URL  </li>
+</ol>
+<hr />
+<h3 id="step-2-verify-alias-download">Step 2: Verify Alias Download</h3>
+<h4 id="check-alias-status">Check Alias Status</h4>
+<ol>
+<li>Go to <strong>Diagnostics</strong> → <strong>Tables</strong>  </li>
+<li>Find your alias name (e.g., <code>Vesper_Allowed_IPs</code>)  </li>
+<li>Verify it shows IP addresses in the list  </li>
+<li>If empty and no users registered yet, this is normal  </li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Manual Update</p>
+<p>To force an immediate update, click the <strong>refresh icon</strong> next to the alias in <strong>Firewall</strong> → <strong>Aliases</strong>.</p>
+</div>
+<hr />
+<h3 id="step-3-create-firewall-rule">Step 3: Create Firewall Rule</h3>
+<h4 id="navigate-to-firewall-rules">Navigate to Firewall Rules</h4>
+<ol>
+<li>Go to <strong>Firewall</strong> → <strong>Rules</strong>  </li>
+<li>Select the <strong>WAN</strong> interface (or interface where external traffic arrives)  </li>
+<li>Click <strong>Add</strong> (↑ up arrow) to add rule at top  </li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Rule Order Matters</p>
+<p>Add this rule at the <strong>top</strong> of the rule list to ensure it's evaluated before any deny rules.</p>
+</div>
+<h4 id="configure-allow-rule">Configure Allow Rule</h4>
+<p>Create a rule with these settings:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Action: Pass
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Interface: WAN
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Address Family: IPv4
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Protocol: TCP/UDP (or Any)
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Source: Single host or alias → Vesper_Allowed_IPs
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>Destination: WAN address (or VPN gateway IP)
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>Destination Port Range: HTTPS (443), or VPN ports as needed
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>Description: Allow Vesper Secure verified users to VPN
+</code></pre></div>
+<p><strong>Field Details:</strong></p>
+<ul>
+<li><strong>Action</strong>: Pass</li>
+<li><strong>Interface</strong>: WAN (or your external interface)</li>
+<li><strong>Address Family</strong>: IPv4 (or IPv4+IPv6 if needed)</li>
+<li><strong>Protocol</strong>: </li>
+<li>TCP/UDP for specific services</li>
+<li>Any for all VPN protocols</li>
+<li><strong>Source</strong>: </li>
+<li>Type: Single host or alias</li>
+<li>Select: <code>Vesper_Allowed_IPs</code> from dropdown</li>
+<li><strong>Destination</strong>: </li>
+<li>Type: WAN address (for VPN on WAN IP)</li>
+<li>Or specify specific IP/alias</li>
+<li><strong>Destination Port Range</strong>:</li>
+<li>HTTPS (443) for SSL VPN</li>
+<li>OpenVPN (1194)</li>
+<li>IPsec (500, 4500)</li>
+<li>Or custom ports as needed</li>
+<li><strong>Description</strong>: Add clear description</li>
+</ul>
+<h4 id="advanced-options-recommended">Advanced Options (Recommended)</h4>
+<ol>
+<li>Click <strong>Display Advanced</strong> button  </li>
+<li>Under <strong>Extra Options</strong>:  </li>
+<li>Enable <strong>Log</strong>: Check to log packets matched by this rule</li>
+<li>Set log description if desired</li>
+</ol>
+<h4 id="save-the-rule">Save the Rule</h4>
+<ol>
+<li>Click <strong>Save</strong>  </li>
+<li>Click <strong>Apply Changes</strong> at the top  </li>
+<li>The rule is now active  </li>
+</ol>
+<hr />
+<h3 id="step-4-create-block-rule-optional">Step 4: Create Block Rule (Optional)</h3>
+<p>For explicit logging of denied access:</p>
+<ol>
+<li>Add another rule <strong>below</strong> the allow rule  </li>
+<li>Configure:<br />
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Action: Block
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Interface: WAN
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Protocol: TCP/UDP
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>Source: any
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>Destination: WAN address (VPN gateway)
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>Destination Port: VPN ports
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>Description: Block unverified VPN access attempts
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>Log: Enabled
+</code></pre></div></li>
+</ol>
+<hr />
+<h2 id="method-2-pfblockerng-advanced">Method 2: pfBlockerNG (Advanced)</h2>
+<p>pfBlockerNG provides more frequent updates and advanced features.</p>
+<h3 id="step-1-install-pfblockerng">Step 1: Install pfBlockerNG</h3>
+<ol>
+<li>Go to <strong>System</strong> → <strong>Package Manager</strong> → <strong>Available Packages</strong>  </li>
+<li>Search for <strong>pfBlockerNG</strong>  </li>
+<li>Click <strong>Install</strong>  </li>
+<li>Wait for installation to complete  </li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">pfBlockerNG vs pfBlockerNG-devel</p>
+<p>Either version works. pfBlockerNG-devel has newer features but may be less stable.</p>
+</div>
+<hr />
+<h3 id="step-2-configure-pfblockerng-for-vesper">Step 2: Configure pfBlockerNG for Vesper</h3>
+<h4 id="navigate-to-pfblockerng">Navigate to pfBlockerNG</h4>
+<ol>
+<li>Go to <strong>Firewall</strong> → <strong>pfBlockerNG</strong> → <strong>IP</strong> → <strong>IP Configuration</strong>  </li>
+<li>Click <strong>Add</strong> to create new IP list  </li>
+</ol>
+<h4 id="configure-ip-list">Configure IP List</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>List Name: Vesper_Secure_EDL
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Description: Vesper Secure verified user IPs
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>List Action: Permit (Whitelist)
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>Format: Auto
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>Update Frequency: Every 4 hours (or as desired)
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>URL: https://organizationid:password@list.vespersecure.com/organizationid
+</code></pre></div>
+<p><strong>Field Details:</strong></p>
+<ul>
+<li><strong>List Name</strong>: <code>Vesper_Secure_EDL</code></li>
+<li><strong>Description</strong>: Clear description</li>
+<li><strong>List Action</strong>: <strong>Permit</strong> (or Alias Native for use in rules)</li>
+<li><strong>Format</strong>: Auto (pfBlockerNG will detect format)</li>
+<li><strong>Update Frequency</strong>: </li>
+<li>Every 4 hours for faster updates</li>
+<li>Every 8 hours for balanced approach</li>
+<li>Daily for minimal load</li>
+<li><strong>URL</strong>: Dynamic IP List URL with embedded credentials (same format as Method 1)</li>
+</ul>
+<h4 id="configure-list-settings">Configure List Settings</h4>
+<p>Under <strong>Header/Label</strong>:
+- Enable: Check
+- Interface: Select interface to apply (e.g., WAN)</p>
+<p>Click <strong>Save</strong></p>
+<hr />
+<h3 id="step-3-enable-pfblockerng">Step 3: Enable pfBlockerNG</h3>
+<ol>
+<li>Go to <strong>Firewall</strong> → <strong>pfBlockerNG</strong> → <strong>General</strong> tab  </li>
+<li>Enable pfBlockerNG: Check  </li>
+<li>Click <strong>Save</strong>  </li>
+<li>Click <strong>Update</strong> button to force initial download  </li>
+</ol>
+<hr />
+<h3 id="step-4-create-firewall-rule-with-pfblockerng">Step 4: Create Firewall Rule with pfBlockerNG</h3>
+<p>If using "Alias Native" mode:</p>
+<ol>
+<li>Go to <strong>Firewall</strong> → <strong>Rules</strong> → <strong>WAN</strong>  </li>
+<li>Create rule using the pfBlockerNG alias (similar to Method 1)  </li>
+<li>Source: Select the alias created by pfBlockerNG  </li>
+</ol>
+<p>pfBlockerNG will automatically create rules if using Permit/Deny actions.</p>
+<hr />
+<h2 id="validation-and-testing">Validation and Testing</h2>
+<h3 id="verify-alias-contents">Verify Alias Contents</h3>
+<p><strong>For Method 1:</strong></p>
+<ol>
+<li>Go to <strong>Diagnostics</strong> → <strong>Tables</strong>  </li>
+<li>Find <code>Vesper_Allowed_IPs</code>  </li>
+<li>Click to view contents  </li>
+<li>Verify IPs are listed  </li>
+</ol>
+<p><strong>For Method 2 (pfBlockerNG):</strong></p>
+<ol>
+<li>Go to <strong>Firewall</strong> → <strong>pfBlockerNG</strong> → <strong>Reports</strong>  </li>
+<li>Select your list  </li>
+<li>View downloaded IPs  </li>
+</ol>
+<h3 id="test-url-fetch-manually">Test URL Fetch Manually</h3>
+<p>From pfSense CLI (SSH or console):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>curl<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;organizationid:password&quot;</span><span class="w"> </span>https://list.vespersecure.com/organizationid
+</code></pre></div>
+<p>Or with embedded credentials:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>curl<span class="w"> </span><span class="s2">&quot;https://organizationid:password@list.vespersecure.com/organizationid&quot;</span>
+</code></pre></div>
+<p>Should return list of IPs or empty response.</p>
+<h3 id="test-with-user-registration">Test with User Registration</h3>
+<ol>
+<li>Have a test user register their IP through Vesper portal  </li>
+<li>Wait for pfSense alias update (up to 24 hours for Method 1, faster for Method 2)  </li>
+<li>Force manual update:  </li>
+<li><strong>Method 1</strong>: Click refresh icon next to alias</li>
+<li><strong>Method 2</strong>: Click Update in pfBlockerNG</li>
+<li>Verify the test user's IP appears in the alias/list  </li>
+<li>Test VPN connection from test user's location (should succeed)  </li>
+</ol>
+<h3 id="check-firewall-logs">Check Firewall Logs</h3>
+<ol>
+<li>Go to <strong>Status</strong> → <strong>System Logs</strong> → <strong>Firewall</strong> tab  </li>
+<li>Look for entries matching your rule description  </li>
+<li>Verify connections from registered IPs are being passed  </li>
+<li>Check that unregistered IPs are being blocked  </li>
+</ol>
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="alias-download-fails">Alias Download Fails</h3>
+<p><strong>Symptoms:</strong><br />
+- Alias is empty<br />
+- Error in system logs</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li>
+<p><strong>Verify Connectivity:</strong><br />
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ping<span class="w"> </span>list.vespersecure.com
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>curl<span class="w"> </span>-I<span class="w"> </span>https://list.vespersecure.com
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Check DNS Resolution:</strong>  </p>
+</li>
+<li>Go to <strong>Diagnostics</strong> → <strong>DNS Lookup</strong></li>
+<li>Look up <code>list.vespersecure.com</code></li>
+<li>
+<p>Verify it resolves correctly</p>
+</li>
+<li>
+<p><strong>Test URL with credentials:</strong><br />
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>curl<span class="w"> </span><span class="s2">&quot;https://organizationid:password@list.vespersecure.com/organizationid&quot;</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Check System Logs:</strong>  </p>
+</li>
+<li>Go to <strong>Status</strong> → <strong>System Logs</strong> → <strong>System</strong> tab</li>
+<li>
+<p>Look for errors related to alias updates</p>
+</li>
+<li>
+<p><strong>Verify Credentials:</strong>  </p>
+</li>
+<li>Ensure username and password are correct</li>
+<li>Check for special characters that need URL encoding</li>
+<li>Try re-entering credentials</li>
+</ol>
+<h3 id="special-characters-in-password">Special Characters in Password</h3>
+<p>If your password contains special characters, URL-encode them:</p>
+<ul>
+<li><code>@</code> → <code>%40</code></li>
+<li><code>#</code> → <code>%23</code></li>
+<li><code>$</code> → <code>%24</code></li>
+<li><code>%</code> → <code>%25</code></li>
+<li><code>&amp;</code> → <code>%26</code></li>
+</ul>
+<p>Example: If password is <code>Pass@123</code>, use <code>Pass%40123</code> in URL.</p>
+<h3 id="traffic-not-being-allowed">Traffic Not Being Allowed</h3>
+<p><strong>Symptoms:</strong>
+- User registered but still can't connect<br />
+- Logs show blocks</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Verify Rule Order:</strong>  </li>
+<li>Go to <strong>Firewall</strong> → <strong>Rules</strong> → <strong>WAN</strong></li>
+<li>Ensure Vesper allow rule is <strong>above</strong> any deny rules</li>
+<li>
+<p>Drag to reorder if needed</p>
+</li>
+<li>
+<p><strong>Check Alias Contents:</strong>  </p>
+</li>
+<li>Go to <strong>Diagnostics</strong> → <strong>Tables</strong></li>
+<li>Verify user's IP is in the alias</li>
+<li>
+<p>Force alias refresh if needed</p>
+</li>
+<li>
+<p><strong>Verify Rule Configuration:</strong>  </p>
+</li>
+<li>Check source alias is correct</li>
+<li>Verify destination and ports match VPN configuration</li>
+<li>
+<p>Ensure Action is "Pass"</p>
+</li>
+<li>
+<p><strong>Review Logs:</strong>  </p>
+</li>
+<li>Go to <strong>Status</strong> → <strong>System Logs</strong> → <strong>Firewall</strong></li>
+<li>Find blocked connection</li>
+<li>Check which rule is blocking</li>
+</ol>
+<h3 id="alias-updates-too-slow">Alias Updates Too Slow</h3>
+<p><strong>Symptoms:</strong>
+- Updates only happen daily<br />
+- Need faster refresh</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Use pfBlockerNG</strong> (Method 2):  </li>
+<li>Supports updates every 4 hours or more frequently</li>
+<li>
+<p>Better for dynamic environments</p>
+</li>
+<li>
+<p><strong>Create Custom Update Script</strong> (Advanced):<br />
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="ch">#!/bin/sh</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>/etc/rc.update_url_aliases
+</code></pre></div></p>
+</li>
+<li>Add to cron for more frequent updates</li>
+<li>Go to <strong>System</strong> → <strong>Cron</strong></li>
+<li>
+<p>Add new cron entry to run script</p>
+</li>
+<li>
+<p><strong>Manual Updates</strong>:  </p>
+</li>
+<li>Refresh alias manually when needed</li>
+<li>Educate users to request manual refresh for urgent access</li>
+</ol>
+<hr />
+<h2 id="advanced-configuration">Advanced Configuration</h2>
+<h3 id="automatic-alias-refresh-script">Automatic Alias Refresh Script</h3>
+<p>Create a cron job for more frequent updates:</p>
+<ol>
+<li>Go to <strong>System</strong> → <strong>Cron</strong>  </li>
+<li>Click <strong>Add</strong>  </li>
+<li>Configure:<br />
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Minute: */30 (every 30 minutes)
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Hour: *
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>Day: *
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>Month: *
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>Weekday: *
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>Command: /etc/rc.update_url_aliases
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>Description: Update Vesper Dynamic IP List alias
+</code></pre></div></li>
+<li>Click <strong>Save</strong>  </li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">System Load</p>
+<p>Frequent updates may increase system load. Monitor pfSense resource usage.</p>
+</div>
+<h3 id="high-availability-configuration">High Availability Configuration</h3>
+<p>If using pfSense HA (CARP):</p>
+<ol>
+<li>Configure alias and rules on primary node  </li>
+<li>Configuration will sync to secondary via Config Sync  </li>
+<li>Both nodes will independently fetch the Dynamic IP List  </li>
+<li>Ensure both nodes have internet connectivity  </li>
+</ol>
+<h3 id="ipv6-support">IPv6 Support</h3>
+<p>To support IPv6 addresses:</p>
+<ol>
+<li>Create a second alias with type "URL Table (IPs)"  </li>
+<li>Use the same URL (if Dynamic IP List returns IPv6 addresses)  </li>
+<li>Or create separate IPv6 Dynamic IP List if available  </li>
+<li>Add to firewall rules alongside IPv4 alias  </li>
+</ol>
+<h3 id="multiple-vpn-servers">Multiple VPN Servers</h3>
+<p>If you have multiple VPN servers:</p>
+<ol>
+<li>Use the same alias in multiple rules  </li>
+<li>Create separate rules for each VPN destination  </li>
+<li>Maintain consistent rule ordering  </li>
+</ol>
+<hr />
+<h2 id="best-practices">Best Practices</h2>
+<div class="admonition success">
+<p class="admonition-title">Recommended Settings</p>
+<ul>
+<li><strong>Update Frequency</strong>: As frequent as your environment allows</li>
+<li><strong>pfBlockerNG</strong>: Use for environments needing updates more than daily</li>
+<li><strong>Logging</strong>: Enable on firewall rules for auditing</li>
+<li><strong>Rule Order</strong>: Always place allow rules above deny rules</li>
+</ul>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Monitoring</p>
+<ul>
+<li>Check <strong>Status</strong> → <strong>System Logs</strong> regularly</li>
+<li>Monitor alias update status</li>
+<li>Review allowed and denied connections</li>
+<li>Keep backup static IP list for critical admins</li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Optimization</p>
+<ul>
+<li>Document your configuration</li>
+<li>Test with pilot users first</li>
+<li>Schedule manual refreshes during maintenance windows</li>
+<li>Consider pfBlockerNG for production environments</li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<ul>
+<li>Protect configuration backups - they contain credentials</li>
+<li>Use strong Dynamic IP List password</li>
+<li>Regularly review firewall logs</li>
+<li>Test changes in non-production first</li>
+</ul>
+</div>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<p>After pfSense integration:</p>
+<ol>
+<li><strong><a href="../../user-management/">Configure User Management</a></strong> - Monitor user registrations  </li>
+<li><strong><a href="../../user-management/#onboarding-new-users">Test with pilot users</a></strong> - Validate the complete flow  </li>
+<li><strong><a href="../../../resources/best-practices/">Review best practices</a></strong> - Optimize your deployment  </li>
+</ol>
+<hr />
+<h2 id="additional-resources">Additional Resources</h2>
+<ul>
+<li><a href="../">Back to Firewall Integration Overview</a></li>
+<li><a href="../../">Administrator Guide</a></li>
+<li><a href="../../../resources/troubleshooting/">Troubleshooting Guide</a></li>
+<li><a href="../../../resources/best-practices/">Best Practices</a></li>
+</ul>
+<h3 id="pfsense-documentation">pfSense Documentation</h3>
+<ul>
+<li><a href="https://docs.netgate.com/pfsense">pfSense Aliases Documentation</a></li>
+<li><a href="https://docs.netgate.com/pfsense">pfBlockerNG Documentation</a></li>
+<li><a href="https://docs.netgate.com/pfsense">pfSense Firewall Rules Guide</a></li>
+</ul>
+<hr />
+<p style="text-align: center; color: #64748b; font-size: 0.875rem; margin-top: 2rem;">
+© 2025 Evenstar Security, LLC. All rights reserved.
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/defendthehoneypot/TestAdminSite" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.instant", "navigation.tracking", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
