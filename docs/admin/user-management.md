@@ -17,11 +17,11 @@ As an administrator, you'll monitor user registrations through the Vesper Secure
 1. Log in to [app.vespersecure.com](https://app.vespersecure.com)  
 2. Go to **Registrations** or check the dashboard for recent activity  
 3. Review each registration showing:  
-   - User email/name
-   - IP address
-   - Location type (permanent or temporary)
-   - Registration timestamp
-   - Reason (if provided)
+   - User email/name  
+   - IP address  
+   - Location type (permanent or temporary)  
+   - Registration timestamp  
+   - Reason (if provided)  
 
 ### Review for Unusual Activity
 
@@ -41,11 +41,11 @@ If you notice suspicious activity, you can revoke the registration immediately.
 
 1. Go to **Users** → **Active Locations**  
 2. See all currently registered locations:  
-   - User information
-   - IP address
-   - Location type
-   - Registration date
-   - Expiration date (for temporary)
+   - User information  
+   - IP address  
+   - Location type  
+   - Registration date  
+   - Expiration date (for temporary)  
 
 ### Filter and Search
 
@@ -97,10 +97,10 @@ Track all actions for compliance and security:
 
 1. Go to **Reports** → **Audit Log**  
 2. View logs of all activities:  
-   - User registrations submitted
-   - Location revocations
-   - Admin actions
-   - Configuration changes
+   - User registrations submitted  
+   - Location revocations  
+   - Admin actions  
+   - Configuration changes  
 
 ### Export Logs
 
@@ -184,14 +184,14 @@ If a user needs immediate access:
 1. Check if registration is in active locations  
 2. Look in audit logs for the registration  
 3. Verify user submitted from correct portal  
-4. Check user is in correct SSO group  
+4. Check user is in correct SSO group    
 
 ### Location Expired Unexpectedly
 
 1. Review policy settings for temporary durations  
 2. Check if admin deleted the user  
 3. Verify expiration dates were set correctly  
-4. Review audit logs for changes  
+4. Review audit logs for changes    
 
 ---
 
@@ -202,7 +202,7 @@ Now that you've configured user management:
 1. **Test the complete flow** with pilot users  
 2. **Distribute user guide** - Share the [User Guide](../user/index.md)  
 3. **Monitor initial usage** - Be available for questions  
-4. **Review patterns** - Watch for unusual activity  
+4. **Review patterns** - Watch for unusual activity    
 
 ---
 
