@@ -16,24 +16,64 @@ This guide covers the general approach for integrating Vesper Secure with any fi
 
 ### Supported Firewall Types
 
-This generic approach works with many firewall platforms including:
+This generic approach works with many firewall platforms that have URL-based IP list functionality. If you're using one of the following firewalls with dedicated guides, please use those instead:
 
-- **Check Point** (R80.20+)
-- **pfSense** (2.4+)
-- **OPNsense** (19.1+)
-- **Sophos XG Firewall**
-- **WatchGuard**
-- **SonicWall**
-- **Juniper SRX**
-- **Zyxel**
-- Other firewalls with URL-based IP list support
+- **[Palo Alto Networks](palo-alto.md)** - Use dedicated guide
+- **[Fortinet FortiGate](fortinet.md)** - Use dedicated guide
+- **[Cisco ASA/FTD](cisco.md)** - Use dedicated guide
+- **[Check Point](check-point.md)** - Use dedicated guide
+- **[pfSense](pfsense.md)** - Use dedicated guide
+- **[OPNsense](opnsense.md)** - Use dedicated guide
+- **[Juniper SRX](juniper-srx.md)** - Use dedicated guide
+
+### Firewalls NOT Supported
+
+The following firewalls do **NOT** have the required EDL functionality and **cannot** be easily integrated with Vesper Secure:
+
+!!! danger "Unsupported Firewalls"
+    **Sophos XG Firewall**
+    
+    - Limited to vendor threat intelligence feeds only
+    - Does not support custom URL-based IP lists
+    - Cannot fetch and parse plain text IP lists from external URLs
+    
+    **WatchGuard**
+    
+    - No native URL-based dynamic IP list support
+    - Limited to static IP configurations
+    - Requires manual IP list management
+    
+    **SonicWall**
+    
+    - Does not support custom external dynamic lists
+    - Limited to vendor-provided security services only
+    - No HTTP/HTTPS custom IP list ingestion capability
+    
+    **Zyxel**
+    
+    - No comparable EDL functionality
+    - Lacks URL-based IP list support
+    - Static configuration only
+
+### Alternatives for Unsupported Firewalls
+
+If you're using an unsupported firewall, consider these alternatives:
+
+1. **Manual Updates**: Periodically export IPs from Vesper admin panel and manually update firewall rules
+2. **API Scripts**: If your firewall has an API, create a script to fetch the EDL and update rules programmatically
+3. **Intermediate Server**: Set up a server to fetch the EDL and push updates via your firewall's management interface
+4. **Platform Upgrade**: Consider upgrading to a firewall platform with native EDL support
 
 !!! tip "Looking for Specific Guides?"
-    If you're using Palo Alto, Fortinet, or Cisco, we have dedicated guides:
+    If you're using Palo Alto, Fortinet, Cisco, Check Point, pfSense, OPNsense, or Juniper SRX, we have dedicated guides:
     
     - [Palo Alto Networks Guide](palo-alto.md)
     - [Fortinet FortiGate Guide](fortinet.md)
     - [Cisco ASA/FTD Guide](cisco.md)
+    - [Check Point Guide](check-point.md)
+    - [pfSense Guide](pfsense.md)
+    - [OPNsense Guide](opnsense.md)
+    - [Juniper SRX Guide](juniper-srx.md)
 
 ---
 
@@ -187,59 +227,35 @@ Check your firewall's interface for:
 
 ## Common Configurations by Platform
 
-### Check Point
+### For Other Firewalls with URL Support
+
+If your firewall supports URL-based IP lists but isn't covered in the dedicated guides, follow this general pattern:
+
+**General Configuration Steps:**
 
 ```
-1. SmartConsole → Objects → Network Objects → New → Network Group
-2. Name: Vesper-Allowed-IPs
-3. Add Dynamic Object → Updatable Object
-4. Configure URL and authentication
-5. Install policy
-6. Use in access rules
+1. Locate the feature in your firewall's interface
+   - Look for: "External Lists", "URL Tables", "Dynamic Objects"
+   - Usually under: Network Objects, Addresses, or Security Settings
+
+2. Create new URL-based object:
+   - Name: Vesper_Allowed_IPs
+   - Type: URL Table / External List / IP List
+   - URL: https://org_xxxxx:password@edl.vespersecure.com/lists/your-id
+   - Update Frequency: As frequent as supported (5-60 minutes)
+
+3. Create firewall rule:
+   - Source: Vesper_Allowed_IPs object
+   - Destination: VPN gateway
+   - Action: Allow
+   - Logging: Enabled
 ```
 
-### pfSense
-
-```
-1. Firewall → Aliases → IP
-2. Click "+" to add new alias
-3. Name: Vesper_Allowed_IPs
-4. Type: URL (IPs)
-5. URL: https://edl.vespersecure.com/lists/your-id
-6. Update Frequency: 1 Day (adjust as needed)
-7. Note: Add username:password in URL or use custom script
-8. Use alias in firewall rules
-```
-
-!!! warning "pfSense Authentication"
-    pfSense may require embedding credentials in URL: `https://username:password@edl.vespersecure.com/lists/your-id`
-    
-    Alternatively, use a shell script with curl for better security.
-
-### OPNsense
-
-```
-1. Firewall → Aliases
-2. Click "+" to add alias
-3. Name: Vesper_Allowed_IPs
-4. Type: URL Table (IPs)
-5. URL: https://edl.vespersecure.com/lists/your-id
-6. Authentication: Configure in URL or use plugin
-7. Refresh Frequency: 1 day (adjust as needed)
-8. Use alias in firewall rules
-```
-
-### Sophos XG
-
-```
-1. Hosts and Services → IP Host → Add
-2. Type: IP List
-3. Select "Import from URL"
-4. URL: https://edl.vespersecure.com/lists/your-id
-5. Configure authentication (may need custom script)
-6. Set refresh schedule
-7. Use in firewall rules
-```
+!!! warning "Authentication Requirements"
+    Most firewalls require HTTP Basic Authentication. You may need to:
+    - Embed credentials in URL: `https://username:password@host/path`
+    - Configure separate username/password fields
+    - Use a script for advanced authentication
 
 ---
 

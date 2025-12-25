@@ -38,11 +38,16 @@ Vesper Secure is a dynamic IP list management system that serves registered IP a
 ### Which firewalls are supported?
 
 Vesper Secure works with any firewall that supports External Dynamic Lists (EDL) or URL-based IP lists, including:
-- Palo Alto Networks
-- Fortinet FortiGate
-- Cisco ASA/FTD
-- Check Point
-- pfSense/OPNsense
+
+- Palo Alto Networks (External Dynamic Lists)
+- Fortinet FortiGate (External Connectors)
+- Cisco ASA/FTD (Dynamic Objects)
+- Check Point R80.20+ (Updatable Objects)
+- pfSense 2.4+ (URL Table Aliases / pfBlockerNG)
+- OPNsense 19.1+ (URL Table Aliases)
+- Juniper SRX (Dynamic Address Objects)
+
+**Not supported:** Sophos XG Firewall, WatchGuard, SonicWall, and Zyxel do not have comparable EDL functionality for custom IP lists. These firewalls require manual IP list management and are not recommended for use with Vesper Secure.
 
 ### How often does the EDL update?
 

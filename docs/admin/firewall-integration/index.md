@@ -59,21 +59,95 @@ Cisco's security appliances with dynamic object group support.
 - URL-based IP lists
 - ACL integration
 
+**[Check Point (R80.20+)](check-point.md)**
+
+Enterprise firewall with Updatable Objects support.
+
+- Updatable Objects (formerly External Objects)
+- HTTP/HTTPS URL-based IP lists
+- Periodic automatic updates
+- SmartConsole configuration
+
+**[Juniper SRX (JunOS 15.1X49+)](juniper-srx.md)**
+
+Enterprise security gateway with dynamic address object support.
+
+- Dynamic Address Objects
+- Security Intelligence feeds
+- URL-based threat intelligence
+- CLI and J-Web configuration
+
+### Open Source Firewalls
+
+**[pfSense (2.4+)](pfsense.md)**
+
+Popular open-source firewall with URL Table Alias support.
+
+- URL Table Aliases
+- pfBlockerNG package for enhanced functionality
+- Native HTTP/HTTPS IP list support
+- Flexible refresh intervals
+
+**[OPNsense (19.1+)](opnsense.md)**
+
+Open-source firewall based on FreeBSD with native URL alias support.
+
+- URL Table Aliases
+- Built-in periodic refresh
+- HTTP/HTTPS authentication support
+- Web UI and CLI configuration
+
 ### Other Firewalls
 
 **[Generic/Other Firewalls](generic.md)**
 
-Any firewall supporting URL-based IP lists can work with Vesper Secure.
+Any firewall supporting URL-based IP lists can work with Vesper Secure. Check the generic guide for general configuration steps.
 
-- Check Point (R80.20+)
-- pfSense/OPNsense
-- Sophos XG Firewall
-- WatchGuard
-- SonicWall
-- Any firewall with HTTP/HTTPS IP list support
+!!! success "Fully Supported Platforms"
+    All firewalls listed above have been tested and verified to work with Vesper Secure's EDL functionality.
 
 !!! info "Need Help with Your Firewall?"
     If your firewall supports URL-based IP lists but isn't listed here, check the [Generic Firewall Guide](generic.md) for general configuration steps that apply to most firewalls.
+
+---
+
+## Unsupported Firewalls
+
+The following firewalls do **NOT** have comparable EDL functionality for custom IP lists and are **not recommended** for use with Vesper Secure:
+
+### Firewalls Without EDL Support
+
+**Sophos XG Firewall**
+
+- Limited to vendor threat intelligence feeds only
+- Does not support custom URL-based IP lists
+- No external dynamic list functionality
+
+**WatchGuard**
+
+- No native URL-based dynamic IP list support
+- Limited to static IP configurations
+- Requires manual IP list management
+
+**SonicWall**
+
+- Does not support custom external dynamic lists
+- Limited to vendor-provided security services
+- No HTTP/HTTPS IP list ingestion
+
+**Zyxel**
+
+- No comparable EDL functionality
+- Lacks URL-based IP list support
+- Static configuration only
+
+!!! warning "Alternative Approaches"
+    If you're using one of these unsupported firewalls, consider:
+    
+    - Manually exporting IPs from Vesper and updating firewall rules periodically
+    - Using a script to fetch the EDL and update firewall via API (if available)
+    - Upgrading to a firewall platform with native EDL support
+    - See the [Generic Firewall Guide](generic.md) for potential workarounds
 
 ---
 
@@ -114,6 +188,38 @@ Complete guide for FortiGate firewalls including External Connectors, address ob
 **[Configure Cisco ASA/FTD EDL →](cisco.md)**
 
 Complete guide for Cisco firewalls including dynamic object groups and ACL configuration.
+
+**Estimated time**: 20-25 minutes
+
+### Check Point
+
+**[Configure Check Point EDL →](check-point.md)**
+
+Complete guide for Check Point firewalls including Updatable Objects and security policies.
+
+**Estimated time**: 15-20 minutes
+
+### pfSense
+
+**[Configure pfSense EDL →](pfsense.md)**
+
+Complete guide for pfSense including URL Table Aliases and pfBlockerNG setup.
+
+**Estimated time**: 15-20 minutes
+
+### OPNsense
+
+**[Configure OPNsense EDL →](opnsense.md)**
+
+Complete guide for OPNsense including URL Table Aliases and firewall rules.
+
+**Estimated time**: 15-20 minutes
+
+### Juniper SRX
+
+**[Configure Juniper SRX EDL →](juniper-srx.md)**
+
+Complete guide for Juniper SRX including Dynamic Address Objects and security policies.
 
 **Estimated time**: 20-25 minutes
 

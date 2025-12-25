@@ -52,6 +52,10 @@ nav:
           - Palo Alto Networks: admin/firewall-integration/palo-alto.md
           - Fortinet FortiGate: admin/firewall-integration/fortinet.md
           - Cisco ASA/FTD: admin/firewall-integration/cisco.md
+          - Check Point: admin/firewall-integration/check-point.md
+          - pfSense: admin/firewall-integration/pfsense.md
+          - OPNsense: admin/firewall-integration/opnsense.md
+          - Juniper SRX: admin/firewall-integration/juniper-srx.md
           - Generic/Other Firewalls: admin/firewall-integration/generic.md
       - User Management: admin/user-management.md
   - User Guide:
