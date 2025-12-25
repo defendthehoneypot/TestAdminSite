@@ -242,7 +242,7 @@ Wait for the policy installation to complete successfully.
 
 ### Updatable Object Update Fails
 
-**Symptoms:**
+**Symptoms:**  
 - Object shows "Failed" status  
 - Error in System Events logs  
 - No IPs being loaded

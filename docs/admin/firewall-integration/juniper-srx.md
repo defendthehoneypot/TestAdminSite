@@ -328,7 +328,7 @@ Or view in J-Web:
 
 ### Feed Download Fails
 
-**Symptoms:**
+**Symptoms:**  
 - Dynamic address object is empty  
 - Feed status shows error  
 - System logs show update failures

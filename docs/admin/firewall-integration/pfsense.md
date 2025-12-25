@@ -315,7 +315,7 @@ Should return list of IPs or empty response.
 
 ### Alias Download Fails
 
-**Symptoms:**
+**Symptoms:**  
 - Alias is empty  
 - Error in system logs
 

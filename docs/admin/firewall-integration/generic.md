@@ -263,7 +263,7 @@ If your firewall supports URL-based IP lists but isn't covered in the dedicated 
 
 ### URL Fetch Fails
 
-**Symptoms:**
+**Symptoms:**  
 - Firewall shows update failed  
 - Error accessing URL  
 - Empty list when IPs should exist

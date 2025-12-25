@@ -257,7 +257,7 @@ You can force a manual update:
 
 ### External Connector Shows "Failed" or "Disconnected"
 
-**Symptoms:**
+**Symptoms:**  
 - Connector status shows red or failed  
 - No IPs being populated  
 - Error in connector details

@@ -277,7 +277,7 @@ Should return list of IPs or empty response if no users registered.
 
 ### Alias Download Fails
 
-**Symptoms:**
+**Symptoms:**  
 - Alias shows error status (red X)  
 - Contents are empty when they shouldn't be  
 - Logs show download errors

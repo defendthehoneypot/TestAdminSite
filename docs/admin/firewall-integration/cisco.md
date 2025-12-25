@@ -272,7 +272,7 @@ show dynamic-object Vesper-DIPL
 
 ### Dynamic Object Update Fails
 
-**Symptoms:**
+**Symptoms:**  
 - `show dynamic-object update-url` shows failure  
 - No IPs being fetched  
 - Error messages in logs

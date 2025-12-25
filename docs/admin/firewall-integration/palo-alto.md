@@ -208,7 +208,7 @@ Wait for the commit to complete successfully.
 
 ### External Dynamic List Test Fails
 
-**Symptoms:**
+**Symptoms:**  
 - "Test Source" shows error or timeout  
 - Status shows "Failed"
 
