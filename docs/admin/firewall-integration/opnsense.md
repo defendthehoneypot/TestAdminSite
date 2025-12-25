@@ -309,7 +309,7 @@ Should return list of IPs or empty response if no users registered.
    - Check for authentication failures
 
 5. **Verify Credentials:**  
-   - Double-check username starts with `org_`
+   - Double-check username is correct
    - Ensure password is correct
    - Check for special characters needing URL encoding
 
