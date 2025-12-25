@@ -273,8 +273,8 @@ show dynamic-object Vesper-DIPL
 ### Dynamic Object Update Fails
 
 **Symptoms:**
-- `show dynamic-object update-url` shows failure
-- No IPs being fetched
+- `show dynamic-object update-url` shows failure  
+- No IPs being fetched  
 - Error messages in logs
 
 **Solutions:**
@@ -311,7 +311,7 @@ show dynamic-object Vesper-DIPL
 ### Object Group is Empty
 
 **Symptoms:**
-- `show dynamic-object Vesper-DIPL` returns no IPs
+- `show dynamic-object Vesper-DIPL` returns no IPs  
 - Update status shows success but no IPs
 
 **Solutions:**
@@ -338,7 +338,7 @@ show dynamic-object Vesper-DIPL
 ### Traffic Not Being Allowed
 
 **Symptoms:**
-- User registered but still can't connect
+- User registered but still can't connect  
 - Logs show denies
 
 **Solutions:**
@@ -374,7 +374,7 @@ show dynamic-object Vesper-DIPL
 ### Authentication Errors
 
 **Symptoms:**
-- 401 Unauthorized in logs
+- 401 Unauthorized in logs  
 - Update fails with auth error
 
 **Solutions:**

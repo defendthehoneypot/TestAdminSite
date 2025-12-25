@@ -209,7 +209,7 @@ Wait for the commit to complete successfully.
 ### External Dynamic List Test Fails
 
 **Symptoms:**
-- "Test Source" shows error or timeout
+- "Test Source" shows error or timeout  
 - Status shows "Failed"
 
 **Solutions:**
@@ -241,7 +241,7 @@ Wait for the commit to complete successfully.
 ### Traffic Not Being Allowed
 
 **Symptoms:**
-- User registered but still can't connect
+- User registered but still can't connect  
 - Traffic logs show denies
 
 **Solutions:**
@@ -269,7 +269,7 @@ Wait for the commit to complete successfully.
 ### Authentication Errors
 
 **Symptoms:**
-- Shows 401 Unauthorized
+- Shows 401 Unauthorized  
 - Credentials rejected
 
 **Solutions:**

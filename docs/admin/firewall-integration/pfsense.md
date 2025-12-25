@@ -316,7 +316,7 @@ Should return list of IPs or empty response.
 ### Alias Download Fails
 
 **Symptoms:**
-- Alias is empty
+- Alias is empty  
 - Error in system logs
 
 **Solutions:**
@@ -361,7 +361,7 @@ Example: If password is `Pass@123`, use `Pass%40123` in URL.
 ### Traffic Not Being Allowed
 
 **Symptoms:**
-- User registered but still can't connect
+- User registered but still can't connect  
 - Logs show blocks
 
 **Solutions:**
@@ -389,7 +389,7 @@ Example: If password is `Pass@123`, use `Pass%40123` in URL.
 ### Alias Updates Too Slow
 
 **Symptoms:**
-- Updates only happen daily
+- Updates only happen daily  
 - Need faster refresh
 
 **Solutions:**
