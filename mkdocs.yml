@@ -47,7 +47,12 @@ nav:
           - Overview: admin/sso-integration/index.md
           - Azure AD SAML: admin/sso-integration/azure-saml.md
           - Okta SAML: admin/sso-integration/okta-saml.md
-      - Firewall Integration: admin/firewall-integration.md
+      - Firewall Integration:
+          - Overview: admin/firewall-integration/index.md
+          - Palo Alto Networks: admin/firewall-integration/palo-alto.md
+          - Fortinet FortiGate: admin/firewall-integration/fortinet.md
+          - Cisco ASA/FTD: admin/firewall-integration/cisco.md
+          - Generic/Other Firewalls: admin/firewall-integration/generic.md
       - User Management: admin/user-management.md
   - User Guide:
       - Overview: user/index.md

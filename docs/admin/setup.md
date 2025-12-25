@@ -81,7 +81,7 @@ You should see an empty list or IP addresses if users have already registered.
 After completing basic setup:
 
 1. **[Configure SSO Integration](sso-integration/index.md)** - Connect your identity provider
-2. **[Set up Firewall Integration](firewall-integration.md)** - Add EDL to your firewall
+2. **[Set up Firewall Integration](firewall-integration/index.md)** - Add EDL to your firewall
 3. **[Start Managing Users](./user-management.md)** - Begin monitoring user registrations
 
 ---
