@@ -16,9 +16,9 @@ Initial setup, access the admin panel, and configure organization policies.
 
 ### SSO Integration
 
-**[SSO Integration](./sso-integration.md)**
+**[SSO Integration](./sso-integration/index.md)**
 
-Configure single sign-on with EntraID, Google, or Okta.
+Configure single sign-on with Azure AD (Entra ID), Okta, or other SAML 2.0 providers.
 
 ### Firewall Integration
 
@@ -50,7 +50,7 @@ Before you begin, ensure you have:
 Follow these guides in order for initial setup:
 
 1. **[Setup & Configuration](./setup.md)** - Configure your organization
-2. **[SSO Integration](./sso-integration.md)** - Connect your identity provider
+2. **[SSO Integration](./sso-integration/index.md)** - Connect your identity provider
 3. **[Firewall Integration](./firewall-integration.md)** - Add EDL to your firewall
 4. **[User Management](./user-management.md)** - Manage ongoing access
 

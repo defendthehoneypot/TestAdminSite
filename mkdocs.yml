@@ -43,7 +43,10 @@ nav:
   - Administrator Guide:
       - Overview: admin/index.md
       - Setup & Configuration: admin/setup.md
-      - SSO Integration: admin/sso-integration.md
+      - SSO Integration:
+          - Overview: admin/sso-integration/index.md
+          - Azure AD SAML: admin/sso-integration/azure-saml.md
+          - Okta SAML: admin/sso-integration/okta-saml.md
       - Firewall Integration: admin/firewall-integration.md
       - User Management: admin/user-management.md
   - User Guide:
