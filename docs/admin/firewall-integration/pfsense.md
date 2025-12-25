@@ -34,7 +34,7 @@ Ensure you have:
 - [ ] Dynamic IP List URL, username, and password from [Setup & Configuration](../setup.md)
 - [ ] pfSense 2.4 or later
 - [ ] pfSense web interface admin access
-- [ ] Outbound HTTPS (port 443) allowed from pfSense to `edl.vespersecure.com`
+- [ ] Outbound HTTPS (port 443) allowed from pfSense to `list.vespersecure.com`
 - [ ] Knowledge of your VPN configuration
 
 ---
@@ -60,7 +60,7 @@ Name: Vesper_Allowed_IPs
 Description: Vesper Secure verified user IPs
 Type: URL Table (IPs)
 Refresh Frequency: 1 day
-URL: https://org_xxxxx:password@edl.vespersecure.com/lists/your-id
+URL: https://organizationid:password@list.vespersecure.com/organizationid
 ```
 
 **Field Details:**
@@ -72,10 +72,9 @@ URL: https://org_xxxxx:password@edl.vespersecure.com/lists/your-id
   - 1 day (default, updates daily)
   - Note: pfSense URL aliases don't support frequent updates natively
 - **URL**: Your Dynamic IP List URL with embedded credentials
-  - Format: `https://username:password@edl.vespersecure.com/lists/your-id`
-  - Replace `username` with your org ID (e.g., `org_xxxxx`)
+  - Format: `https://username:password@list.vespersecure.com/organizationid`
+  - Replace `username` with your organization ID
   - Replace `password` with your Dynamic IP List password
-  - Replace `your-id` with your list ID
 
 !!! warning "Credentials in URL"
     pfSense requires embedding credentials in the URL for authentication. While this is less secure than separate credential storage, the URL is stored in pfSense's encrypted configuration.
@@ -214,7 +213,7 @@ Description: Vesper Secure verified user IPs
 List Action: Permit (Whitelist)
 Format: Auto
 Update Frequency: Every 4 hours (or as desired)
-URL: https://org_xxxxx:password@edl.vespersecure.com/lists/your-id
+URL: https://organizationid:password@list.vespersecure.com/organizationid
 ```
 
 **Field Details:**
@@ -282,13 +281,13 @@ pfBlockerNG will automatically create rules if using Permit/Deny actions.
 From pfSense CLI (SSH or console):
 
 ```bash
-curl -u "org_xxxxx:password" https://edl.vespersecure.com/lists/your-id
+curl -u "organizationid:password" https://list.vespersecure.com/organizationid
 ```
 
 Or with embedded credentials:
 
 ```bash
-curl "https://org_xxxxx:password@edl.vespersecure.com/lists/your-id"
+curl "https://organizationid:password@list.vespersecure.com/organizationid"
 ```
 
 Should return list of IPs or empty response.
@@ -324,18 +323,18 @@ Should return list of IPs or empty response.
 
 1. **Verify Connectivity:**  
    ```bash
-   ping edl.vespersecure.com
-   curl -I https://edl.vespersecure.com
+   ping list.vespersecure.com
+   curl -I https://list.vespersecure.com
    ```
 
 2. **Check DNS Resolution:**  
    - Go to **Diagnostics** → **DNS Lookup**
-   - Look up `edl.vespersecure.com`
+   - Look up `list.vespersecure.com`
    - Verify it resolves correctly
 
 3. **Test URL with credentials:**  
    ```bash
-   curl "https://org_xxxxx:password@edl.vespersecure.com/lists/your-id"
+   curl "https://organizationid:password@list.vespersecure.com/organizationid"
    ```
 
 4. **Check System Logs:**  

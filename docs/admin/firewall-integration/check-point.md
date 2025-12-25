@@ -34,7 +34,7 @@ Ensure you have:
 - [ ] Dynamic IP List URL, username, and password from [Setup & Configuration](../setup.md)
 - [ ] Check Point SmartConsole access
 - [ ] Check Point Security Management Server (SMS) R80.20 or later
-- [ ] Outbound HTTPS (port 443) allowed from SMS to `edl.vespersecure.com`
+- [ ] Outbound HTTPS (port 443) allowed from SMS to `list.vespersecure.com`
 - [ ] Knowledge of your VPN gateway configuration
 
 ---
@@ -59,10 +59,10 @@ Configure the following settings:
 ```
 Name: Vesper_Secure_Allowed_IPs
 Resource: External - IP Address List
-URI: https://edl.vespersecure.com/lists/your-id
+URI: https://list.vespersecure.com/organizationid
 Update Interval: 900 seconds (15 minutes)
 Authentication: HTTP Basic Authentication
-Username: org_xxxxx
+Username: organizationid
 Password: ••••••••
 ```
 
@@ -76,7 +76,7 @@ Password: ••••••••
   - 900 seconds (15 minutes) recommended for balanced approach
   - 3600 seconds (1 hour) for reduced load
 - **Authentication**: Select "HTTP Basic Authentication"
-- **Username**: Your organization ID (starts with `org_`)
+- **Username**: Your organization ID
 - **Password**: Dynamic IP List password from Vesper admin panel
 
 ### Test Connectivity
@@ -250,21 +250,21 @@ Wait for the policy installation to complete successfully.
 **Solutions:**
 
 1. **Check Management Server Connectivity:**  
-   - Verify SMS can reach `edl.vespersecure.com` on port 443
+   - Verify SMS can reach `list.vespersecure.com` on port 443
    - Test from SMS command line:
      ```bash
-     curl_cli -k https://edl.vespersecure.com
+     curl_cli -k https://list.vespersecure.com
      ```
 
 2. **Verify DNS Resolution:**  
-   - Ensure SMS can resolve `edl.vespersecure.com`
+   - Ensure SMS can resolve `list.vespersecure.com`
    - Check DNS configuration on SMS
 
 3. **Test Authentication:**  
    - Verify credentials are correct
    - Test manually:
      ```bash
-     curl_cli -u "org_xxxxx:password" https://edl.vespersecure.com/lists/your-id
+     curl_cli -u "organizationid:password" https://list.vespersecure.com/organizationid
      ```
 
 4. **Check Certificate Validation:**  
@@ -322,7 +322,7 @@ Wait for the policy installation to complete successfully.
 3. Re-enter credentials in updatable object  
 4. Test with command line:  
    ```bash
-   curl_cli -v -u "org_xxxxx:password" https://edl.vespersecure.com/lists/your-id
+   curl_cli -v -u "organizationid:password" https://list.vespersecure.com/organizationid
    ```
 5. Re-generate credentials in Vesper if needed  
 

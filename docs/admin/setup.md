@@ -56,8 +56,8 @@ Create the credentials needed for firewall integration:
 3. Save these credentials securely:  
 
 ```
-List URL: https://edl.vespersecure.com/lists/abc123def456
-Username: org_abc123
+List URL: https://list.vespersecure.com/organizationid
+Username: organizationid
 Password: •••••••••••••••••••••
 ```
 
@@ -68,8 +68,8 @@ Password: •••••••••••••••••••••
 **Test the Dynamic IP List:**
 
 ```bash
-curl -u "org_abc123:your-password" \
-  https://edl.vespersecure.com/lists/abc123def456
+curl -u "organizationid:your-password" \
+  https://list.vespersecure.com/organizationid
 ```
 
 You should see an empty list or IP addresses if users have already registered.

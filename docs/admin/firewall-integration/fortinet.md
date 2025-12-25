@@ -33,7 +33,7 @@ Ensure you have:
 
 - [ ] Dynamic IP List URL, username, and password from [Setup & Configuration](../setup.md)
 - [ ] FortiGate firewall admin access
-- [ ] Outbound HTTPS (port 443) allowed from firewall to `edl.vespersecure.com`
+- [ ] Outbound HTTPS (port 443) allowed from firewall to `list.vespersecure.com`
 - [ ] Knowledge of your VPN gateway interface and IP
 
 ---
@@ -57,9 +57,9 @@ Configure the following settings:
 Name: Vesper_Secure_EDL
 Type: IP Address
 Update Method: HTTP(S)
-URL: https://edl.vespersecure.com/lists/your-id
+URL: https://list.vespersecure.com/organizationid
 Authentication: Basic
-Username: org_xxxxx
+Username: organizationid
 Password: ••••••••
 Refresh Rate: 5 minutes
 ```
@@ -71,7 +71,7 @@ Refresh Rate: 5 minutes
 - **Update Method**: Select "HTTP(S)"
 - **URL**: Your unique Dynamic IP List URL from Vesper admin panel
 - **Authentication**: Select "Basic"
-- **Username**: Your organization ID (starts with `org_`)
+- **Username**: Your organization ID
 - **Password**: Dynamic IP List password from Vesper admin panel
 - **Refresh Rate**: 
   - 5 minutes for fastest access grants
@@ -266,12 +266,12 @@ You can force a manual update:
 
 1. **Check Outbound Connectivity:**  
    - Go to **Dashboard** → **CLI Console**
-   - Execute: `execute ping edl.vespersecure.com`
+   - Execute: `execute ping list.vespersecure.com`
    - Verify connectivity
 
 2. **Verify DNS Resolution:**  
    ```
-   execute dns lookup edl.vespersecure.com
+   execute dns lookup list.vespersecure.com
    ```
 
 3. **Check Interface Selection:**  
@@ -287,10 +287,10 @@ You can force a manual update:
 5. **Verify Credentials:**  
    - Double-check username and password in connector configuration
    - Ensure no extra spaces
-   - Test manually: `curl -u "user:pass" https://edl.vespersecure.com/lists/your-id`
+   - Test manually: `curl -u "user:pass" https://list.vespersecure.com/organizationid`
 
 6. **Check Routing:**  
-   - Ensure firewall has a route to reach edl.vespersecure.com
+   - Ensure firewall has a route to reach list.vespersecure.com
    - Verify default gateway is configured
 
 ### Address Object is Empty

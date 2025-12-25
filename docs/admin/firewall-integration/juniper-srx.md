@@ -34,7 +34,7 @@ Ensure you have:
 - [ ] Dynamic IP List URL, username, and password from [Setup & Configuration](../setup.md)
 - [ ] Juniper SRX with JunOS 15.1X49 or later
 - [ ] CLI access (SSH) or J-Web access
-- [ ] Outbound HTTPS (port 443) allowed from SRX to `edl.vespersecure.com`
+- [ ] Outbound HTTPS (port 443) allowed from SRX to `list.vespersecure.com`
 - [ ] Knowledge of your security zones and VPN configuration
 
 !!! info "Configuration Method"
@@ -76,9 +76,9 @@ set security dynamic-address address-name Vesper-Allowed-IPs profile Vesper-DIPL
 Configure the profile that defines how to fetch the Dynamic IP List:
 
 ```junos
-set services security-intelligence url Vesper-DIPL-Profile url https://edl.vespersecure.com/lists/your-id
+set services security-intelligence url Vesper-DIPL-Profile url https://list.vespersecure.com/organizationid
 set services security-intelligence url Vesper-DIPL-Profile category Vesper-IPs
-set services security-intelligence url Vesper-DIPL-Profile username org_xxxxx
+set services security-intelligence url Vesper-DIPL-Profile username organizationid
 set services security-intelligence url Vesper-DIPL-Profile password your-password
 set services security-intelligence url Vesper-DIPL-Profile update-interval 900
 ```
@@ -86,9 +86,8 @@ set services security-intelligence url Vesper-DIPL-Profile update-interval 900
 **Parameter Details:**
 
 - **url**: Your unique Dynamic IP List URL from Vesper admin panel
-  - Replace `your-id` with your actual list ID
 - **category**: A label for this feed (e.g., `Vesper-IPs`)
-- **username**: Your organization ID (starts with `org_`)
+- **username**: Your organization ID
 - **password**: Dynamic IP List password from Vesper admin panel
 - **update-interval**: Update interval in seconds
   - `300` = 5 minutes (most responsive)
@@ -338,8 +337,8 @@ Or view in J-Web:
 
 1. **Check Connectivity:**  
    ```junos
-   ping edl.vespersecure.com
-   traceroute edl.vespersecure.com
+   ping list.vespersecure.com
+   traceroute list.vespersecure.com
    ```
 
 2. **Test HTTPS Connectivity:**  
@@ -349,7 +348,7 @@ Or view in J-Web:
 
 3. **Verify DNS Resolution:**  
    ```junos
-   show host edl.vespersecure.com
+   show host list.vespersecure.com
    ```
 
 4. **Check System Logs:**  
@@ -373,7 +372,7 @@ Or view in J-Web:
    
    From a system with internet access:
    ```bash
-   curl -u "org_xxxxx:password" https://edl.vespersecure.com/lists/your-id
+   curl -u "organizationid:password" https://list.vespersecure.com/organizationid
    ```
 
 ### Authentication Errors
@@ -385,7 +384,7 @@ Or view in J-Web:
 **Solutions:**
 
 1. **Verify Credentials:**  
-   - Check username starts with `org_`
+   - Check username is correct
    - Confirm password is correct in Vesper admin panel
    
 2. **Re-enter Credentials:**  
@@ -393,14 +392,14 @@ Or view in J-Web:
    configure
    delete services security-intelligence url Vesper-DIPL-Profile username
    delete services security-intelligence url Vesper-DIPL-Profile password
-   set services security-intelligence url Vesper-DIPL-Profile username org_xxxxx
+   set services security-intelligence url Vesper-DIPL-Profile username organizationid
    set services security-intelligence url Vesper-DIPL-Profile password new-password
    commit
    ```
 
 3. **Test with Curl:**  
    ```bash
-   curl -v -u "org_xxxxx:password" https://edl.vespersecure.com/lists/your-id
+   curl -v -u "organizationid:password" https://list.vespersecure.com/organizationid
    ```
    Should return 200 OK, not 401
 
@@ -579,8 +578,8 @@ For those preferring GUI configuration:
 2. Click **Create** under URL Feeds  
 3. Configure:  
    - Profile Name: `Vesper-DIPL-Profile`
-   - URL: `https://edl.vespersecure.com/lists/your-id`
-   - Username: `org_xxxxx`
+   - URL: `https://list.vespersecure.com/organizationid`
+   - Username: `organizationid`
    - Password: Your Dynamic IP List password
    - Update Interval: `900` seconds
 

@@ -157,7 +157,7 @@ Before configuring any firewall integration, ensure you have:
 
 - [ ] **Dynamic IP List URL, username, and password** from [Setup & Configuration](../setup.md)
 - [ ] **Firewall admin access** with permission to modify policies
-- [ ] **Outbound HTTPS access** from firewall to `edl.vespersecure.com` (port 443)
+- [ ] **Outbound HTTPS access** from firewall to `list.vespersecure.com` (port 443)
 - [ ] **DNS resolution** working from firewall management interface
 - [ ] **Certificate validation** working (no SSL inspection blocking)
 
@@ -260,8 +260,8 @@ After configuring your firewall, validate the integration:
 From a system with network access:
 
 ```bash
-curl -u "org_xxxxx:your-password" \
-  https://edl.vespersecure.com/lists/your-id
+curl -u "organizationid:your-password" \
+  https://list.vespersecure.com/organizationid
 ```
 
 Should return IP addresses or an empty list.
@@ -273,7 +273,7 @@ Should return IP addresses or an empty list.
 3. Wait for Dynamic IP List refresh interval (e.g., 5 minutes)  
 4. Verify test user's IP appears in Dynamic IP List:  
    ```bash
-   curl -u "user:pass" https://edl.vespersecure.com/lists/your-id | grep "test-user-ip"
+   curl -u "user:pass" https://list.vespersecure.com/organizationid | grep "test-user-ip"
    ```
 5. Test VPN connection from test user's location (should succeed)  
 
@@ -298,7 +298,7 @@ For platform-specific troubleshooting, see the individual setup guides:
 
 **Dynamic IP List shows as "Failed" or "Unreachable"**
 
-- Verify firewall can reach `edl.vespersecure.com` on port 443
+- Verify firewall can reach `list.vespersecure.com` on port 443
 - Check DNS resolution works
 - Verify no SSL inspection blocking connection
 - Test manually with curl command
