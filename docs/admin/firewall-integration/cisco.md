@@ -34,7 +34,7 @@ Ensure you have:
 - [ ] Dynamic IP List URL, username, and password from [Setup & Configuration](../setup.md)
 - [ ] Cisco ASA/FTD CLI access (SSH or console)
 - [ ] Enable mode password
-- [ ] Outbound HTTPS (port 443) allowed from firewall to `edl.vespersecure.com`
+- [ ] Outbound HTTPS (port 443) allowed from firewall to `list.vespersecure.com`
 - [ ] Knowledge of your VPN gateway interface and configuration
 
 !!! info "Configuration Method"
@@ -71,9 +71,9 @@ This creates an empty object group that we'll populate from the Dynamic IP List.
 Configure the Dynamic IP List source with authentication:
 
 ```cisco
-dynamic-object update-url Vesper-DIPL https://edl.vespersecure.com/lists/your-id
+dynamic-object update-url Vesper-DIPL https://list.vespersecure.com/organizationid
   poll-period 5
-  basic-auth username org_xxxxx password your-password
+  basic-auth username organizationid password your-password
 ```
 
 **Parameter Details:**
@@ -84,7 +84,7 @@ dynamic-object update-url Vesper-DIPL https://edl.vespersecure.com/lists/your-id
   - `5` = 5 minutes (most responsive)
   - `15` = 15 minutes (recommended)
   - `60` = 1 hour (lower load)
-- **username**: Your organization ID (starts with `org_`)
+- **username**: Your organization ID
 - **password**: Dynamic IP List password from Vesper admin panel
 
 !!! warning "Password in Configuration"
@@ -181,9 +181,9 @@ show run dynamic-object
 
 **Expected output:**
 ```
-dynamic-object update-url Vesper-DIPL https://edl.vespersecure.com/lists/your-id
+dynamic-object update-url Vesper-DIPL https://list.vespersecure.com/organizationid
   poll-period 5
-  basic-auth username org_xxxxx password ********
+  basic-auth username organizationid password ********
 ```
 
 ### Verify Object Group Configuration
@@ -281,7 +281,7 @@ show dynamic-object Vesper-DIPL
 
 1. **Test DNS Resolution:**  
    ```cisco
-   ping edl.vespersecure.com
+   ping list.vespersecure.com
    ```
 
 2. **Verify Outbound HTTPS:**  
@@ -383,14 +383,14 @@ show dynamic-object Vesper-DIPL
    ```cisco
    configure terminal
    no dynamic-object update-url Vesper-DIPL
-   dynamic-object update-url Vesper-DIPL https://edl.vespersecure.com/lists/your-id
+   dynamic-object update-url Vesper-DIPL https://list.vespersecure.com/organizationid
      poll-period 5
-     basic-auth username org_xxxxx password your-password
+     basic-auth username organizationid password your-password
    ```
 
 2. Test credentials manually from another system:  
    ```bash
-   curl -v -u "org_xxxxx:your-password" https://edl.vespersecure.com/lists/your-id
+   curl -v -u "organizationid:your-password" https://list.vespersecure.com/organizationid
    ```
 
 ---
@@ -402,7 +402,7 @@ show dynamic-object Vesper-DIPL
 Adjust based on your needs:
 
 ```cisco
-dynamic-object update-url Vesper-DIPL https://edl.vespersecure.com/lists/your-id
+dynamic-object update-url Vesper-DIPL https://list.vespersecure.com/organizationid
   poll-period 15
 ```
 

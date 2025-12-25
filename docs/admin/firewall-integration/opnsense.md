@@ -33,7 +33,7 @@ Ensure you have:
 - [ ] Dynamic IP List URL, username, and password from [Setup & Configuration](../setup.md)
 - [ ] OPNsense 19.1 or later
 - [ ] OPNsense web interface admin access
-- [ ] Outbound HTTPS (port 443) allowed from OPNsense to `edl.vespersecure.com`
+- [ ] Outbound HTTPS (port 443) allowed from OPNsense to `list.vespersecure.com`
 - [ ] Knowledge of your VPN configuration
 
 ---
@@ -55,7 +55,7 @@ Enabled: ✓ (checked)
 Name: Vesper_Allowed_IPs
 Type: URL Table (IPs)
 Description: Vesper Secure verified user IPs
-Content: https://org_xxxxx:password@edl.vespersecure.com/lists/your-id
+Content: https://organizationid:password@list.vespersecure.com/organizationid
 Refresh Frequency: 1 day
 ```
 
@@ -66,10 +66,9 @@ Refresh Frequency: 1 day
 - **Type**: Select **"URL Table (IPs)"** from the dropdown
 - **Description**: Add a clear description for documentation
 - **Content**: Your Dynamic IP List URL with embedded credentials
-  - Format: `https://username:password@edl.vespersecure.com/lists/your-id`
-  - Replace `username` with your org ID (e.g., `org_xxxxx`)
+  - Format: `https://username:password@list.vespersecure.com/organizationid`
+  - Replace `username` with your organization ID
   - Replace `password` with your Dynamic IP List password
-  - Replace `your-id` with your list ID
 - **Refresh Frequency**: 
   - 1 day (default, updates daily at midnight)
   - 0.5 days (12 hours) for more frequent updates
@@ -244,13 +243,13 @@ To manually trigger an update:
 SSH into OPNsense or use console:
 
 ```bash
-curl -u "org_xxxxx:password" https://edl.vespersecure.com/lists/your-id
+curl -u "organizationid:password" https://list.vespersecure.com/organizationid
 ```
 
 Or with embedded credentials:
 
 ```bash
-curl "https://org_xxxxx:password@edl.vespersecure.com/lists/your-id"
+curl "https://organizationid:password@list.vespersecure.com/organizationid"
 ```
 
 Should return list of IPs or empty response if no users registered.
@@ -289,18 +288,18 @@ Should return list of IPs or empty response if no users registered.
    
    From OPNsense shell:
    ```bash
-   ping edl.vespersecure.com
-   curl -I https://edl.vespersecure.com
+   ping list.vespersecure.com
+   curl -I https://list.vespersecure.com
    ```
 
 2. **Check DNS Resolution:**  
    - Go to **System** → **Diagnostics** → **DNS Lookup**
-   - Look up `edl.vespersecure.com`
+   - Look up `list.vespersecure.com`
    - Verify it resolves correctly
 
 3. **Test URL with Credentials:**  
    ```bash
-   curl -v "https://org_xxxxx:password@edl.vespersecure.com/lists/your-id"
+   curl -v "https://organizationid:password@list.vespersecure.com/organizationid"
    ```
    Should return 200 OK and IP list
 
@@ -388,7 +387,7 @@ Example: Password `Pass@123#` becomes `Pass%40123%23`
 
 3. **Test from CLI:**  
    ```bash
-   curl -v -u "org_xxxxx:password" https://edl.vespersecure.com/lists/your-id
+   curl -v -u "organizationid:password" https://list.vespersecure.com/organizationid
    ```
    Should show 200 OK, not 401
 

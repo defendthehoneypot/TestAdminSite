@@ -33,7 +33,7 @@ Ensure you have:
 
 - [ ] Dynamic IP List URL, username, and password from [Setup & Configuration](../setup.md)
 - [ ] Palo Alto firewall admin access
-- [ ] Outbound HTTPS (port 443) allowed from firewall to `edl.vespersecure.com`
+- [ ] Outbound HTTPS (port 443) allowed from firewall to `list.vespersecure.com`
 - [ ] Knowledge of your VPN gateway IP and zones
 
 ---
@@ -53,9 +53,9 @@ Configure the following settings:
 ```
 Name: Vesper-Secure-Allowed-IPs
 Type: IP List
-Source URL: https://edl.vespersecure.com/lists/your-id
+Source URL: https://list.vespersecure.com/organizationid
 Check for updates: Hourly (or every 5 minutes)
-Username: org_xxxxx
+Username: organizationid
 Password: ••••••••
 ```
 
@@ -68,7 +68,7 @@ Password: ••••••••
   - Every 5 minutes for fastest access grants
   - Hourly for reduced firewall load
   - 15 minutes recommended for balanced approach
-- **Username**: Your organization ID (starts with `org_`)
+- **Username**: Your organization ID
 - **Password**: Dynamic IP List password from Vesper admin panel
 
 ### Save Configuration
@@ -216,13 +216,13 @@ Wait for the commit to complete successfully.
 
 1. **Check Management Interface Connectivity:**  
    ```
-   > ping source <mgmt-interface> host edl.vespersecure.com
+   > ping source <mgmt-interface> host list.vespersecure.com
    ```
 
 2. **Verify DNS Resolution:**  
    ```
    > show system info | match "DNS Server"
-   > test dns-resolution edl.vespersecure.com
+   > test dns-resolution list.vespersecure.com
    ```
 
 3. **Test HTTPS Connectivity:**  
@@ -232,11 +232,11 @@ Wait for the commit to complete successfully.
 4. **Verify Credentials:**  
    - Double-check username and password
    - Ensure no extra spaces
-   - Test manually: `curl -u "user:pass" https://edl.vespersecure.com/lists/your-id`
+   - Test manually: `curl -u "user:pass" https://list.vespersecure.com/organizationid`
 
 5. **Check Certificate Profile:**  
    - Go to **Device** → **Certificate Management** → **Certificate Profile**
-   - Ensure default profile allows connection to edl.vespersecure.com
+   - Ensure default profile allows connection to list.vespersecure.com
 
 ### Traffic Not Being Allowed
 
@@ -287,7 +287,7 @@ Wait for the commit to complete successfully.
 
 For enhanced security, you can pin the server certificate:
 
-1. Download the certificate from edl.vespersecure.com  
+1. Download the certificate from list.vespersecure.com  
 2. Import to **Device** → **Certificate Management** → **Certificates**  
 3. Create a Certificate Profile referencing this certificate  
 4. Reference the profile in your External Dynamic List configuration  

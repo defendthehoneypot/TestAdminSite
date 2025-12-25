@@ -83,7 +83,7 @@ Ensure you have:
 
 - [ ] Dynamic IP List URL, username, and password from [Setup & Configuration](../setup.md)
 - [ ] Firewall admin access
-- [ ] Outbound HTTPS (port 443) allowed from firewall to `edl.vespersecure.com`
+- [ ] Outbound HTTPS (port 443) allowed from firewall to `list.vespersecure.com`
 - [ ] Understanding of your firewall's policy/rule structure
 - [ ] Knowledge of your VPN gateway configuration
 
@@ -120,9 +120,9 @@ You'll need to provide these settings to your firewall:
 
 ```
 Name/Alias: Vesper-Secure-Allowed-IPs (or similar)
-URL: https://edl.vespersecure.com/lists/your-id
+URL: https://list.vespersecure.com/organizationid
 Authentication Method: Basic Authentication / HTTP Basic Auth
-Username: org_xxxxx
+Username: organizationid
 Password: ••••••••
 Update Interval: 5-60 minutes (15 minutes recommended)
 Format: Plain text / IP List / One IP per line
@@ -199,7 +199,7 @@ Most firewalls provide a way to test external connections. Test that your firewa
 
 **Manual Test from Another System:**
 ```bash
-curl -u "org_xxxxx:your-password" https://edl.vespersecure.com/lists/your-id
+curl -u "organizationid:your-password" https://list.vespersecure.com/organizationid
 ```
 
 This should return:
@@ -241,7 +241,7 @@ If your firewall supports URL-based IP lists but isn't covered in the dedicated 
 2. Create new URL-based object:  
    - Name: Vesper_Allowed_IPs
    - Type: URL Table / External List / IP List
-   - URL: https://org_xxxxx:password@edl.vespersecure.com/lists/your-id
+   - URL: https://organizationid:password@list.vespersecure.com/organizationid
    - Update Frequency: As frequent as supported (5-60 minutes)
 
 3. Create firewall rule:  
@@ -271,7 +271,7 @@ If your firewall supports URL-based IP lists but isn't covered in the dedicated 
 **Solutions:**
 
 1. **Test DNS Resolution:**  
-   - Verify firewall can resolve `edl.vespersecure.com`
+   - Verify firewall can resolve `list.vespersecure.com`
    - Check DNS settings
 
 2. **Test Connectivity:**  
@@ -303,13 +303,13 @@ If your firewall supports URL-based IP lists but isn't covered in the dedicated 
 **Solutions:**
 
 1. **Verify Credentials:**  
-   - Check username starts with `org_`
+   - Check username is correct
    - Verify password is correct
    - Ensure no spaces or hidden characters
 
 2. **Test Manually:**  
    ```bash
-   curl -v -u "org_xxxxx:password" https://edl.vespersecure.com/lists/your-id
+   curl -v -u "organizationid:password" https://list.vespersecure.com/organizationid
    ```
 
 3. **Check Authentication Method:**  
@@ -368,7 +368,7 @@ If your firewall doesn't support Basic Auth directly:
 
 1. **Embed credentials in URL** (less secure):  
    ```
-   https://username:password@edl.vespersecure.com/lists/your-id
+   https://username:password@list.vespersecure.com/organizationid
    ```
 
 2. **Use custom script**:  

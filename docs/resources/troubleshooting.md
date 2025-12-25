@@ -12,7 +12,7 @@
 - Error in firewall logs
 
 **Causes:**
-- Firewall can't reach edl.vespersecure.com
+- Firewall can't reach list.vespersecure.com
 - DNS resolution failure
 - SSL inspection blocking connection
 - Outbound HTTPS blocked
@@ -21,12 +21,12 @@
 
 1. **Test connectivity from firewall:**  
    ```bash
-   curl -v https://edl.vespersecure.com
+   curl -v https://list.vespersecure.com
    ```
 
 2. **Check DNS:**  
    ```bash
-   nslookup edl.vespersecure.com
+   nslookup list.vespersecure.com
    ```
 
 3. **Verify outbound HTTPS (port 443) is allowed**  
@@ -35,7 +35,7 @@
 
 5. **Test with credentials:**  
    ```bash
-   curl -u "org_xxxxx:password" https://edl.vespersecure.com/lists/your-id
+   curl -u "organizationid:password" https://list.vespersecure.com/organizationid
    ```
 
 ---
@@ -58,7 +58,7 @@
 3. **Re-enter credentials on firewall** (copy/paste carefully)  
 4. **Test manually:**  
    ```bash
-   curl -v -u "username:password" https://edl.vespersecure.com/lists/your-id
+   curl -v -u "username:password" https://list.vespersecure.com/organizationid
    ```
 5. **If needed, regenerate credentials in admin panel**  
 
@@ -232,30 +232,30 @@
 
 ```bash
 # Basic test
-curl https://edl.vespersecure.com/lists/your-id
+curl https://list.vespersecure.com/organizationid
 
 # With authentication
-curl -u "org_xxxxx:password" https://edl.vespersecure.com/lists/your-id
+curl -u "organizationid:password" https://list.vespersecure.com/organizationid
 
 # Verbose for debugging
-curl -v -u "org_xxxxx:password" https://edl.vespersecure.com/lists/your-id
+curl -v -u "organizationid:password" https://list.vespersecure.com/organizationid
 
 # Check IP in list
-curl -u "user:pass" https://edl.vespersecure.com/lists/your-id | grep "1.2.3.4"
+curl -u "user:pass" https://list.vespersecure.com/organizationid | grep "1.2.3.4"
 ```
 
 ### Check DNS Resolution
 
 ```bash
-nslookup edl.vespersecure.com
-dig edl.vespersecure.com
+nslookup list.vespersecure.com
+dig list.vespersecure.com
 ```
 
 ### Test Connectivity
 
 ```bash
-ping edl.vespersecure.com
-telnet edl.vespersecure.com 443
+ping list.vespersecure.com
+telnet list.vespersecure.com 443
 ```
 
 ---
