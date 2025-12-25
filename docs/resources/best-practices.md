@@ -5,7 +5,7 @@
 ### Planning
 
 - **Start small**: Pilot with a small group before full rollout
-- **Test thoroughly**: Validate EDL integration with test accounts
+- **Test thoroughly**: Validate DIPL integration with test accounts
 - **Communication**: Clearly explain the process to users beforehand
 - **Backup access**: Maintain static IP allow-list for critical admins
 
@@ -35,7 +35,7 @@
 - Restrict to specific countries
 - Monitor for unusual patterns
 
-### EDL Refresh Interval
+### DIPL Refresh Interval
 
 - **5 minutes**: Responsive access, higher firewall load
 - **15 minutes**: Balanced approach (recommended)
@@ -48,12 +48,12 @@
 ✅ **Do:**
 - Place Vesper allow rules above deny rules
 - Log both allowed and denied attempts
-- Enable alerts for EDL update failures
+- Enable alerts for DIPL update failures
 - Test policy ordering regularly
 
 ❌ **Don't:**
 - Rely solely on Vesper without fallback
-- Ignore EDL update failures
+- Ignore DIPL update failures
 - Mix Vesper IPs with other allow lists
 
 ### Access Management
@@ -112,7 +112,7 @@ Takes less than a minute!
 ### Daily Checks
 
 - Review new registrations
-- Check EDL update status
+- Check DIPL update status
 - Monitor firewall deny logs for patterns
 
 ### Weekly Reviews
@@ -125,7 +125,7 @@ Takes less than a minute!
 
 - Audit user list vs. employee roster
 - Review and update policies
-- Check EDL credential rotation schedule
+- Check DIPL credential rotation schedule
 - Analyze usage trends
 
 ## Troubleshooting
@@ -133,15 +133,15 @@ Takes less than a minute!
 ### Proactive Monitoring
 
 Set up alerts for:
-- EDL update failures (critical)
+- DIPL update failures (critical)
 - High rate of denied requests (investigate)
 - Unusual access patterns (security)
 - Failed login attempts (support)
 
 ### Common Issues Prevention
 
-**EDL connectivity:**
-- Test EDL URL monthly
+**DIPL connectivity:**
+- Test DIPL URL monthly
 - Monitor firewall outbound HTTPS
 - Keep credentials current
 
@@ -173,7 +173,7 @@ Export logs regularly for compliance retention.
 
 ### Optimization
 
-- Use appropriate EDL refresh interval
+- Use appropriate DIPL refresh interval
 - Limit temporary duration to actual needs
 - Expire old permanent locations
 - Keep user list current
@@ -181,8 +181,8 @@ Export logs regularly for compliance retention.
 ### Scalability
 
 Vesper scales automatically, but consider:
-- Firewall EDL size limits
-- Network bandwidth for EDL updates
+- Firewall DIPL size limits
+- Network bandwidth for DIPL updates
 - Admin monitoring capacity
 
 ---
