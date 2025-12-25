@@ -16,10 +16,10 @@ Fortinet FortiGate firewalls support External Connectors (also called Fabric Con
 
 ### What You'll Configure
 
-1. External Connector to pull IPs from Vesper EDL
-2. Dynamic address object based on the connector
-3. Firewall policy to allow registered IPs
-4. Testing and validation
+1. External Connector to pull IPs from Vesper EDL  
+2. Dynamic address object based on the connector  
+3. Firewall policy to allow registered IPs  
+4. Testing and validation  
 
 ### Time Required
 
@@ -42,9 +42,9 @@ Ensure you have:
 
 ### Navigate to External Connectors
 
-1. Log in to FortiGate web interface
-2. Go to **Security Fabric** → **External Connectors**
-3. Click **Create New** → **IP Address**
+1. Log in to FortiGate web interface  
+2. Go to **Security Fabric** → **External Connectors**  
+3. Click **Create New** → **IP Address**  
 
 !!! info "FortiOS Versions"
     In some FortiOS versions, this may be under **Security Fabric** → **Fabric Connectors** or **External Resources**.
@@ -80,9 +80,9 @@ Refresh Rate: 5 minutes
 
 ### Test Connectivity
 
-1. Click **Test Connectivity** before saving (if available)
-2. Verify connection succeeds
-3. Click **OK** to save the external connector
+1. Click **Test Connectivity** before saving (if available)  
+2. Verify connection succeeds  
+3. Click **OK** to save the external connector  
 
 ---
 
@@ -90,8 +90,8 @@ Refresh Rate: 5 minutes
 
 ### Navigate to Addresses
 
-1. Go to **Policy & Objects** → **Addresses**
-2. Click **Create New** → **Address**
+1. Go to **Policy & Objects** → **Addresses**  
+2. Click **Create New** → **Address**  
 
 ### Configure Dynamic Address
 
@@ -123,11 +123,11 @@ Click **OK** to save the address object.
 
 Before creating policies, verify the connector is working:
 
-1. Go to **Security Fabric** → **External Connectors**
-2. Find your `Vesper_Secure_EDL` connector
-3. Check the status shows green/connected
-4. Click on the connector name to view details
-5. Verify it shows IP addresses (if any users have registered)
+1. Go to **Security Fabric** → **External Connectors**  
+2. Find your `Vesper_Secure_EDL` connector  
+3. Check the status shows green/connected  
+4. Click on the connector name to view details  
+5. Verify it shows IP addresses (if any users have registered)  
 
 !!! tip "Empty List is OK"
     If no users have registered yet, the connector may show 0 addresses. This is normal - it will populate as users register.
@@ -138,9 +138,9 @@ Before creating policies, verify the connector is working:
 
 ### Navigate to Policies
 
-1. Go to **Policy & Objects** → **Firewall Policy**
-2. Click **Create New**
-3. Position the policy **above** any general deny rules
+1. Go to **Policy & Objects** → **Firewall Policy**  
+2. Click **Create New**  
+3. Position the policy **above** any general deny rules  
 
 ### Configure Allow Policy
 
@@ -215,41 +215,41 @@ This helps with logging and troubleshooting by explicitly capturing denied attem
 
 ### Verify External Connector Status
 
-1. Go to **Security Fabric** → **External Connectors**
-2. Check your connector shows "Connected" or green status
-3. Click on it to view the current IP addresses
-4. Verify "Last Updated" timestamp is recent
+1. Go to **Security Fabric** → **External Connectors**  
+2. Check your connector shows "Connected" or green status  
+3. Click on it to view the current IP addresses  
+4. Verify "Last Updated" timestamp is recent  
 
 ### Test Connector Manually
 
 You can force a manual update:
 
-1. Go to **Security Fabric** → **External Connectors**
-2. Right-click on your connector
-3. Select **Refresh** or **Update Now** (if available)
-4. Wait a few seconds and verify update timestamp
+1. Go to **Security Fabric** → **External Connectors**  
+2. Right-click on your connector  
+3. Select **Refresh** or **Update Now** (if available)  
+4. Wait a few seconds and verify update timestamp  
 
 ### Verify Address Object
 
-1. Go to **Policy & Objects** → **Addresses**
-2. Find your `Vesper-Allowed-IPs` address object
-3. Hover over or click to view current IP addresses
-4. Verify IPs are being populated from the connector
+1. Go to **Policy & Objects** → **Addresses**  
+2. Find your `Vesper-Allowed-IPs` address object  
+3. Hover over or click to view current IP addresses  
+4. Verify IPs are being populated from the connector  
 
 ### Test with User Registration
 
-1. Have a test user register their IP through Vesper portal
-2. Wait for refresh interval (5 minutes to 1 hour depending on your setting)
-3. Force a manual refresh of the external connector
-4. Verify the test user's IP appears in the address object
-5. Test VPN connection from the test user's location
+1. Have a test user register their IP through Vesper portal  
+2. Wait for refresh interval (5 minutes to 1 hour depending on your setting)  
+3. Force a manual refresh of the external connector  
+4. Verify the test user's IP appears in the address object  
+5. Test VPN connection from the test user's location  
 
 ### Review Firewall Logs
 
-1. Go to **Log & Report** → **Forward Traffic**
-2. Look for connections from registered IPs
-3. Verify they're being allowed by your Vesper policy
-4. Check that unregistered IPs are being denied (if you created a deny rule)
+1. Go to **Log & Report** → **Forward Traffic**  
+2. Look for connections from registered IPs  
+3. Verify they're being allowed by your Vesper policy  
+4. Check that unregistered IPs are being denied (if you created a deny rule)  
 
 ---
 
@@ -264,32 +264,32 @@ You can force a manual update:
 
 **Solutions:**
 
-1. **Check Outbound Connectivity:**
+1. **Check Outbound Connectivity:**  
    - Go to **Dashboard** → **CLI Console**
    - Execute: `execute ping edl.vespersecure.com`
    - Verify connectivity
 
-2. **Verify DNS Resolution:**
+2. **Verify DNS Resolution:**  
    ```
    execute dns lookup edl.vespersecure.com
    ```
 
-3. **Check Interface Selection:**
+3. **Check Interface Selection:**  
    - Verify the correct management or WAN interface can reach the internet
    - Go to **System** → **Settings** and check source IP for updates
 
-4. **Test with Diagnostics:**
+4. **Test with Diagnostics:**  
    ```
    diagnose test application fcnacd 4
    ```
    This shows external connector debug information.
 
-5. **Verify Credentials:**
+5. **Verify Credentials:**  
    - Double-check username and password in connector configuration
    - Ensure no extra spaces
    - Test manually: `curl -u "user:pass" https://edl.vespersecure.com/lists/your-id`
 
-6. **Check Routing:**
+6. **Check Routing:**  
    - Ensure firewall has a route to reach edl.vespersecure.com
    - Verify default gateway is configured
 
@@ -301,19 +301,19 @@ You can force a manual update:
 
 **Solutions:**
 
-1. **Verify Users Have Registered:**
+1. **Verify Users Have Registered:**  
    - Check Vesper admin panel
    - Confirm active registrations exist
 
-2. **Force Connector Refresh:**
+2. **Force Connector Refresh:**  
    - Right-click connector and refresh
    - Wait for update to complete
 
-3. **Check Connector Configuration:**
+3. **Check Connector Configuration:**  
    - Verify URL is correct
    - Ensure connector type is "IP Address"
 
-4. **Review Logs:**
+4. **Review Logs:**  
    - Go to **Log & Report** → **System Events**
    - Filter for external connector events
    - Look for errors
@@ -326,22 +326,22 @@ You can force a manual update:
 
 **Solutions:**
 
-1. **Verify Policy Order:**
+1. **Verify Policy Order:**  
    - Go to **Policy & Objects** → **Firewall Policy**
    - Ensure Vesper allow policy is **above** deny rules
    - Drag to reorder if necessary
 
-2. **Check Policy Configuration:**
+2. **Check Policy Configuration:**  
    - Verify source address is set to `Vesper-Allowed-IPs`
    - Confirm interfaces are correct
    - Ensure services include necessary VPN protocols
 
-3. **Verify IP is in Address Object:**
+3. **Verify IP is in Address Object:**  
    - Go to **Policy & Objects** → **Addresses**
    - Check `Vesper-Allowed-IPs` contains the user's IP
    - Have user confirm their current IP
 
-4. **Review Policy Logs:**
+4. **Review Policy Logs:**  
    - Go to **Log & Report** → **Forward Traffic**
    - Find the blocked session
    - Check which policy is blocking
@@ -355,11 +355,11 @@ You can force a manual update:
 
 **Solutions:**
 
-1. Edit the external connector
-2. Re-enter username and password carefully
-3. Ensure no extra spaces
-4. Test credentials with curl: `curl -v -u "user:pass" URL`
-5. Re-generate credentials in Vesper admin panel if needed
+1. Edit the external connector  
+2. Re-enter username and password carefully  
+3. Ensure no extra spaces  
+4. Test credentials with curl: `curl -v -u "user:pass" URL`  
+5. Re-generate credentials in Vesper admin panel if needed  
 
 ---
 
@@ -369,26 +369,26 @@ You can force a manual update:
 
 If using Virtual Domains (VDOMs):
 
-1. Create the external connector in each VDOM that needs access
-2. Each VDOM maintains its own connector instance
-3. Configure policies within each VDOM
+1. Create the external connector in each VDOM that needs access  
+2. Each VDOM maintains its own connector instance  
+3. Configure policies within each VDOM  
 
 ### High Availability Configuration
 
 For HA cluster:
 
-1. Configure external connector on the primary unit
-2. Configuration syncs to secondary automatically
-3. Both units independently fetch the EDL
-4. Verify connectivity from both units
+1. Configure external connector on the primary unit  
+2. Configuration syncs to secondary automatically  
+3. Both units independently fetch the EDL  
+4. Verify connectivity from both units  
 
 ### Multiple VPN Interfaces
 
 If you have multiple VPN gateways:
 
-1. Use the same address object in multiple policies
-2. Create separate policies for each VPN interface
-3. Maintain consistent policy ordering
+1. Use the same address object in multiple policies  
+2. Create separate policies for each VPN interface  
+3. Maintain consistent policy ordering  
 
 ---
 
@@ -418,9 +418,9 @@ If you have multiple VPN gateways:
 
 After FortiGate integration:
 
-1. **[Configure User Management](../user-management.md)** - Monitor user registrations
-2. **[Test with pilot users](../user-management.md#onboarding-new-users)** - Validate the complete flow
-3. **[Review best practices](../../resources/best-practices.md)** - Optimize your deployment
+1. **[Configure User Management](../user-management.md)** - Monitor user registrations  
+2. **[Test with pilot users](../user-management.md#onboarding-new-users)** - Validate the complete flow  
+3. **[Review best practices](../../resources/best-practices.md)** - Optimize your deployment  
 
 ---
 

@@ -16,9 +16,9 @@ OPNsense (19.1+) provides native URL Table Aliases that can fetch IP addresses f
 
 ### What You'll Configure
 
-1. URL Table Alias pointing to Vesper EDL
-2. Firewall rule to allow registered IPs
-3. Testing and validation
+1. URL Table Alias pointing to Vesper EDL  
+2. Firewall rule to allow registered IPs  
+3. Testing and validation  
 
 ### Time Required
 
@@ -42,9 +42,9 @@ Ensure you have:
 
 ### Navigate to Aliases
 
-1. Log in to OPNsense web interface
-2. Go to **Firewall** → **Aliases**
-3. Click the **+** (Add) button in the lower right
+1. Log in to OPNsense web interface  
+2. Go to **Firewall** → **Aliases**  
+3. Click the **+** (Add) button in the lower right  
 
 ### Configure the Alias
 
@@ -88,8 +88,8 @@ Refresh Frequency: 1 day
 
 ### Save the Alias
 
-1. Click **Save** at the bottom
-2. The alias will be created and added to the list
+1. Click **Save** at the bottom  
+2. The alias will be created and added to the list  
 
 ---
 
@@ -99,19 +99,19 @@ Refresh Frequency: 1 day
 
 After creating the alias, trigger the first download:
 
-1. In the **Firewall** → **Aliases** page
-2. Find your alias in the list
-3. Look for the status indicator (may show pending)
-4. Click **Apply** at the top of the page to apply changes
+1. In the **Firewall** → **Aliases** page  
+2. Find your alias in the list  
+3. Look for the status indicator (may show pending)  
+4. Click **Apply** at the top of the page to apply changes  
 
 OPNsense will immediately attempt to download the URL content.
 
 ### Verify Download
 
-1. Go to **Firewall** → **Diagnostics** → **Aliases**
-2. Find `Vesper_Allowed_IPs` in the list
-3. Click the **magnifying glass icon** to view contents
-4. Verify IP addresses appear (if any users have registered)
+1. Go to **Firewall** → **Diagnostics** → **Aliases**  
+2. Find `Vesper_Allowed_IPs` in the list  
+3. Click the **magnifying glass icon** to view contents  
+4. Verify IP addresses appear (if any users have registered)  
 
 !!! success "Empty List is OK"
     If no users have registered yet, the list may be empty. This is normal and doesn't indicate an error.
@@ -122,9 +122,9 @@ OPNsense will immediately attempt to download the URL content.
 
 ### Navigate to Firewall Rules
 
-1. Go to **Firewall** → **Rules**
-2. Select the **WAN** tab (or interface where external traffic arrives)
-3. Click **Add** button (+ icon with up arrow) to add rule at top
+1. Go to **Firewall** → **Rules**  
+2. Select the **WAN** tab (or interface where external traffic arrives)  
+3. Click **Add** button (+ icon with up arrow) to add rule at top  
 
 !!! warning "Rule Order is Critical"
     Add this rule at the **top** of the rule list to ensure it's evaluated before any deny rules.
@@ -169,19 +169,19 @@ Description: Allow Vesper Secure verified users to VPN
 
 ### Advanced Options (Recommended)
 
-1. Expand the **Advanced Options** section
-2. Set **Log**: Check to log packets matched by this rule
-3. Leave other settings at default unless you have specific requirements
+1. Expand the **Advanced Options** section  
+2. Set **Log**: Check to log packets matched by this rule  
+3. Leave other settings at default unless you have specific requirements  
 
 ### Save the Rule
 
-1. Click **Save** at the bottom
-2. You'll return to the rules list
+1. Click **Save** at the bottom  
+2. You'll return to the rules list  
 
 ### Apply Changes
 
-1. Click **Apply changes** button at the top of the page
-2. The rule is now active and will be evaluated for incoming traffic
+1. Click **Apply changes** button at the top of the page  
+2. The rule is now active and will be evaluated for incoming traffic  
 
 ---
 
@@ -189,8 +189,8 @@ Description: Allow Vesper Secure verified users to VPN
 
 For explicit logging of denied access attempts:
 
-1. Click **Add** to add another rule (this time without the up arrow, so it goes to the bottom)
-2. Configure:
+1. Click **Add** to add another rule (this time without the up arrow, so it goes to the bottom)  
+2. Configure:  
    ```
    Action: Block
    Interface: WAN
@@ -203,8 +203,8 @@ For explicit logging of denied access attempts:
    Description: Block unverified VPN access attempts
    Log: ✓ (checked)
    ```
-3. Click **Save**
-4. Click **Apply changes**
+3. Click **Save**  
+4. Click **Apply changes**  
 
 **Why This Helps:**
 
@@ -218,26 +218,26 @@ For explicit logging of denied access attempts:
 
 ### Verify Alias Contents
 
-1. Go to **Firewall** → **Diagnostics** → **Aliases**
-2. Find `Vesper_Allowed_IPs` in the list
-3. Click the **magnifying glass icon** (view contents)
-4. Verify IP addresses are listed
+1. Go to **Firewall** → **Diagnostics** → **Aliases**  
+2. Find `Vesper_Allowed_IPs` in the list  
+3. Click the **magnifying glass icon** (view contents)  
+4. Verify IP addresses are listed  
 
 ### Check Alias Update Status
 
-1. In **Firewall** → **Aliases**
-2. Look for status indicators next to your alias
-3. Green checkmark indicates successful download
-4. Red X indicates download failure
+1. In **Firewall** → **Aliases**  
+2. Look for status indicators next to your alias  
+3. Green checkmark indicates successful download  
+4. Red X indicates download failure  
 
 ### Force Manual Update
 
 To manually trigger an update:
 
-1. Go to **Firewall** → **Aliases**
-2. Click the **refresh icon** (circular arrow) next to the alias
-3. Wait a moment for the download to complete
-4. Check the diagnostics to verify new contents
+1. Go to **Firewall** → **Aliases**  
+2. Click the **refresh icon** (circular arrow) next to the alias  
+3. Wait a moment for the download to complete  
+4. Check the diagnostics to verify new contents  
 
 ### Test URL from OPNsense CLI
 
@@ -257,20 +257,20 @@ Should return list of IPs or empty response if no users registered.
 
 ### Test with User Registration
 
-1. Have a test user register their IP through Vesper portal
-2. Wait for OPNsense alias refresh (up to 24 hours for default setting)
-3. Force manual refresh:
+1. Have a test user register their IP through Vesper portal  
+2. Wait for OPNsense alias refresh (up to 24 hours for default setting)  
+3. Force manual refresh:  
    - Go to **Firewall** → **Aliases**
    - Click refresh icon next to `Vesper_Allowed_IPs`
-4. Verify the test user's IP appears in the alias
-5. Test VPN connection from test user's location (should succeed)
+4. Verify the test user's IP appears in the alias  
+5. Test VPN connection from test user's location (should succeed)  
 
 ### Check Firewall Logs
 
-1. Go to **Firewall** → **Log Files** → **Live View**
-2. Look for entries matching your rule description
-3. Verify connections from registered IPs show "Pass"
-4. Check that unregistered IPs are being blocked
+1. Go to **Firewall** → **Log Files** → **Live View**  
+2. Look for entries matching your rule description  
+3. Verify connections from registered IPs show "Pass"  
+4. Check that unregistered IPs are being blocked  
 
 ---
 
@@ -285,7 +285,7 @@ Should return list of IPs or empty response if no users registered.
 
 **Solutions:**
 
-1. **Verify Connectivity:**
+1. **Verify Connectivity:**  
    
    From OPNsense shell:
    ```bash
@@ -293,23 +293,23 @@ Should return list of IPs or empty response if no users registered.
    curl -I https://edl.vespersecure.com
    ```
 
-2. **Check DNS Resolution:**
+2. **Check DNS Resolution:**  
    - Go to **System** → **Diagnostics** → **DNS Lookup**
    - Look up `edl.vespersecure.com`
    - Verify it resolves correctly
 
-3. **Test URL with Credentials:**
+3. **Test URL with Credentials:**  
    ```bash
    curl -v "https://org_xxxxx:password@edl.vespersecure.com/lists/your-id"
    ```
    Should return 200 OK and IP list
 
-4. **Check System Logs:**
+4. **Check System Logs:**  
    - Go to **System** → **Log Files** → **General**
    - Look for errors related to alias updates
    - Check for authentication failures
 
-5. **Verify Credentials:**
+5. **Verify Credentials:**  
    - Double-check username starts with `org_`
    - Ensure password is correct
    - Check for special characters needing URL encoding
@@ -339,30 +339,30 @@ Example: Password `Pass@123#` becomes `Pass%40123%23`
 
 **Solutions:**
 
-1. **Verify Rule Order:**
+1. **Verify Rule Order:**  
    - Go to **Firewall** → **Rules** → **WAN**
    - Ensure Vesper allow rule has lower sequence number (higher position)
    - Drag and drop to reorder if needed
    - Click **Apply changes** after reordering
 
-2. **Check Alias Contents:**
+2. **Check Alias Contents:**  
    - Go to **Firewall** → **Diagnostics** → **Aliases**
    - View contents of `Vesper_Allowed_IPs`
    - Verify user's IP is in the list
    - Force refresh if needed
 
-3. **Verify User's IP:**
+3. **Verify User's IP:**  
    - Have user check their current IP
    - Ensure it matches what's registered
    - Dynamic IPs may have changed since registration
 
-4. **Review Rule Configuration:**
+4. **Review Rule Configuration:**  
    - Check source alias is set to `Vesper_Allowed_IPs`
    - Verify destination and ports match your VPN
    - Ensure Action is "Pass"
    - Confirm rule is enabled (not grayed out)
 
-5. **Check Logs:**
+5. **Check Logs:**  
    - Go to **Firewall** → **Log Files** → **Live View**
    - Find the blocked connection
    - Check which rule is blocking (rule number/description)
@@ -376,23 +376,23 @@ Example: Password `Pass@123#` becomes `Pass%40123%23`
 
 **Solutions:**
 
-1. **Verify Credentials:**
+1. **Verify Credentials:**  
    - Check username in Vesper admin panel
    - Confirm password is correct
    - Test manually with curl
 
-2. **Check for Typos:**
+2. **Check for Typos:**  
    - Re-enter the URL in the alias configuration
    - Ensure no extra spaces
    - Verify correct format
 
-3. **Test from CLI:**
+3. **Test from CLI:**  
    ```bash
    curl -v -u "org_xxxxx:password" https://edl.vespersecure.com/lists/your-id
    ```
    Should show 200 OK, not 401
 
-4. **Re-generate Credentials:**
+4. **Re-generate Credentials:**  
    - If problems persist, generate new credentials in Vesper
    - Update the alias with new credentials
 
@@ -404,9 +404,9 @@ Example: Password `Pass@123#` becomes `Pass%40123%23`
 
 For faster than daily updates, use cron:
 
-1. Go to **System** → **Settings** → **Cron**
-2. Click **+** to add new cron job
-3. Configure:
+1. Go to **System** → **Settings** → **Cron**  
+2. Click **+** to add new cron job  
+3. Configure:  
    ```
    Enabled: ✓
    Minutes: 0
@@ -418,7 +418,7 @@ For faster than daily updates, use cron:
    Parameters: Vesper_Allowed_IPs
    Description: Update Vesper EDL more frequently
    ```
-4. Click **Save**
+4. Click **Save**  
 
 This will update the alias every 4 hours instead of daily.
 
@@ -426,38 +426,38 @@ This will update the alias every 4 hours instead of daily.
 
 If using OPNsense HA (CARP):
 
-1. Configure alias and rules on the primary node
-2. Configuration will sync to secondary via XMLRPC Config Sync
-3. Ensure config sync is enabled: **System** → **High Availability** → **Settings**
-4. Both nodes will independently fetch the EDL
-5. Ensure both nodes have internet connectivity
+1. Configure alias and rules on the primary node  
+2. Configuration will sync to secondary via XMLRPC Config Sync  
+3. Ensure config sync is enabled: **System** → **High Availability** → **Settings**  
+4. Both nodes will independently fetch the EDL  
+5. Ensure both nodes have internet connectivity  
 
 ### IPv6 Support
 
 To support IPv6 addresses:
 
-1. Create a second alias with Type "URL Table (IPs)"
-2. Use the same URL (if EDL returns IPv6)
-3. Or configure separate IPv6 EDL if available
-4. Create firewall rules with TCP/IP Version: IPv6
-5. Use the IPv6 alias in those rules
+1. Create a second alias with Type "URL Table (IPs)"  
+2. Use the same URL (if EDL returns IPv6)  
+3. Or configure separate IPv6 EDL if available  
+4. Create firewall rules with TCP/IP Version: IPv6  
+5. Use the IPv6 alias in those rules  
 
 ### Multiple VPN Servers
 
 If you have multiple VPN servers:
 
-1. Use the same alias in multiple firewall rules
-2. Create separate rules for each destination
-3. Maintain consistent rule ordering across rules
+1. Use the same alias in multiple firewall rules  
+2. Create separate rules for each destination  
+3. Maintain consistent rule ordering across rules  
 
 ### Backup Static Access
 
 Maintain a backup method for critical admins:
 
-1. Create a standard alias (not URL-based) with static IPs
-2. Create a network alias: **Firewall** → **Aliases**
-3. Add it as an additional source in your allow rule using "or" logic
-4. Or create a separate rule for static backup IPs
+1. Create a standard alias (not URL-based) with static IPs  
+2. Create a network alias: **Firewall** → **Aliases**  
+3. Add it as an additional source in your allow rule using "or" logic  
+4. Or create a separate rule for static backup IPs  
 
 ---
 
@@ -493,9 +493,9 @@ Maintain a backup method for critical admins:
 
 After OPNsense integration:
 
-1. **[Configure User Management](../user-management.md)** - Monitor user registrations
-2. **[Test with pilot users](../user-management.md#onboarding-new-users)** - Validate the complete flow
-3. **[Review best practices](../../resources/best-practices.md)** - Optimize your deployment
+1. **[Configure User Management](../user-management.md)** - Monitor user registrations  
+2. **[Test with pilot users](../user-management.md#onboarding-new-users)** - Validate the complete flow  
+3. **[Review best practices](../../resources/best-practices.md)** - Optimize your deployment  
 
 ---
 

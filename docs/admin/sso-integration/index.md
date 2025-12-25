@@ -67,11 +67,11 @@ Before configuring SSO integration with any provider, ensure you have:
 
 ## How SSO Works with Vesper Secure
 
-1. **User Initiates Login**: User navigates to Vesper Secure and clicks "Sign in with SSO"
-2. **SAML Request**: Vesper Secure sends a SAML authentication request to your identity provider
-3. **User Authenticates**: User logs in with their corporate credentials (with MFA if configured)
-4. **SAML Response**: Identity provider sends a SAML response with user attributes back to Vesper Secure
-5. **Access Granted**: Vesper Secure validates the response and grants access based on group membership
+1. **User Initiates Login**: User navigates to Vesper Secure and clicks "Sign in with SSO"  
+2. **SAML Request**: Vesper Secure sends a SAML authentication request to your identity provider  
+3. **User Authenticates**: User logs in with their corporate credentials (with MFA if configured)  
+4. **SAML Response**: Identity provider sends a SAML response with user attributes back to Vesper Secure  
+5. **Access Granted**: Vesper Secure validates the response and grants access based on group membership  
 
 !!! tip "Test with a Pilot Group"
     We recommend testing SSO configuration with a small pilot group before rolling out to your entire organization.
@@ -104,14 +104,14 @@ Complete guide for configuring SAML-based SSO with Okta.
 
 While each identity provider has specific configuration requirements, the general process includes:
 
-1. **Create Application**: Register Vesper Secure as an application in your identity provider
-2. **Configure SAML Settings**: Set up Entity ID, Reply URL, and Sign-on URL
-3. **Map Attributes**: Configure user attribute mapping (email, name, groups)
-4. **Configure Certificates**: Upload or generate SAML signing certificates
-5. **Assign Users/Groups**: Grant access to specific users or groups
-6. **Configure Vesper Secure**: Enter identity provider metadata in Vesper Secure admin panel
-7. **Test Connection**: Verify SSO authentication works correctly
-8. **Roll Out**: Deploy to your organization
+1. **Create Application**: Register Vesper Secure as an application in your identity provider  
+2. **Configure SAML Settings**: Set up Entity ID, Reply URL, and Sign-on URL  
+3. **Map Attributes**: Configure user attribute mapping (email, name, groups)  
+4. **Configure Certificates**: Upload or generate SAML signing certificates  
+5. **Assign Users/Groups**: Grant access to specific users or groups  
+6. **Configure Vesper Secure**: Enter identity provider metadata in Vesper Secure admin panel  
+7. **Test Connection**: Verify SSO authentication works correctly  
+8. **Roll Out**: Deploy to your organization  
 
 ---
 
@@ -171,9 +171,9 @@ For provider-specific troubleshooting, see the individual setup guides:
 
 After configuring SSO integration:
 
-1. **[Set up Firewall Integration](../firewall-integration/index.md)** - Connect the EDL to your firewall
-2. **[Configure User Management](../user-management.md)** - Monitor and manage user access
-3. **Review Best Practices** - Ensure your deployment follows security best practices
+1. **[Set up Firewall Integration](../firewall-integration/index.md)** - Connect the EDL to your firewall  
+2. **[Configure User Management](../user-management.md)** - Monitor and manage user access  
+3. **Review Best Practices** - Ensure your deployment follows security best practices  
 
 ---
 

@@ -43,25 +43,25 @@ Before you begin, ensure you have:
 
 ### 1.1 Access Okta Admin Console
 
-1. Sign in to your [Okta Admin Console](https://your-domain.okta.com/admin)
-2. From the left navigation, go to **Applications** → **Applications**
+1. Sign in to your [Okta Admin Console](https://your-domain.okta.com/admin)  
+2. From the left navigation, go to **Applications** → **Applications**  
 
 ### 1.2 Create New SAML Application
 
-1. Click **Create App Integration**
-2. Select **SAML 2.0** as the sign-in method
-3. Click **Next**
+1. Click **Create App Integration**  
+2. Select **SAML 2.0** as the sign-in method  
+3. Click **Next**  
 
 ### 1.3 Configure General Settings
 
 On the **General Settings** page:
 
-1. **App name**: Enter `Vesper Secure`
-2. **App logo** (optional): Upload a logo if desired
-3. **App visibility**: 
+1. **App name**: Enter `Vesper Secure`  
+2. **App logo** (optional): Upload a logo if desired  
+3. **App visibility**:  
    - Check **Do not display application icon to users** if you don't want it in the Okta End-User Dashboard
    - Or leave unchecked to show it to users
-4. Click **Next**
+4. Click **Next**  
 
 !!! tip "Application Name"
     Use a clear name like "Vesper Secure" so users can easily identify the application in their Okta dashboard.
@@ -118,9 +118,9 @@ In the **Attribute Statements (optional)** section, click **Add Another** to add
 
 To enable group-based access control in Vesper Secure:
 
-1. Scroll to the **Group Attribute Statements (optional)** section
-2. Click **Add Another**
-3. Configure the group attribute:
+1. Scroll to the **Group Attribute Statements (optional)** section  
+2. Click **Add Another**  
+3. Configure the group attribute:  
    - **Name**: `groups`
    - **Name format**: `Unspecified`
    - **Filter**: Select your preferred filter option:
@@ -133,8 +133,8 @@ To enable group-based access control in Vesper Secure:
 
 ### 3.3 Review and Continue
 
-1. Review all attribute statements to ensure they're correct
-2. Click **Next** to continue to the feedback section
+1. Review all attribute statements to ensure they're correct  
+2. Click **Next** to continue to the feedback section  
 
 ---
 
@@ -144,9 +144,9 @@ To enable group-based access control in Vesper Secure:
 
 On the **Feedback** page:
 
-1. Select **I'm an Okta customer adding an internal app**
-2. Select **This is an internal app that we have created**
-3. Click **Finish**
+1. Select **I'm an Okta customer adding an internal app**  
+2. Select **This is an internal app that we have created**  
+3. Click **Finish**  
 
 ### 4.2 Navigate to Application Settings
 
@@ -158,9 +158,9 @@ You'll be redirected to your new application's page. Keep this page open - you'l
 
 ### 5.1 Access SAML Setup Instructions
 
-1. In your Vesper Secure application in Okta, go to the **Sign On** tab
-2. Click **View SAML setup instructions** (or **View Setup Instructions**)
-3. A new page will open with the SAML configuration details
+1. In your Vesper Secure application in Okta, go to the **Sign On** tab  
+2. Click **View SAML setup instructions** (or **View Setup Instructions**)  
+3. A new page will open with the SAML configuration details  
 
 ### 5.2 Download or Note Metadata
 
@@ -170,18 +170,18 @@ You have two options for providing Okta metadata to Vesper Secure:
 
 In the setup instructions page, you'll see a section called **Identity Provider metadata**:
 
-1. Right-click on the metadata URL (usually looks like `https://your-domain.okta.com/app/xxx/sso/saml/metadata`)
-2. Copy the link address
-3. Save this URL - you'll use it in Vesper Secure
+1. Right-click on the metadata URL (usually looks like `https://your-domain.okta.com/app/xxx/sso/saml/metadata`)  
+2. Copy the link address  
+3. Save this URL - you'll use it in Vesper Secure  
 
 #### Option B: Download Metadata XML
 
 Alternatively, you can download the XML file:
 
-1. In the setup instructions, find the **IDP metadata** section
-2. Copy the entire XML content
-3. Save it as a file named `okta-metadata.xml`
-4. You'll upload this to Vesper Secure later
+1. In the setup instructions, find the **IDP metadata** section  
+2. Copy the entire XML content  
+3. Save it as a file named `okta-metadata.xml`  
+4. You'll upload this to Vesper Secure later  
 
 ### 5.3 Note Configuration Values
 
@@ -200,17 +200,17 @@ For reference, note these values from the setup instructions (also available in 
 
 ### 6.1 Access Assignment Settings
 
-1. In your Vesper Secure application, click the **Assignments** tab
-2. You'll see options to assign the application to users and groups
+1. In your Vesper Secure application, click the **Assignments** tab  
+2. You'll see options to assign the application to users and groups  
 
 ### 6.2 Assign Groups (Recommended Approach)
 
 For easier management, assign Okta groups:
 
-1. Click **Assign** → **Assign to Groups**
-2. Find your desired group(s) (e.g., "VesperSecure-Users")
-3. Click **Assign** next to each group
-4. Click **Done**
+1. Click **Assign** → **Assign to Groups**  
+2. Find your desired group(s) (e.g., "VesperSecure-Users")  
+3. Click **Assign** next to each group  
+4. Click **Done**  
 
 !!! tip "Best Practice: Use Groups"
     Create a dedicated Okta group (e.g., "VesperSecure-Users" or "VesperSecure-Admins") and assign that group to the application. This makes access management easier - simply add/remove users from the group.
@@ -219,13 +219,13 @@ For easier management, assign Okta groups:
 
 If you prefer to assign individual users:
 
-1. Click **Assign** → **Assign to People**
-2. Find the user you want to assign
-3. Click **Assign** next to their name
-4. Configure any user-specific settings if needed
-5. Click **Save and Go Back**
-6. Repeat for additional users
-7. Click **Done** when finished
+1. Click **Assign** → **Assign to People**  
+2. Find the user you want to assign  
+3. Click **Assign** next to their name  
+4. Configure any user-specific settings if needed  
+5. Click **Save and Go Back**  
+6. Repeat for additional users  
+7. Click **Done** when finished  
 
 !!! warning "Assignment Required"
     Users must be assigned to the application to authenticate via SSO. Unassigned users will receive an error when attempting to sign in.
@@ -236,14 +236,14 @@ If you prefer to assign individual users:
 
 ### 7.1 Access Vesper Secure Admin Panel
 
-1. Open a new browser tab and navigate to [https://app.vespersecure.com](https://app.vespersecure.com)
-2. Sign in with your Vesper Secure administrator credentials
-3. Navigate to **Settings** → **Authentication** → **SSO Configuration**
+1. Open a new browser tab and navigate to [https://app.vespersecure.com](https://app.vespersecure.com)  
+2. Sign in with your Vesper Secure administrator credentials  
+3. Navigate to **Settings** → **Authentication** → **SSO Configuration**  
 
 ### 7.2 Configure Okta SAML
 
-1. Click **+ Add SSO Provider** or **Configure Okta SAML**
-2. Fill in the configuration form:
+1. Click **+ Add SSO Provider** or **Configure Okta SAML**  
+2. Fill in the configuration form:  
 
 | Field | Value |
 |-------|-------|
@@ -258,27 +258,27 @@ Choose one of the following methods:
 
 #### Method A: Metadata URL (Recommended)
 
-1. Select **Import from Metadata URL**
-2. Paste the Okta metadata URL you copied in Step 5
-3. Click **Import**
-4. The following fields should auto-populate:
+1. Select **Import from Metadata URL**  
+2. Paste the Okta metadata URL you copied in Step 5  
+3. Click **Import**  
+4. The following fields should auto-populate:  
    - Identity Provider Issuer
    - Identity Provider SSO URL
    - Identity Provider Certificate
 
 #### Method B: Upload Metadata XML
 
-1. Select **Upload Metadata XML**
-2. Click **Choose File** and select the `okta-metadata.xml` file you saved
-3. Click **Upload**
-4. Fields will auto-populate from the XML
+1. Select **Upload Metadata XML**  
+2. Click **Choose File** and select the `okta-metadata.xml` file you saved  
+3. Click **Upload**  
+4. Fields will auto-populate from the XML  
 
 #### Method C: Manual Configuration
 
 If neither metadata option works:
 
-1. Select **Manual Configuration**
-2. Enter the values from Step 5:
+1. Select **Manual Configuration**  
+2. Enter the values from Step 5:  
    - **Identity Provider Issuer**: `http://www.okta.com/xxx`
    - **Identity Provider SSO URL**: `https://your-domain.okta.com/app/xxx/sso/saml`
    - **Identity Provider Certificate**: Paste the X.509 certificate (including BEGIN and END lines)
@@ -297,9 +297,9 @@ Verify the attribute mapping matches your Okta configuration:
 
 ### 7.5 Save Configuration
 
-1. Review all settings carefully
-2. Click **Test Connection** (if available) to verify the configuration
-3. Click **Save** to enable Okta SSO
+1. Review all settings carefully  
+2. Click **Test Connection** (if available) to verify the configuration  
+3. Click **Save** to enable Okta SSO  
 
 !!! success "Configuration Complete"
     Okta SAML SSO is now configured. Proceed to testing to verify everything works correctly.
@@ -310,38 +310,38 @@ Verify the attribute mapping matches your Okta configuration:
 
 ### 8.1 Test from Okta Admin Console
 
-1. In Okta Admin Console, go to your Vesper Secure application
-2. Click the **General** tab
-3. In the **App Embed Link** section, you'll see a link like:
+1. In Okta Admin Console, go to your Vesper Secure application  
+2. Click the **General** tab  
+3. In the **App Embed Link** section, you'll see a link like:  
    - `https://your-domain.okta.com/home/oidc_client/xxx/xxx`
-4. Copy this link and open it in a new incognito/private browser window
-5. You should be redirected to Vesper Secure and automatically signed in
+4. Copy this link and open it in a new incognito/private browser window  
+5. You should be redirected to Vesper Secure and automatically signed in  
 
 ### 8.2 Test from Okta End-User Dashboard
 
-1. Open a new incognito/private browser window
-2. Navigate to your Okta end-user dashboard (e.g., `https://your-domain.okta.com`)
-3. Sign in with your Okta credentials
-4. Look for the Vesper Secure application tile (if you made it visible)
-5. Click on the Vesper Secure tile
-6. You should be redirected to Vesper Secure and automatically signed in
+1. Open a new incognito/private browser window  
+2. Navigate to your Okta end-user dashboard (e.g., `https://your-domain.okta.com`)  
+3. Sign in with your Okta credentials  
+4. Look for the Vesper Secure application tile (if you made it visible)  
+5. Click on the Vesper Secure tile  
+6. You should be redirected to Vesper Secure and automatically signed in  
 
 ### 8.3 Test from Vesper Secure Login Page
 
-1. Open a new incognito/private browser window
-2. Navigate to [https://app.vespersecure.com](https://app.vespersecure.com)
-3. Click **Sign in with Okta** or **SSO Sign In**
-4. Enter your Okta organization URL if prompted
-5. Enter your Okta credentials (you may be prompted for MFA)
-6. Upon successful authentication, you should be redirected back to Vesper Secure and logged in
+1. Open a new incognito/private browser window  
+2. Navigate to [https://app.vespersecure.com](https://app.vespersecure.com)  
+3. Click **Sign in with Okta** or **SSO Sign In**  
+4. Enter your Okta organization URL if prompted  
+5. Enter your Okta credentials (you may be prompted for MFA)  
+6. Upon successful authentication, you should be redirected back to Vesper Secure and logged in  
 
 ### 8.4 Verify User Profile
 
 After successful login:
 
-1. Check your user profile in Vesper Secure
-2. Verify that your email, first name, and last name are populated correctly
-3. If using group claims, verify your group memberships appear correctly
+1. Check your user profile in Vesper Secure  
+2. Verify that your email, first name, and last name are populated correctly  
+3. If using group claims, verify your group memberships appear correctly  
 
 !!! tip "Testing Tips"
     - Use an incognito/private browser window to avoid cached sessions
@@ -368,9 +368,9 @@ Before rolling out, inform your users:
 
 Consider a phased rollout:
 
-1. **Phase 1**: Pilot group (already tested)
-2. **Phase 2**: Department or team
-3. **Phase 3**: Entire organization
+1. **Phase 1**: Pilot group (already tested)  
+2. **Phase 2**: Department or team  
+3. **Phase 3**: Entire organization  
 
 ### 9.3 Monitor Initial Logins
 
@@ -389,82 +389,82 @@ After rollout:
 **Cause**: The user attempting to sign in is not assigned to the Vesper Secure application in Okta.
 
 **Solution**:
-1. Go to the Vesper Secure application in Okta Admin Console
-2. Click the **Assignments** tab
-3. Assign the user or a group containing the user
-4. Have the user try signing in again
+1. Go to the Vesper Secure application in Okta Admin Console  
+2. Click the **Assignments** tab  
+3. Assign the user or a group containing the user  
+4. Have the user try signing in again  
 
 ### Issue: "The SAML response is invalid" or "Signature validation failed"
 
 **Cause**: Certificate mismatch or expired certificate.
 
 **Solution**:
-1. Verify the certificate in Vesper Secure matches the current Okta certificate
-2. In Okta, go to your application → **Sign On** tab → **View SAML setup instructions**
-3. Copy the latest X.509 certificate
-4. Update the certificate in Vesper Secure
-5. Test SSO again
+1. Verify the certificate in Vesper Secure matches the current Okta certificate  
+2. In Okta, go to your application → **Sign On** tab → **View SAML setup instructions**  
+3. Copy the latest X.509 certificate  
+4. Update the certificate in Vesper Secure  
+5. Test SSO again  
 
 ### Issue: User profile missing first name or last name in Vesper Secure
 
 **Cause**: Attribute statements are not configured correctly or the user's Okta profile is incomplete.
 
 **Solution**:
-1. Verify the user has `firstName` and `lastName` populated in their Okta profile
-2. Check the attribute statements in your SAML application configuration
-3. Ensure attribute names are exactly `firstName` and `lastName` (case-sensitive)
-4. Have the user sign out and sign in again
+1. Verify the user has `firstName` and `lastName` populated in their Okta profile  
+2. Check the attribute statements in your SAML application configuration  
+3. Ensure attribute names are exactly `firstName` and `lastName` (case-sensitive)  
+4. Have the user sign out and sign in again  
 
 ### Issue: Group membership not appearing in Vesper Secure
 
 **Cause**: Group attribute statements are not configured or the user is not a member of matching groups.
 
 **Solution**:
-1. Verify group attribute statement is configured with name `groups`
-2. Check the filter - ensure it matches the groups the user is a member of
-3. Verify the user is a member of Okta groups
-4. Check that those groups are assigned to the Vesper Secure application
-5. Have the user sign out and sign in again
+1. Verify group attribute statement is configured with name `groups`  
+2. Check the filter - ensure it matches the groups the user is a member of  
+3. Verify the user is a member of Okta groups  
+4. Check that those groups are assigned to the Vesper Secure application  
+5. Have the user sign out and sign in again  
 
 ### Issue: "Audience restriction validation failed"
 
 **Cause**: The Audience URI (SP Entity ID) in Okta doesn't match what Vesper Secure expects.
 
 **Solution**:
-1. In Okta, edit your SAML application settings
-2. Verify the **Audience URI (SP Entity ID)** is exactly: `https://app.vespersecure.com/auth/saml/okta`
-3. Check for typos, trailing slashes, or case differences
-4. Save changes and test again
+1. In Okta, edit your SAML application settings  
+2. Verify the **Audience URI (SP Entity ID)** is exactly: `https://app.vespersecure.com/auth/saml/okta`  
+3. Check for typos, trailing slashes, or case differences  
+4. Save changes and test again  
 
 ### Issue: "The response was received at an invalid URL"
 
 **Cause**: The Single sign-on URL in Okta doesn't match the actual callback URL.
 
 **Solution**:
-1. In Okta, edit your SAML application settings
-2. Verify the **Single sign-on URL** is exactly: `https://app.vespersecure.com/auth/saml/okta/callback`
-3. Ensure it uses `https://` not `http://`
-4. Save changes and test again
+1. In Okta, edit your SAML application settings  
+2. Verify the **Single sign-on URL** is exactly: `https://app.vespersecure.com/auth/saml/okta/callback`  
+3. Ensure it uses `https://` not `http://`  
+4. Save changes and test again  
 
 ### Issue: Users redirected to login repeatedly
 
 **Cause**: Session cookie issues or incorrect RelayState configuration.
 
 **Solution**:
-1. Clear browser cookies and cache
-2. Try in an incognito/private window
-3. In Okta SAML settings, verify **Default RelayState** is empty
-4. Check Vesper Secure logs for detailed error messages
+1. Clear browser cookies and cache  
+2. Try in an incognito/private window  
+3. In Okta SAML settings, verify **Default RelayState** is empty  
+4. Check Vesper Secure logs for detailed error messages  
 
 ### Issue: Certificate expiration warning
 
 **Cause**: The SAML signing certificate is approaching expiration.
 
 **Solution**:
-1. Okta certificates typically auto-rotate before expiration
-2. When Okta generates a new certificate, re-import the metadata in Vesper Secure
-3. Test SSO after updating to ensure it works with the new certificate
-4. Set up monitoring for certificate changes in Okta
+1. Okta certificates typically auto-rotate before expiration  
+2. When Okta generates a new certificate, re-import the metadata in Vesper Secure  
+3. Test SSO after updating to ensure it works with the new certificate  
+4. Set up monitoring for certificate changes in Okta  
 
 ---
 
@@ -502,10 +502,10 @@ After rollout:
 
 You can require additional conditions for Vesper Secure access:
 
-1. In Okta Admin Console, go to **Security** → **Authentication Policies**
-2. Create a new policy or edit an existing one
-3. Add the Vesper Secure application to the policy
-4. Configure rules such as:
+1. In Okta Admin Console, go to **Security** → **Authentication Policies**  
+2. Create a new policy or edit an existing one  
+3. Add the Vesper Secure application to the policy  
+4. Configure rules such as:  
    - Require MFA
    - Require password and MFA from specific network zones
    - Block access from certain locations
@@ -515,29 +515,29 @@ You can require additional conditions for Vesper Secure access:
 
 If you need to pass custom attributes to Vesper Secure:
 
-1. Add custom attributes to your Okta user profile schema (Directory → Profile Editor)
-2. Populate the custom attributes for your users
-3. Add custom attribute statements in your SAML application configuration
-4. Coordinate with Vesper Secure support for custom attribute mapping
+1. Add custom attributes to your Okta user profile schema (Directory → Profile Editor)  
+2. Populate the custom attributes for your users  
+3. Add custom attribute statements in your SAML application configuration  
+4. Coordinate with Vesper Secure support for custom attribute mapping  
 
 ### Multiple Environments
 
 If you have separate Vesper Secure environments (dev, staging, production):
 
-1. Create separate SAML applications in Okta for each environment
-2. Use unique Entity IDs for each (e.g., `https://dev.vespersecure.com/auth/saml/okta`)
-3. Use different callback URLs for each environment
-4. Assign different user groups to each environment application
+1. Create separate SAML applications in Okta for each environment  
+2. Use unique Entity IDs for each (e.g., `https://dev.vespersecure.com/auth/saml/okta`)  
+3. Use different callback URLs for each environment  
+4. Assign different user groups to each environment application  
 
 ### Automatic User Provisioning (SCIM)
 
 If Vesper Secure supports SCIM provisioning (check with support):
 
-1. In your application, go to the **Provisioning** tab
-2. Click **Configure API Integration**
-3. Enable API integration
-4. Enter the SCIM endpoint URL and authentication details from Vesper Secure
-5. Configure provisioning settings (create users, update attributes, deactivate users)
+1. In your application, go to the **Provisioning** tab  
+2. Click **Configure API Integration**  
+3. Enable API integration  
+4. Enter the SCIM endpoint URL and authentication details from Vesper Secure  
+5. Configure provisioning settings (create users, update attributes, deactivate users)  
 
 ---
 
@@ -547,19 +547,19 @@ If Vesper Secure supports SCIM provisioning (check with support):
 
 Okta automatically rotates SAML signing certificates before they expire:
 
-1. Okta will notify admins before certificate rotation
-2. After rotation, you may need to update Vesper Secure with the new certificate
-3. Set up Okta workflows or alerts to notify you of certificate changes
+1. Okta will notify admins before certificate rotation  
+2. After rotation, you may need to update Vesper Secure with the new certificate  
+3. Set up Okta workflows or alerts to notify you of certificate changes  
 
 ### Update Certificate in Vesper Secure
 
 When Okta rotates the certificate:
 
-1. In Okta, go to your Vesper Secure application → **Sign On** tab
-2. View the SAML setup instructions to get the new certificate
-3. In Vesper Secure, update the IdP certificate or re-import the metadata
-4. Test SSO to ensure it works with the new certificate
-5. Both old and new certificates can coexist briefly during transition
+1. In Okta, go to your Vesper Secure application → **Sign On** tab  
+2. View the SAML setup instructions to get the new certificate  
+3. In Vesper Secure, update the IdP certificate or re-import the metadata  
+4. Test SSO to ensure it works with the new certificate  
+5. Both old and new certificates can coexist briefly during transition  
 
 ---
 
@@ -569,26 +569,26 @@ When Okta rotates the certificate:
 
 Require Okta Verify (or other MFA factors) for Vesper Secure access:
 
-1. Go to **Security** → **Authentication Policies**
-2. Select or create a policy for Vesper Secure
-3. Add a rule that requires MFA
-4. Specify allowed MFA factors (Okta Verify, SMS, Voice, etc.)
+1. Go to **Security** → **Authentication Policies**  
+2. Select or create a policy for Vesper Secure  
+3. Add a rule that requires MFA  
+4. Specify allowed MFA factors (Okta Verify, SMS, Voice, etc.)  
 
 ### Okta Network Zones
 
 Restrict access based on network location:
 
-1. Define network zones in **Security** → **Networks**
-2. Create IP zones for trusted networks (office, VPN, etc.)
-3. In authentication policies, require MFA or block access from untrusted zones
+1. Define network zones in **Security** → **Networks**  
+2. Create IP zones for trusted networks (office, VPN, etc.)  
+3. In authentication policies, require MFA or block access from untrusted zones  
 
 ### Okta ThreatInsight
 
 Enable ThreatInsight to detect and respond to suspicious authentications:
 
-1. Go to **Security** → **General**
-2. Enable **Okta ThreatInsight**
-3. Configure whether to log only or block suspicious requests
+1. Go to **Security** → **General**  
+2. Enable **Okta ThreatInsight**  
+3. Configure whether to log only or block suspicious requests  
 
 ---
 
@@ -596,10 +596,10 @@ Enable ThreatInsight to detect and respond to suspicious authentications:
 
 After successfully configuring Okta SAML SSO:
 
-1. **[Set up Firewall Integration](../firewall-integration/index.md)** - Connect the EDL to your firewall
-2. **[Configure User Management](../user-management.md)** - Monitor and manage user access
-3. **Configure Sign-On Policies** - Add additional security policies in Okta
-4. **Review System Logs** - Regularly check Okta logs for authentication events
+1. **[Set up Firewall Integration](../firewall-integration/index.md)** - Connect the EDL to your firewall  
+2. **[Configure User Management](../user-management.md)** - Monitor and manage user access  
+3. **Configure Sign-On Policies** - Add additional security policies in Okta  
+4. **Review System Logs** - Regularly check Okta logs for authentication events  
 
 ---
 

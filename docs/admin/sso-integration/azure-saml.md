@@ -43,17 +43,17 @@ Before you begin, ensure you have:
 
 ### 1.1 Access Azure Portal
 
-1. Sign in to the [Azure Portal](https://portal.azure.com)
-2. Navigate to **Azure Active Directory** (or **Microsoft Entra ID**)
-3. Select **Enterprise applications** from the left navigation menu
+1. Sign in to the [Azure Portal](https://portal.azure.com)  
+2. Navigate to **Azure Active Directory** (or **Microsoft Entra ID**)  
+3. Select **Enterprise applications** from the left navigation menu  
 
 ### 1.2 Create New Application
 
-1. Click **+ New application** at the top of the Enterprise applications page
-2. Click **+ Create your own application**
-3. Enter the application name: `Vesper Secure`
-4. Select **Integrate any other application you don't find in the gallery (Non-gallery)**
-5. Click **Create**
+1. Click **+ New application** at the top of the Enterprise applications page  
+2. Click **+ Create your own application**  
+3. Enter the application name: `Vesper Secure`  
+4. Select **Integrate any other application you don't find in the gallery (Non-gallery)**  
+5. Click **Create**  
 
 !!! tip "Application Name"
     Use a descriptive name like "Vesper Secure" or "Vesper Secure SSO" so users can easily identify it in their app portal.
@@ -68,9 +68,9 @@ Once created, you'll be redirected to the application overview page. Keep this p
 
 ### 2.1 Start SAML Configuration
 
-1. In your Vesper Secure enterprise application, click **Single sign-on** from the left menu
-2. Select **SAML** as the single sign-on method
-3. You'll see the SAML-based Sign-on configuration page with 5 sections
+1. In your Vesper Secure enterprise application, click **Single sign-on** from the left menu  
+2. Select **SAML** as the single sign-on method  
+3. You'll see the SAML-based Sign-on configuration page with 5 sections  
 
 ### 2.2 Configure Basic SAML Configuration
 
@@ -101,12 +101,12 @@ In the **Attributes & Claims** section, click **Edit** to configure the user att
 
 The Unique User Identifier (NameID) is automatically configured, but verify it's set correctly:
 
-1. Click on **Unique User Identifier (Name ID)**
-2. Ensure the following settings:
+1. Click on **Unique User Identifier (Name ID)**  
+2. Ensure the following settings:  
    - **Name identifier format**: Email address
    - **Source**: Attribute
    - **Source attribute**: `user.mail`
-3. Click **Save**
+3. Click **Save**  
 
 !!! info "Why Email as NameID?"
     Vesper Secure uses the email address as the primary user identifier. This must match the user's email in the Vesper Secure system.
@@ -143,13 +143,13 @@ Vesper Secure requires the following additional claims. Add each one by clicking
 
 To enable group-based access control in Vesper Secure:
 
-1. Click **+ Add a group claim**
-2. Select **Groups assigned to the application** (recommended) or **Security groups**
-3. In **Source attribute**, select **Group ID**
-4. Check **Customize the name of the group claim**
-5. Set **Name**: `groups`
-6. Leave **Namespace** empty
-7. Click **Save**
+1. Click **+ Add a group claim**  
+2. Select **Groups assigned to the application** (recommended) or **Security groups**  
+3. In **Source attribute**, select **Group ID**  
+4. Check **Customize the name of the group claim**  
+5. Set **Name**: `groups`  
+6. Leave **Namespace** empty  
+7. Click **Save**  
 
 !!! warning "Azure AD Premium Required"
     Group claims require Azure AD Premium P1 or P2. If you don't have Premium, you can skip this step, but you'll need to manually manage user access in Vesper Secure.
@@ -162,9 +162,9 @@ To enable group-based access control in Vesper Secure:
 
 In the **SAML Signing Certificate** section:
 
-1. Locate **Federation Metadata XML**
-2. Click **Download** next to it
-3. Save the XML file to your computer - you'll upload this to Vesper Secure later
+1. Locate **Federation Metadata XML**  
+2. Click **Download** next to it  
+3. Save the XML file to your computer - you'll upload this to Vesper Secure later  
 
 !!! info "Certificate Expiration"
     The SAML signing certificate typically expires after 3 years. Azure will notify you before expiration, but it's good practice to set a reminder.
@@ -194,17 +194,17 @@ You don't need to manually copy these if you're using the Federation Metadata XM
 
 ### 6.1 Access User Assignment
 
-1. In your enterprise application, click **Users and groups** from the left menu
-2. Click **+ Add user/group**
+1. In your enterprise application, click **Users and groups** from the left menu  
+2. Click **+ Add user/group**  
 
 ### 6.2 Add Groups (Recommended Approach)
 
 For easier management, assign Azure AD groups:
 
-1. Click **None Selected** under Users and groups
-2. Search for and select your Azure AD group(s) (e.g., "VesperSecure-Users")
-3. Click **Select**
-4. Click **Assign**
+1. Click **None Selected** under Users and groups  
+2. Search for and select your Azure AD group(s) (e.g., "VesperSecure-Users")  
+3. Click **Select**  
+4. Click **Assign**  
 
 !!! tip "Best Practice: Use Groups"
     Create a dedicated Azure AD security group (e.g., "VesperSecure-Users") and assign that group to the application. This makes it easier to manage access - simply add/remove users from the group.
@@ -213,10 +213,10 @@ For easier management, assign Azure AD groups:
 
 If you prefer to assign individual users:
 
-1. Click **None Selected** under Users and groups
-2. Search for and select individual users
-3. Click **Select**
-4. Click **Assign**
+1. Click **None Selected** under Users and groups  
+2. Search for and select individual users  
+3. Click **Select**  
+4. Click **Assign**  
 
 !!! warning "User Assignment Required"
     Users must be assigned to the application to authenticate via SSO. Unassigned users will receive an error when attempting to sign in.
@@ -227,14 +227,14 @@ If you prefer to assign individual users:
 
 ### 7.1 Access Vesper Secure Admin Panel
 
-1. Open a new browser tab and navigate to [https://app.vespersecure.com](https://app.vespersecure.com)
-2. Sign in with your Vesper Secure administrator credentials
-3. Navigate to **Settings** → **Authentication** → **SSO Configuration**
+1. Open a new browser tab and navigate to [https://app.vespersecure.com](https://app.vespersecure.com)  
+2. Sign in with your Vesper Secure administrator credentials  
+3. Navigate to **Settings** → **Authentication** → **SSO Configuration**  
 
 ### 7.2 Configure Azure AD SAML
 
-1. Click **+ Add SSO Provider** or **Configure Azure AD SAML**
-2. Fill in the configuration form:
+1. Click **+ Add SSO Provider** or **Configure Azure AD SAML**  
+2. Fill in the configuration form:  
 
 | Field | Value |
 |-------|-------|
@@ -245,9 +245,9 @@ If you prefer to assign individual users:
 
 ### 7.3 Upload Federation Metadata
 
-1. Click **Upload Metadata XML** or **Choose File**
-2. Select the Federation Metadata XML file you downloaded from Azure in Step 4
-3. The following fields should auto-populate from the metadata:
+1. Click **Upload Metadata XML** or **Choose File**  
+2. Select the Federation Metadata XML file you downloaded from Azure in Step 4  
+3. The following fields should auto-populate from the metadata:  
    - Identity Provider Issuer URL
    - Identity Provider SSO URL
    - Identity Provider Certificate
@@ -266,9 +266,9 @@ Verify the attribute mapping matches your Azure AD configuration:
 
 ### 7.5 Save Configuration
 
-1. Review all settings carefully
-2. Click **Test Connection** (if available) to verify the configuration
-3. Click **Save** to enable Azure AD SSO
+1. Review all settings carefully  
+2. Click **Test Connection** (if available) to verify the configuration  
+3. Click **Save** to enable Azure AD SSO  
 
 !!! success "Configuration Complete"
     Azure AD SAML SSO is now configured. Proceed to testing to verify everything works correctly.
@@ -279,30 +279,30 @@ Verify the attribute mapping matches your Azure AD configuration:
 
 ### 8.1 Test from Azure Portal (Recommended)
 
-1. Return to the Azure Portal
-2. Go to your Vesper Secure enterprise application
-3. Click **Single sign-on** from the left menu
-4. Scroll to the bottom of the page
-5. Click **Test** in the **Test single sign-on with Vesper Secure** section
-6. Choose **Test sign in** or **Test as current user**
-7. You should be redirected to Vesper Secure and automatically signed in
+1. Return to the Azure Portal  
+2. Go to your Vesper Secure enterprise application  
+3. Click **Single sign-on** from the left menu  
+4. Scroll to the bottom of the page  
+5. Click **Test** in the **Test single sign-on with Vesper Secure** section  
+6. Choose **Test sign in** or **Test as current user**  
+7. You should be redirected to Vesper Secure and automatically signed in  
 
 ### 8.2 Test from Vesper Secure Login Page
 
-1. Open a new incognito/private browser window
-2. Navigate to [https://app.vespersecure.com](https://app.vespersecure.com)
-3. Click **Sign in with Azure AD** or **SSO Sign In**
-4. You should be redirected to Azure AD login
-5. Enter your Azure AD credentials (you may be prompted for MFA)
-6. Upon successful authentication, you should be redirected back to Vesper Secure and logged in
+1. Open a new incognito/private browser window  
+2. Navigate to [https://app.vespersecure.com](https://app.vespersecure.com)  
+3. Click **Sign in with Azure AD** or **SSO Sign In**  
+4. You should be redirected to Azure AD login  
+5. Enter your Azure AD credentials (you may be prompted for MFA)  
+6. Upon successful authentication, you should be redirected back to Vesper Secure and logged in  
 
 ### 8.3 Verify User Profile
 
 After successful login:
 
-1. Check your user profile in Vesper Secure
-2. Verify that your email, first name, and last name are populated correctly
-3. If using group claims, verify your group memberships appear correctly
+1. Check your user profile in Vesper Secure  
+2. Verify that your email, first name, and last name are populated correctly  
+3. If using group claims, verify your group memberships appear correctly  
 
 !!! tip "Testing Tips"
     - Use an incognito/private browser window to avoid cached sessions
@@ -328,9 +328,9 @@ Before rolling out, inform your users:
 
 Consider a phased rollout:
 
-1. **Phase 1**: Pilot group (already tested)
-2. **Phase 2**: Department or team
-3. **Phase 3**: Entire organization
+1. **Phase 1**: Pilot group (already tested)  
+2. **Phase 2**: Department or team  
+3. **Phase 3**: Entire organization  
 
 ### 9.3 Monitor Initial Logins
 
@@ -349,70 +349,70 @@ After rollout:
 **Cause**: The Reply URL in Azure doesn't match what Vesper Secure is sending.
 
 **Solution**:
-1. Verify the Reply URL in Azure is exactly: `https://app.vespersecure.com/auth/saml/azure/callback`
-2. Check for trailing slashes or typos
-3. Ensure the URL uses `https://` not `http://`
+1. Verify the Reply URL in Azure is exactly: `https://app.vespersecure.com/auth/saml/azure/callback`  
+2. Check for trailing slashes or typos  
+3. Ensure the URL uses `https://` not `http://`  
 
 ### Issue: "AADSTS50105: The signed in user is not assigned to a role for the application"
 
 **Cause**: The user attempting to sign in is not assigned to the Vesper Secure application.
 
 **Solution**:
-1. Go to the enterprise application in Azure
-2. Click **Users and groups**
-3. Add the user or a group containing the user
-4. Wait a few minutes for assignment to propagate
+1. Go to the enterprise application in Azure  
+2. Click **Users and groups**  
+3. Add the user or a group containing the user  
+4. Wait a few minutes for assignment to propagate  
 
 ### Issue: User profile missing first name or last name in Vesper Secure
 
 **Cause**: Attribute claims are not configured correctly or the user's Azure AD profile is incomplete.
 
 **Solution**:
-1. Verify the user has `givenname` and `surname` populated in Azure AD
-2. Check the Attributes & Claims configuration in the enterprise application
-3. Ensure `firstName` and `lastName` claims are mapped correctly
-4. Have the user sign out and sign in again
+1. Verify the user has `givenname` and `surname` populated in Azure AD  
+2. Check the Attributes & Claims configuration in the enterprise application  
+3. Ensure `firstName` and `lastName` claims are mapped correctly  
+4. Have the user sign out and sign in again  
 
 ### Issue: Group membership not appearing in Vesper Secure
 
 **Cause**: Group claims are not configured or the user is not a member of any assigned groups.
 
 **Solution**:
-1. Verify you have Azure AD Premium (required for group claims)
-2. Check that group claim is configured in Attributes & Claims
-3. Verify the user is a member of groups assigned to the application
-4. Ensure the group claim name is `groups` (lowercase)
+1. Verify you have Azure AD Premium (required for group claims)  
+2. Check that group claim is configured in Attributes & Claims  
+3. Verify the user is a member of groups assigned to the application  
+4. Ensure the group claim name is `groups` (lowercase)  
 
 ### Issue: "Invalid SAML response" error
 
 **Cause**: Certificate mismatch, expired certificate, or clock skew.
 
 **Solution**:
-1. Check that the certificate hasn't expired in Azure
-2. Re-download and re-upload the Federation Metadata XML to Vesper Secure
-3. Verify system clocks are synchronized (use NTP)
-4. Check Vesper Secure logs for detailed error messages
+1. Check that the certificate hasn't expired in Azure  
+2. Re-download and re-upload the Federation Metadata XML to Vesper Secure  
+3. Verify system clocks are synchronized (use NTP)  
+4. Check Vesper Secure logs for detailed error messages  
 
 ### Issue: Certificate expiration warning
 
 **Cause**: The SAML signing certificate is approaching expiration.
 
 **Solution**:
-1. In Azure, go to the enterprise application → Single sign-on
-2. In the SAML Signing Certificate section, create a new certificate
-3. Download the new Federation Metadata XML
-4. Upload it to Vesper Secure before the old certificate expires
-5. Test SSO with the new certificate
+1. In Azure, go to the enterprise application → Single sign-on  
+2. In the SAML Signing Certificate section, create a new certificate  
+3. Download the new Federation Metadata XML  
+4. Upload it to Vesper Secure before the old certificate expires  
+5. Test SSO with the new certificate  
 
 ### Issue: Users redirected to login repeatedly
 
 **Cause**: Session cookie issues or redirect loop.
 
 **Solution**:
-1. Clear browser cookies and cache
-2. Try in an incognito/private window
-3. Check that the Sign on URL in Azure matches Vesper Secure's login page
-4. Verify the RelayState parameter is empty or correctly configured
+1. Clear browser cookies and cache  
+2. Try in an incognito/private window  
+3. Check that the Sign on URL in Azure matches Vesper Secure's login page  
+4. Verify the RelayState parameter is empty or correctly configured  
 
 ---
 
@@ -449,9 +449,9 @@ After rollout:
 
 You can require additional conditions for Vesper Secure access:
 
-1. In Azure AD, go to **Security** → **Conditional Access**
-2. Create a new policy targeting the Vesper Secure application
-3. Configure conditions such as:
+1. In Azure AD, go to **Security** → **Conditional Access**  
+2. Create a new policy targeting the Vesper Secure application  
+3. Configure conditions such as:  
    - Require MFA
    - Require compliant or domain-joined device
    - Block access from specific countries
@@ -461,17 +461,17 @@ You can require additional conditions for Vesper Secure access:
 
 If you need to pass custom attributes to Vesper Secure:
 
-1. Extend your Azure AD schema with custom attributes (if needed)
-2. Add custom claims in the Attributes & Claims section
-3. Coordinate with Vesper Secure support for custom attribute mapping
+1. Extend your Azure AD schema with custom attributes (if needed)  
+2. Add custom claims in the Attributes & Claims section  
+3. Coordinate with Vesper Secure support for custom attribute mapping  
 
 ### Multiple Environments
 
 If you have separate Vesper Secure environments (dev, staging, production):
 
-1. Create separate enterprise applications for each environment
-2. Use unique Entity IDs for each (e.g., `https://dev.vespersecure.com/auth/saml/azure`)
-3. Assign different user groups to each environment
+1. Create separate enterprise applications for each environment  
+2. Use unique Entity IDs for each (e.g., `https://dev.vespersecure.com/auth/saml/azure`)  
+3. Assign different user groups to each environment  
 
 ---
 
@@ -481,20 +481,20 @@ If you have separate Vesper Secure environments (dev, staging, production):
 
 The SAML signing certificate typically expires after 3 years. Azure will send notifications, but you should also:
 
-1. Set a calendar reminder for 90 days before expiration
-2. Monitor the certificate expiration date in the Azure Portal
-3. Plan for certificate renewal during a maintenance window
+1. Set a calendar reminder for 90 days before expiration  
+2. Monitor the certificate expiration date in the Azure Portal  
+3. Plan for certificate renewal during a maintenance window  
 
 ### Renew Certificate
 
 When the certificate is nearing expiration:
 
-1. In the enterprise application, go to **Single sign-on**
-2. In **SAML Signing Certificate**, click **+ New Certificate**
-3. Download the new Federation Metadata XML with the new certificate
-4. Upload it to Vesper Secure (both old and new certificates can coexist briefly)
-5. After confirming the new certificate works, remove the old one from Vesper Secure
-6. In Azure, set the new certificate as active
+1. In the enterprise application, go to **Single sign-on**  
+2. In **SAML Signing Certificate**, click **+ New Certificate**  
+3. Download the new Federation Metadata XML with the new certificate  
+4. Upload it to Vesper Secure (both old and new certificates can coexist briefly)  
+5. After confirming the new certificate works, remove the old one from Vesper Secure  
+6. In Azure, set the new certificate as active  
 
 ---
 
@@ -502,10 +502,10 @@ When the certificate is nearing expiration:
 
 After successfully configuring Azure AD SAML SSO:
 
-1. **[Set up Firewall Integration](../firewall-integration/index.md)** - Connect the EDL to your firewall
-2. **[Configure User Management](../user-management.md)** - Monitor and manage user access
-3. **Configure Conditional Access** - Add additional security policies in Azure AD
-4. **Review Audit Logs** - Regularly check Azure AD sign-in logs
+1. **[Set up Firewall Integration](../firewall-integration/index.md)** - Connect the EDL to your firewall  
+2. **[Configure User Management](../user-management.md)** - Monitor and manage user access  
+3. **Configure Conditional Access** - Add additional security policies in Azure AD  
+4. **Review Audit Logs** - Regularly check Azure AD sign-in logs  
 
 ---
 

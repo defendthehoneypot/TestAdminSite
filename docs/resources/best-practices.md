@@ -11,10 +11,10 @@
 
 ### Rollout Strategy
 
-1. **Week 1**: Configure Vesper and integrate with firewall
-2. **Week 2**: Pilot with IT team (10-20 users)
-3. **Week 3**: Expand to early adopters (50-100 users)
-4. **Week 4+**: Full organization rollout
+1. **Week 1**: Configure Vesper and integrate with firewall  
+2. **Week 2**: Pilot with IT team (10-20 users)  
+3. **Week 3**: Expand to early adopters (50-100 users)  
+4. **Week 4+**: Full organization rollout  
 
 ## Configuration
 
@@ -100,9 +100,9 @@ Subject: Traveling? Register Your Location First
 Planning to work remotely? Register your new location 
 before connecting to VPN:
 
-1. Visit access.vespersecure.com
-2. Log in and choose "Temporary"
-3. Wait 5 minutes, then connect
+1. Visit access.vespersecure.com  
+2. Log in and choose "Temporary"  
+3. Wait 5 minutes, then connect  
 
 Takes less than a minute!
 ```

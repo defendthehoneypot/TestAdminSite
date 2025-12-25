@@ -6,9 +6,9 @@ Initial setup and configuration of Vesper Secure for your organization.
 
 ## Step 1: Access the Admin Panel
 
-1. Navigate to [app.vespersecure.com](https://app.vespersecure.com)
-2. Sign in with your administrator credentials
-3. Complete initial setup wizard if this is your first login
+1. Navigate to [app.vespersecure.com](https://app.vespersecure.com)  
+2. Sign in with your administrator credentials  
+3. Complete initial setup wizard if this is your first login  
 
 ---
 
@@ -16,8 +16,8 @@ Initial setup and configuration of Vesper Secure for your organization.
 
 Define how Vesper Secure handles user registrations:
 
-1. Navigate to **Settings** → **Policies**
-2. Configure registration settings:
+1. Navigate to **Settings** → **Policies**  
+2. Configure registration settings:  
 
 ```
 □ Send notification for new registrations
@@ -25,7 +25,7 @@ Define how Vesper Secure handles user registrations:
 □ Restrict registrations to specific countries
 ```
 
-3. Set location settings:
+3. Set location settings:  
 
 ```
 Temporary location default duration: [24 hours ▼]
@@ -34,7 +34,7 @@ Maximum temporary duration: [30 days ▼]
 □ Require reason for temporary access
 ```
 
-4. Configure security settings:
+4. Configure security settings:  
 
 ```
 □ Require MFA for access requests
@@ -43,7 +43,7 @@ Maximum temporary duration: [30 days ▼]
 □ Enable geo-fencing alerts
 ```
 
-5. Click **Save Policies**
+5. Click **Save Policies**  
 
 ---
 
@@ -51,9 +51,9 @@ Maximum temporary duration: [30 days ▼]
 
 Create the credentials needed for firewall integration:
 
-1. Go to **Settings** → **Firewall Integration**
-2. Click **Generate External Dynamic List (EDL)**
-3. Save these credentials securely:
+1. Go to **Settings** → **Firewall Integration**  
+2. Click **Generate External Dynamic List (EDL)**  
+3. Save these credentials securely:  
 
 ```
 List URL: https://edl.vespersecure.com/lists/abc123def456
@@ -80,9 +80,9 @@ You should see an empty list or IP addresses if users have already registered.
 
 After completing basic setup:
 
-1. **[Configure SSO Integration](sso-integration/index.md)** - Connect your identity provider
-2. **[Set up Firewall Integration](firewall-integration/index.md)** - Add EDL to your firewall
-3. **[Start Managing Users](./user-management.md)** - Begin monitoring user registrations
+1. **[Configure SSO Integration](sso-integration/index.md)** - Connect your identity provider  
+2. **[Set up Firewall Integration](firewall-integration/index.md)** - Add EDL to your firewall  
+3. **[Start Managing Users](./user-management.md)** - Begin monitoring user registrations  
 
 ---
 

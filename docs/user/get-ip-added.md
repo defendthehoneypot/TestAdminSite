@@ -24,14 +24,14 @@ The portal will show login options for your organization's identity provider.
 
 ## Step 2: Log In with Corporate Credentials
 
-1. Select your organization's identity provider:
+1. Select your organization's identity provider:  
    - **Microsoft** (for Entra ID / Azure AD / Office 365)
    - **Google** (for Google Workspace)
    - **Okta** (if your organization uses Okta)
 
-2. Sign in with your corporate email and password
+2. Sign in with your corporate email and password  
 
-3. Complete MFA prompt if required
+3. Complete MFA prompt if required  
 
 !!! tip "Already Signed In?"
     If you're already logged into your corporate account in the browser, this step may be instant.
@@ -70,9 +70,9 @@ Select whether this location is **Permanent** or **Temporary**:
 
 ## Step 4: Submit Your Registration
 
-1. Click **"Register my location"**
-2. You'll see a confirmation message
-3. Your IP is now added to the External Dynamic List (EDL)
+1. Click **"Register my location"**  
+2. You'll see a confirmation message  
+3. Your IP is now added to the External Dynamic List (EDL)  
 
 ---
 
@@ -92,9 +92,9 @@ Select whether this location is **Permanent** or **Temporary**:
 
 After waiting for the firewall refresh:
 
-1. Open your VPN client as normal
-2. Connect using your usual VPN credentials
-3. Access should work!
+1. Open your VPN client as normal  
+2. Connect using your usual VPN credentials  
+3. Access should work!  
 
 !!! info "Still Can't Connect?"
     - Wait for the full firewall refresh interval (check with your IT admin)
@@ -132,10 +132,10 @@ After waiting for the firewall refresh:
 
 Before connecting to VPN from a new location while traveling:
 
-1. Visit [access.vespersecure.com](https://access.vespersecure.com)
-2. Choose **Temporary**
-3. Submit registration and wait for firewall refresh (typically 5-60 minutes)
-4. Connect to VPN
+1. Visit [access.vespersecure.com](https://access.vespersecure.com)  
+2. Choose **Temporary**  
+3. Submit registration and wait for firewall refresh (typically 5-60 minutes)  
+4. Connect to VPN  
 
 ### Can I register multiple locations?
 
@@ -146,16 +146,16 @@ Yes! You can have:
 ### What if I moved?
 
 If you permanently moved:
-1. Register your new location as **Permanent**
-2. Your old location will eventually be removed by your administrator
+1. Register your new location as **Permanent**  
+2. Your old location will eventually be removed by your administrator  
 
 ### What if I forget to register before traveling?
 
 No problem! Just register from your new location:
-1. Visit [access.vespersecure.com](https://access.vespersecure.com) from the new location
-2. Register it as Temporary
-3. Wait for firewall refresh (typically 5-60 minutes)
-4. Connect to VPN
+1. Visit [access.vespersecure.com](https://access.vespersecure.com) from the new location  
+2. Register it as Temporary  
+3. Wait for firewall refresh (typically 5-60 minutes)  
+4. Connect to VPN  
 
 ### Does this work on mobile devices?
 

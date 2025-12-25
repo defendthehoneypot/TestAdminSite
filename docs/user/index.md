@@ -26,11 +26,11 @@ Common questions about registration, access, and troubleshooting.
 
 Need access right now? Here's the fast version:
 
-1. **Go to** [access.vespersecure.com](https://access.vespersecure.com)
-2. **Log in** with your corporate credentials (Google, Microsoft, or Okta)
-3. **Choose** Permanent (home/office) or Temporary (hotel/coffee shop)
-4. **Wait** for firewall refresh (typically 5-60 minutes)
-5. **Connect** to VPN as normal
+1. **Go to** [access.vespersecure.com](https://access.vespersecure.com)  
+2. **Log in** with your corporate credentials (Google, Microsoft, or Okta)  
+3. **Choose** Permanent (home/office) or Temporary (hotel/coffee shop)  
+4. **Wait** for firewall refresh (typically 5-60 minutes)  
+5. **Connect** to VPN as normal  
 
 [Detailed Instructions](./get-ip-added.md)
 
@@ -71,9 +71,9 @@ Your organization's administrator can see your registered locations.
 
 If you encounter issues:
 
-1. Check the [User FAQ](./faq.md) for common questions
-2. Contact your **organization's IT support** (not Vesper Secure directly)
-3. Provide them with:
+1. Check the [User FAQ](./faq.md) for common questions  
+2. Contact your **organization's IT support** (not Vesper Secure directly)  
+3. Provide them with:  
    - Your email address
    - The IP address you're trying to register
    - Any error messages you received
