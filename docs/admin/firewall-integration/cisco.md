@@ -4,7 +4,7 @@
 
 # Cisco ASA/FTD Integration
 
-Configure Cisco ASA and Firepower Threat Defense (FTD) firewalls to use Vesper Secure's External Dynamic List for automated ACL updates.
+Configure Cisco ASA and Firepower Threat Defense (FTD) firewalls to use Vesper Secure's Dynamic IP List for automated ACL updates.
 
 </div>
 
@@ -31,7 +31,7 @@ Cisco ASA and FTD devices support dynamic object groups that can pull IP address
 
 Ensure you have:
 
-- [ ] EDL URL, username, and password from [Setup & Configuration](../setup.md)
+- [ ] DIPL URL, username, and password from [Setup & Configuration](../setup.md)
 - [ ] Cisco ASA/FTD CLI access (SSH or console)
 - [ ] Enable mode password
 - [ ] Outbound HTTPS (port 443) allowed from firewall to `edl.vespersecure.com`
@@ -60,7 +60,7 @@ object-group network Vesper-Allowed-IPs
   description Vesper Secure verified user IPs
 ```
 
-This creates an empty object group that we'll populate from the EDL.
+This creates an empty object group that we'll populate from the DIPL.
 
 ---
 
@@ -68,24 +68,24 @@ This creates an empty object group that we'll populate from the EDL.
 
 ### Create the Dynamic Object Update URL
 
-Configure the EDL source with authentication:
+Configure the DIPL source with authentication:
 
 ```cisco
-dynamic-object update-url Vesper-EDL https://edl.vespersecure.com/lists/your-id
+dynamic-object update-url Vesper-DIPL https://edl.vespersecure.com/lists/your-id
   poll-period 5
   basic-auth username org_xxxxx password your-password
 ```
 
 **Parameter Details:**
 
-- **Vesper-EDL**: Name for this dynamic object update URL
-- **URL**: Your unique EDL URL from Vesper admin panel
+- **Vesper-DIPL**: Name for this dynamic object update URL
+- **URL**: Your unique DIPL URL from Vesper admin panel
 - **poll-period**: Update interval in minutes
   - `5` = 5 minutes (most responsive)
   - `15` = 15 minutes (recommended)
   - `60` = 1 hour (lower load)
 - **username**: Your organization ID (starts with `org_`)
-- **password**: EDL password from Vesper admin panel
+- **password**: DIPL password from Vesper admin panel
 
 !!! warning "Password in Configuration"
     The password will be stored in the configuration. Ensure you protect access to the configuration files.
@@ -98,10 +98,10 @@ Associate the dynamic object with the object group:
 
 ```cisco
 object-group network Vesper-Allowed-IPs
-  dynamic-object Vesper-EDL
+  dynamic-object Vesper-DIPL
 ```
 
-This tells the firewall to populate the `Vesper-Allowed-IPs` object group with IPs from the `Vesper-EDL` dynamic object.
+This tells the firewall to populate the `Vesper-Allowed-IPs` object group with IPs from the `Vesper-DIPL` dynamic object.
 
 ---
 
@@ -181,7 +181,7 @@ show run dynamic-object
 
 **Expected output:**
 ```
-dynamic-object update-url Vesper-EDL https://edl.vespersecure.com/lists/your-id
+dynamic-object update-url Vesper-DIPL https://edl.vespersecure.com/lists/your-id
   poll-period 5
   basic-auth username org_xxxxx password ********
 ```
@@ -198,7 +198,7 @@ show run object-group id Vesper-Allowed-IPs
 ```
 object-group network Vesper-Allowed-IPs
   description Vesper Secure verified user IPs
-  dynamic-object Vesper-EDL
+  dynamic-object Vesper-DIPL
 ```
 
 ### Check Dynamic Object Status
@@ -220,26 +220,26 @@ This shows:
 See which IPs are currently in the dynamic object group:
 
 ```cisco
-show dynamic-object Vesper-EDL
+show dynamic-object Vesper-DIPL
 ```
 
-This lists all IPs currently fetched from the EDL.
+This lists all IPs currently fetched from the DIPL.
 
 !!! tip "Empty List is OK"
     If no users have registered yet, this may show no entries. This is normal.
 
 ### Force Manual Update
 
-To force an immediate update of the EDL:
+To force an immediate update of the DIPL:
 
 ```cisco
-clear dynamic-object Vesper-EDL
+clear dynamic-object Vesper-DIPL
 ```
 
 Wait a moment, then check again:
 
 ```cisco
-show dynamic-object Vesper-EDL
+show dynamic-object Vesper-DIPL
 ```
 
 ---
@@ -254,7 +254,7 @@ show dynamic-object Vesper-EDL
 
 3. **Verify IP in Object**: Check that the IP appears:  
    ```cisco
-   show dynamic-object Vesper-EDL | grep test-user-ip
+   show dynamic-object Vesper-DIPL | grep test-user-ip
    ```
 
 4. **Check ACL Hits**: Verify ACL is being hit:  
@@ -290,7 +290,7 @@ show dynamic-object Vesper-EDL
 
 3. **Test from CLI:**  
    ```cisco
-   test dynamic-object update Vesper-EDL
+   test dynamic-object update Vesper-DIPL
    ```
 
 4. **Check Credentials:**  
@@ -311,7 +311,7 @@ show dynamic-object Vesper-EDL
 ### Object Group is Empty
 
 **Symptoms:**
-- `show dynamic-object Vesper-EDL` returns no IPs
+- `show dynamic-object Vesper-DIPL` returns no IPs
 - Update status shows success but no IPs
 
 **Solutions:**
@@ -321,12 +321,12 @@ show dynamic-object Vesper-EDL
    - Confirm active registrations exist
 
 2. **Check URL Format:**  
-   - Ensure EDL URL is correct
+   - Ensure DIPL URL is correct
    - Test the URL manually: `curl -u "user:pass" URL`
 
 3. **Force Update:**  
    ```cisco
-   clear dynamic-object Vesper-EDL
+   clear dynamic-object Vesper-DIPL
    ```
    Wait 30 seconds, then check again
 
@@ -356,7 +356,7 @@ show dynamic-object Vesper-EDL
 
 3. **Verify IP in Object:**  
    ```cisco
-   show dynamic-object Vesper-EDL | include user-ip-address
+   show dynamic-object Vesper-DIPL | include user-ip-address
    ```
 
 4. **Check ACL Hits:**  
@@ -382,8 +382,8 @@ show dynamic-object Vesper-EDL
 1. Remove and re-create the dynamic object with correct credentials:  
    ```cisco
    configure terminal
-   no dynamic-object update-url Vesper-EDL
-   dynamic-object update-url Vesper-EDL https://edl.vespersecure.com/lists/your-id
+   no dynamic-object update-url Vesper-DIPL
+   dynamic-object update-url Vesper-DIPL https://edl.vespersecure.com/lists/your-id
      poll-period 5
      basic-auth username org_xxxxx password your-password
    ```
@@ -402,7 +402,7 @@ show dynamic-object Vesper-EDL
 Adjust based on your needs:
 
 ```cisco
-dynamic-object update-url Vesper-EDL https://edl.vespersecure.com/lists/your-id
+dynamic-object update-url Vesper-DIPL https://edl.vespersecure.com/lists/your-id
   poll-period 15
 ```
 
@@ -414,10 +414,10 @@ Use the same dynamic object in multiple object groups:
 
 ```cisco
 object-group network Vesper-VPN-Users
-  dynamic-object Vesper-EDL
+  dynamic-object Vesper-DIPL
 
 object-group network Vesper-Admin-Access
-  dynamic-object Vesper-EDL
+  dynamic-object Vesper-DIPL
 ```
 
 ### Combining with Static IPs
@@ -426,7 +426,7 @@ Add static backup IPs to the same object group:
 
 ```cisco
 object-group network Vesper-Allowed-IPs
-  dynamic-object Vesper-EDL
+  dynamic-object Vesper-DIPL
   network-object host 203.0.113.10
   network-object 198.51.100.0 255.255.255.0
 ```
@@ -437,7 +437,7 @@ For HA pairs:
 
 1. Configure on the active unit  
 2. Configuration syncs to standby automatically  
-3. Both units fetch the EDL independently  
+3. Both units fetch the DIPL independently  
 4. Verify connectivity from both units  
 
 ---
@@ -458,7 +458,7 @@ For HA pairs:
 
 !!! tip "Security"
     - Protect configuration files (password is visible)
-    - Use strong EDL password
+    - Use strong DIPL password
     - Enable logging for audit trail
     - Regularly review allowed connections
 
@@ -482,13 +482,13 @@ show run dynamic-object
 show dynamic-object update-url
 
 ! View current IPs in dynamic object
-show dynamic-object Vesper-EDL
+show dynamic-object Vesper-DIPL
 
 ! Force immediate update
-clear dynamic-object Vesper-EDL
+clear dynamic-object Vesper-DIPL
 
 ! Test update manually
-test dynamic-object update Vesper-EDL
+test dynamic-object update Vesper-DIPL
 
 ! View object group
 show run object-group id Vesper-Allowed-IPs

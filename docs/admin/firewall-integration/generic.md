@@ -4,7 +4,7 @@
 
 # Generic Firewall Integration
 
-Configure any firewall supporting URL-based IP lists to use Vesper Secure's External Dynamic List for automated ACL updates.
+Configure any firewall supporting URL-based IP lists to use Vesper Secure's Dynamic IP List for automated ACL updates.
 
 </div>
 
@@ -28,7 +28,7 @@ This generic approach works with many firewall platforms that have URL-based IP 
 
 ### Firewalls NOT Supported
 
-The following firewalls do **NOT** have the required EDL functionality and **cannot** be easily integrated with Vesper Secure:
+The following firewalls do **NOT** have the required DIPL functionality and **cannot** be easily integrated with Vesper Secure:
 
 !!! danger "Unsupported Firewalls"
     **Sophos XG Firewall**
@@ -51,7 +51,7 @@ The following firewalls do **NOT** have the required EDL functionality and **can
     
     **Zyxel**
     
-    - No comparable EDL functionality
+    - No comparable DIPL functionality
     - Lacks URL-based IP list support
     - Static configuration only
 
@@ -60,9 +60,9 @@ The following firewalls do **NOT** have the required EDL functionality and **can
 If you're using an unsupported firewall, consider these alternatives:
 
 1. **Manual Updates**: Periodically export IPs from Vesper admin panel and manually update firewall rules  
-2. **API Scripts**: If your firewall has an API, create a script to fetch the EDL and update rules programmatically  
-3. **Intermediate Server**: Set up a server to fetch the EDL and push updates via your firewall's management interface  
-4. **Platform Upgrade**: Consider upgrading to a firewall platform with native EDL support  
+2. **API Scripts**: If your firewall has an API, create a script to fetch the DIPL and update rules programmatically  
+3. **Intermediate Server**: Set up a server to fetch the DIPL and push updates via your firewall's management interface  
+4. **Platform Upgrade**: Consider upgrading to a firewall platform with native DIPL support  
 
 !!! tip "Looking for Specific Guides?"
     If you're using Palo Alto, Fortinet, Cisco, Check Point, pfSense, OPNsense, or Juniper SRX, we have dedicated guides:
@@ -81,7 +81,7 @@ If you're using an unsupported firewall, consider these alternatives:
 
 Ensure you have:
 
-- [ ] EDL URL, username, and password from [Setup & Configuration](../setup.md)
+- [ ] DIPL URL, username, and password from [Setup & Configuration](../setup.md)
 - [ ] Firewall admin access
 - [ ] Outbound HTTPS (port 443) allowed from firewall to `edl.vespersecure.com`
 - [ ] Understanding of your firewall's policy/rule structure
@@ -95,7 +95,7 @@ Ensure you have:
 
 First, determine what your firewall calls this feature. Common names include:
 
-- External Dynamic Lists
+- Dynamic IP Lists
 - URL Tables
 - External Address Lists
 - Dynamic Address Objects
@@ -112,7 +112,7 @@ Check your firewall documentation for:
 
 ---
 
-## Step 2: Add Vesper EDL as URL Source
+## Step 2: Add Vesper DIPL as URL Source
 
 ### Configuration Details
 
@@ -195,7 +195,7 @@ Logging: Enable
 
 ### Test URL Connectivity
 
-Most firewalls provide a way to test external connections. Test that your firewall can reach the EDL:
+Most firewalls provide a way to test external connections. Test that your firewall can reach the DIPL:
 
 **Manual Test from Another System:**
 ```bash
@@ -383,7 +383,7 @@ If your firewall doesn't support Basic Auth directly:
 
 ### Format Considerations
 
-Vesper EDL returns plain text, one IP per line:
+Vesper DIPL returns plain text, one IP per line:
 ```
 192.0.2.1  
 198.51.100.5  
@@ -391,7 +391,7 @@ Vesper EDL returns plain text, one IP per line:
 ```
 
 Some firewalls expect specific formats. If needed, create a script to:
-- Fetch the EDL
+- Fetch the DIPL
 - Reformat for your firewall
 - Save locally for firewall to consume
 
@@ -414,7 +414,7 @@ Some firewalls expect specific formats. If needed, create a script to:
 
 !!! tip "Security"
     - Protect stored credentials
-    - Use strong EDL password
+    - Use strong DIPL password
     - Review rule order regularly
     - Audit access logs
 

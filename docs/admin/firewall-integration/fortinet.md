@@ -4,7 +4,7 @@
 
 # Fortinet FortiGate Integration
 
-Configure Fortinet FortiGate firewalls to use Vesper Secure's External Dynamic List for automated ACL updates.
+Configure Fortinet FortiGate firewalls to use Vesper Secure's Dynamic IP List for automated ACL updates.
 
 </div>
 
@@ -16,7 +16,7 @@ Fortinet FortiGate firewalls support External Connectors (also called Fabric Con
 
 ### What You'll Configure
 
-1. External Connector to pull IPs from Vesper EDL  
+1. External Connector to pull IPs from Vesper DIPL  
 2. Dynamic address object based on the connector  
 3. Firewall policy to allow registered IPs  
 4. Testing and validation  
@@ -31,7 +31,7 @@ Fortinet FortiGate firewalls support External Connectors (also called Fabric Con
 
 Ensure you have:
 
-- [ ] EDL URL, username, and password from [Setup & Configuration](../setup.md)
+- [ ] DIPL URL, username, and password from [Setup & Configuration](../setup.md)
 - [ ] FortiGate firewall admin access
 - [ ] Outbound HTTPS (port 443) allowed from firewall to `edl.vespersecure.com`
 - [ ] Knowledge of your VPN gateway interface and IP
@@ -69,10 +69,10 @@ Refresh Rate: 5 minutes
 - **Name**: Use a descriptive name without spaces (e.g., `Vesper_Secure_EDL`)
 - **Type**: Must be "IP Address"
 - **Update Method**: Select "HTTP(S)"
-- **URL**: Your unique EDL URL from Vesper admin panel
+- **URL**: Your unique DIPL URL from Vesper admin panel
 - **Authentication**: Select "Basic"
 - **Username**: Your organization ID (starts with `org_`)
-- **Password**: EDL password from Vesper admin panel
+- **Password**: DIPL password from Vesper admin panel
 - **Refresh Rate**: 
   - 5 minutes for fastest access grants
   - 1 hour for reduced firewall load
@@ -379,7 +379,7 @@ For HA cluster:
 
 1. Configure external connector on the primary unit  
 2. Configuration syncs to secondary automatically  
-3. Both units independently fetch the EDL  
+3. Both units independently fetch the DIPL  
 4. Verify connectivity from both units  
 
 ### Multiple VPN Interfaces
@@ -408,7 +408,7 @@ If you have multiple VPN gateways:
 
 !!! tip "Optimization"
     - Use security profiles on allow policy for additional protection
-    - Consider creating address groups if managing multiple EDLs
+    - Consider creating address groups if managing multiple DIPLs
     - Document your configuration for future reference
     - Schedule regular connectivity tests
 
