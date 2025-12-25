@@ -2,12 +2,12 @@
 
 ## Common Issues and Solutions
 
-### DIPL (Dynamic IP List) Issues
+### Dynamic IP List Issues
 
-#### DIPL shows as "Failed" or "Unreachable"
+#### Dynamic IP List shows as "Failed" or "Unreachable"
 
 **Symptoms:**
-- Firewall indicates DIPL update failed
+- Firewall indicates Dynamic IP List update failed
 - No IPs in the list
 - Error in firewall logs
 
@@ -40,11 +40,11 @@
 
 ---
 
-#### DIPL returns "401 Unauthorized"
+#### Dynamic IP List returns "401 Unauthorized"
 
 **Symptoms:**
 - Authentication error in firewall logs
-- DIPL shows error status
+- Dynamic IP List shows error status
 
 **Causes:**
 - Incorrect username or password
@@ -64,24 +64,24 @@
 
 ---
 
-#### DIPL is empty but users have registered
+#### Dynamic IP List is empty but users have registered
 
 **Symptoms:**
-- Users registered but DIPL shows no IPs
+- Users registered but Dynamic IP List shows no IPs
 - VPN still blocked after registration
 
 **Causes:**
 - Temporary locations expired
-- DIPL not refreshing
+- Dynamic IP List not refreshing
 - Users' registrations failed
 
 **Solutions:**
 
 1. **Check admin panel** - Are registrations showing as active?  
 2. **Verify temporary locations haven't expired**  
-3. **Force manual DIPL refresh on firewall**  
+3. **Force manual Dynamic IP List refresh on firewall**  
 4. **Check user's registration status in admin panel**  
-5. **Wait for next scheduled DIPL refresh**  
+5. **Wait for next scheduled Dynamic IP List refresh**  
 
 ---
 
@@ -94,20 +94,20 @@
 - User's IP still blocked by firewall
 
 **Causes:**
-- DIPL hasn't refreshed yet
+- Dynamic IP List hasn't refreshed yet
 - Firewall policy order incorrect
 - User's IP doesn't match registered IP
 - Temporary access expired
 
 **Solutions:**
 
-1. **Wait for DIPL refresh** (up to refresh interval)  
-2. **Force manual DIPL refresh**  
+1. **Wait for Dynamic IP List refresh** (up to refresh interval)  
+2. **Force manual Dynamic IP List refresh**  
 3. **Check firewall policy order:**  
    - Vesper allow rule must be ABOVE deny rules
 4. **Verify user's current IP:**  
    - Have user visit whatismyipaddress.com
-   - Compare to IP in DIPL
+   - Compare to IP in Dynamic IP List
 5. **Check request status in admin panel**  
 6. **Review firewall logs** for deny reason  
 
@@ -228,7 +228,7 @@
 
 ## Diagnostic Commands
 
-### Test DIPL from Command Line
+### Test Dynamic IP List from Command Line
 
 ```bash
 # Basic test
@@ -267,7 +267,7 @@ telnet edl.vespersecure.com 443
 Before contacting support, collect:
 
 - [ ] Firewall type and version
-- [ ] DIPL URL and username (NOT password)
+- [ ] Dynamic IP List URL and username (NOT password)
 - [ ] Error messages from firewall
 - [ ] Screenshots of configuration
 - [ ] Output of test commands
@@ -292,14 +292,14 @@ Before contacting support, collect:
 ### Proactive Monitoring
 
 Set up alerts for:
-- DIPL update failures
+- Dynamic IP List update failures
 - Authentication errors
 - High denial rates
 - Unusual access patterns
 
 ### Regular Maintenance
 
-- **Weekly**: Review DIPL update status
+- **Weekly**: Review Dynamic IP List update status
 - **Monthly**: Test credentials and connectivity
 - **Quarterly**: Audit firewall policy order
 - **Annually**: Review and update security policies

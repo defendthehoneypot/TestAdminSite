@@ -1,18 +1,18 @@
 # Firewall Integration Overview
 
-Integrate Vesper Secure's Dynamic IP List (DIPL) with your firewall to automate ACL updates.
+Integrate Vesper Secure's Dynamic IP List with your firewall to automate ACL updates.
 
 ---
 
 ## What is Firewall Integration?
 
-The Dynamic IP List (DIPL) is an HTTPS endpoint that serves registered IP addresses. Your firewall polls this endpoint and automatically updates access control lists.
+The Dynamic IP List is an HTTPS endpoint that serves registered IP addresses. Your firewall polls this endpoint and automatically updates access control lists.
 
 ### How It Works
 
 1. **Users Register**: Users register their IP addresses through the Vesper Secure portal  
-2. **DIPL Updates**: IP addresses are automatically added to the Dynamic IP List  
-3. **Firewall Polls**: Your firewall periodically checks the DIPL for updates  
+2. **Dynamic IP List Updates**: IP addresses are automatically added to the Dynamic IP List  
+3. **Firewall Polls**: Your firewall periodically checks the Dynamic IP List for updates  
 4. **ACLs Update**: Firewall automatically updates access control lists  
 5. **Access Granted**: Only registered IPs can access protected resources  
 
@@ -28,7 +28,7 @@ The Dynamic IP List (DIPL) is an HTTPS endpoint that serves registered IP addres
 
 ## Supported Firewalls
 
-Vesper Secure works with any firewall that supports Dynamic IP Lists (DIPL) or URL-based IP lists:
+Vesper Secure works with any firewall that supports Dynamic IP Lists or URL-based IP lists:
 
 ### Enterprise Firewalls
 
@@ -104,7 +104,7 @@ Open-source firewall based on FreeBSD with native URL alias support.
 Any firewall supporting URL-based IP lists can work with Vesper Secure. Check the generic guide for general configuration steps.
 
 !!! success "Fully Supported Platforms"
-    All firewalls listed above have been tested and verified to work with Vesper Secure's DIPL functionality.
+    All firewalls listed above have been tested and verified to work with Vesper Secure's Dynamic IP List functionality.
 
 !!! info "Need Help with Your Firewall?"
     If your firewall supports URL-based IP lists but isn't listed here, check the [Generic Firewall Guide](generic.md) for general configuration steps that apply to most firewalls.
@@ -113,9 +113,9 @@ Any firewall supporting URL-based IP lists can work with Vesper Secure. Check th
 
 ## Unsupported Firewalls
 
-The following firewalls do **NOT** have comparable DIPL functionality for custom IP lists and are **not recommended** for use with Vesper Secure:
+The following firewalls do **NOT** have comparable Dynamic IP List functionality for custom IP lists and are **not recommended** for use with Vesper Secure:
 
-### Firewalls Without DIPL Support
+### Firewalls Without Dynamic IP List Support
 
 **Sophos XG Firewall**
 
@@ -137,7 +137,7 @@ The following firewalls do **NOT** have comparable DIPL functionality for custom
 
 **Zyxel**
 
-- No comparable DIPL functionality
+- No comparable Dynamic IP List functionality
 - Lacks URL-based IP list support
 - Static configuration only
 
@@ -145,8 +145,8 @@ The following firewalls do **NOT** have comparable DIPL functionality for custom
     If you're using one of these unsupported firewalls, consider:
     
     - Manually exporting IPs from Vesper and updating firewall rules periodically
-    - Using a script to fetch the DIPL and update firewall via API (if available)
-    - Upgrading to a firewall platform with native DIPL support
+    - Using a script to fetch the Dynamic IP List and update firewall via API (if available)
+    - Upgrading to a firewall platform with native Dynamic IP List support
     - See the [Generic Firewall Guide](generic.md) for potential workarounds
 
 ---
@@ -155,7 +155,7 @@ The following firewalls do **NOT** have comparable DIPL functionality for custom
 
 Before configuring any firewall integration, ensure you have:
 
-- [ ] **DIPL URL, username, and password** from [Setup & Configuration](../setup.md)
+- [ ] **Dynamic IP List URL, username, and password** from [Setup & Configuration](../setup.md)
 - [ ] **Firewall admin access** with permission to modify policies
 - [ ] **Outbound HTTPS access** from firewall to `edl.vespersecure.com` (port 443)
 - [ ] **DNS resolution** working from firewall management interface
@@ -235,7 +235,7 @@ General configuration steps for any firewall supporting URL-based IP lists.
 
 ## General Best Practices
 
-!!! tip "DIPL Refresh Interval"
+!!! tip "Dynamic IP List Refresh Interval"
     - **5 minutes**: Most responsive, higher firewall load
     - **15 minutes**: Balanced approach (recommended)
     - **1 hour**: Lower load, slower access grants
@@ -247,7 +247,7 @@ General configuration steps for any firewall supporting URL-based IP lists.
     Log both allowed and denied attempts for security auditing and troubleshooting.
 
 !!! success "Backup Access"
-    Maintain static IP allow-list entries for critical administrators as backup in case DIPL is unavailable.
+    Maintain static IP allow-list entries for critical administrators as backup in case Dynamic IP List is unavailable.
 
 ---
 
@@ -255,7 +255,7 @@ General configuration steps for any firewall supporting URL-based IP lists.
 
 After configuring your firewall, validate the integration:
 
-### Test DIPL Connectivity
+### Test Dynamic IP List Connectivity
 
 From a system with network access:
 
@@ -269,9 +269,9 @@ Should return IP addresses or an empty list.
 ### Test User Access Flow
 
 1. Have a test user register through Vesper portal  
-2. User's IP is automatically added to DIPL  
-3. Wait for DIPL refresh interval (e.g., 5 minutes)  
-4. Verify test user's IP appears in DIPL:  
+2. User's IP is automatically added to Dynamic IP List  
+3. Wait for Dynamic IP List refresh interval (e.g., 5 minutes)  
+4. Verify test user's IP appears in Dynamic IP List:  
    ```bash
    curl -u "user:pass" https://edl.vespersecure.com/lists/your-id | grep "test-user-ip"
    ```
@@ -296,7 +296,7 @@ For platform-specific troubleshooting, see the individual setup guides:
 
 ### Common Issues Across All Platforms
 
-**DIPL shows as "Failed" or "Unreachable"**
+**Dynamic IP List shows as "Failed" or "Unreachable"**
 
 - Verify firewall can reach `edl.vespersecure.com` on port 443
 - Check DNS resolution works
@@ -312,8 +312,8 @@ For platform-specific troubleshooting, see the individual setup guides:
 
 **User Blocked After Registration**
 
-- Wait for DIPL refresh interval
-- Force manual DIPL refresh on firewall
+- Wait for Dynamic IP List refresh interval
+- Force manual Dynamic IP List refresh on firewall
 - Verify firewall policy order (allow above deny)
 - Check user's current IP matches registered IP
 - Verify user's access hasn't expired

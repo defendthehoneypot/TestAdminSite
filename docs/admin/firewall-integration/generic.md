@@ -28,7 +28,7 @@ This generic approach works with many firewall platforms that have URL-based IP 
 
 ### Firewalls NOT Supported
 
-The following firewalls do **NOT** have the required DIPL functionality and **cannot** be easily integrated with Vesper Secure:
+The following firewalls do **NOT** have the required Dynamic IP List functionality and **cannot** be easily integrated with Vesper Secure:
 
 !!! danger "Unsupported Firewalls"
     **Sophos XG Firewall**
@@ -51,7 +51,7 @@ The following firewalls do **NOT** have the required DIPL functionality and **ca
     
     **Zyxel**
     
-    - No comparable DIPL functionality
+    - No comparable Dynamic IP List functionality
     - Lacks URL-based IP list support
     - Static configuration only
 
@@ -60,9 +60,9 @@ The following firewalls do **NOT** have the required DIPL functionality and **ca
 If you're using an unsupported firewall, consider these alternatives:
 
 1. **Manual Updates**: Periodically export IPs from Vesper admin panel and manually update firewall rules  
-2. **API Scripts**: If your firewall has an API, create a script to fetch the DIPL and update rules programmatically  
-3. **Intermediate Server**: Set up a server to fetch the DIPL and push updates via your firewall's management interface  
-4. **Platform Upgrade**: Consider upgrading to a firewall platform with native DIPL support  
+2. **API Scripts**: If your firewall has an API, create a script to fetch the Dynamic IP List and update rules programmatically  
+3. **Intermediate Server**: Set up a server to fetch the Dynamic IP List and push updates via your firewall's management interface  
+4. **Platform Upgrade**: Consider upgrading to a firewall platform with native Dynamic IP List support  
 
 !!! tip "Looking for Specific Guides?"
     If you're using Palo Alto, Fortinet, Cisco, Check Point, pfSense, OPNsense, or Juniper SRX, we have dedicated guides:
@@ -81,7 +81,7 @@ If you're using an unsupported firewall, consider these alternatives:
 
 Ensure you have:
 
-- [ ] DIPL URL, username, and password from [Setup & Configuration](../setup.md)
+- [ ] Dynamic IP List URL, username, and password from [Setup & Configuration](../setup.md)
 - [ ] Firewall admin access
 - [ ] Outbound HTTPS (port 443) allowed from firewall to `edl.vespersecure.com`
 - [ ] Understanding of your firewall's policy/rule structure
@@ -112,7 +112,7 @@ Check your firewall documentation for:
 
 ---
 
-## Step 2: Add Vesper DIPL as URL Source
+## Step 2: Add Vesper Dynamic IP List as URL Source
 
 ### Configuration Details
 
@@ -195,7 +195,7 @@ Logging: Enable
 
 ### Test URL Connectivity
 
-Most firewalls provide a way to test external connections. Test that your firewall can reach the DIPL:
+Most firewalls provide a way to test external connections. Test that your firewall can reach the Dynamic IP List:
 
 **Manual Test from Another System:**
 ```bash
@@ -383,7 +383,7 @@ If your firewall doesn't support Basic Auth directly:
 
 ### Format Considerations
 
-Vesper DIPL returns plain text, one IP per line:
+Vesper Dynamic IP List returns plain text, one IP per line:
 ```
 192.0.2.1  
 198.51.100.5  
@@ -391,7 +391,7 @@ Vesper DIPL returns plain text, one IP per line:
 ```
 
 Some firewalls expect specific formats. If needed, create a script to:
-- Fetch the DIPL
+- Fetch the Dynamic IP List
 - Reformat for your firewall
 - Save locally for firewall to consume
 
@@ -414,7 +414,7 @@ Some firewalls expect specific formats. If needed, create a script to:
 
 !!! tip "Security"
     - Protect stored credentials
-    - Use strong DIPL password
+    - Use strong Dynamic IP List password
     - Review rule order regularly
     - Audit access logs
 

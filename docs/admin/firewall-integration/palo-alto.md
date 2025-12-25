@@ -16,7 +16,7 @@ Palo Alto Networks firewalls have native support for External Dynamic Lists (EDL
 
 ### What You'll Configure
 
-1. External Dynamic List object pointing to Vesper DIPL  
+1. External Dynamic List object pointing to Vesper Dynamic IP List  
 2. Security policy to allow registered IPs  
 3. Optional deny policy for unregistered IPs  
 4. Testing and validation  
@@ -31,7 +31,7 @@ Palo Alto Networks firewalls have native support for External Dynamic Lists (EDL
 
 Ensure you have:
 
-- [ ] DIPL URL, username, and password from [Setup & Configuration](../setup.md)
+- [ ] Dynamic IP List URL, username, and password from [Setup & Configuration](../setup.md)
 - [ ] Palo Alto firewall admin access
 - [ ] Outbound HTTPS (port 443) allowed from firewall to `edl.vespersecure.com`
 - [ ] Knowledge of your VPN gateway IP and zones
@@ -63,13 +63,13 @@ Password: ••••••••
 
 - **Name**: Use a descriptive name (e.g., `Vesper-Secure-Allowed-IPs`)
 - **Type**: Must be "IP List"
-- **Source URL**: Your unique DIPL URL from Vesper admin panel
+- **Source URL**: Your unique Dynamic IP List URL from Vesper admin panel
 - **Check for updates**: 
   - Every 5 minutes for fastest access grants
   - Hourly for reduced firewall load
   - 15 minutes recommended for balanced approach
 - **Username**: Your organization ID (starts with `org_`)
-- **Password**: DIPL password from Vesper admin panel
+- **Password**: Dynamic IP List password from Vesper admin panel
 
 ### Save Configuration
 

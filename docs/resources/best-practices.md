@@ -5,7 +5,7 @@
 ### Planning
 
 - **Start small**: Pilot with a small group before full rollout
-- **Test thoroughly**: Validate DIPL integration with test accounts
+- **Test thoroughly**: Validate Dynamic IP List integration with test accounts
 - **Communication**: Clearly explain the process to users beforehand
 - **Backup access**: Maintain static IP allow-list for critical admins
 
@@ -35,7 +35,7 @@
 - Restrict to specific countries
 - Monitor for unusual patterns
 
-### DIPL Refresh Interval
+### Dynamic IP List Refresh Interval
 
 - **5 minutes**: Responsive access, higher firewall load
 - **15 minutes**: Balanced approach (recommended)
@@ -48,12 +48,12 @@
 ✅ **Do:**
 - Place Vesper allow rules above deny rules
 - Log both allowed and denied attempts
-- Enable alerts for DIPL update failures
+- Enable alerts for Dynamic IP List update failures
 - Test policy ordering regularly
 
 ❌ **Don't:**
 - Rely solely on Vesper without fallback
-- Ignore DIPL update failures
+- Ignore Dynamic IP List update failures
 - Mix Vesper IPs with other allow lists
 
 ### Access Management
@@ -112,7 +112,7 @@ Takes less than a minute!
 ### Daily Checks
 
 - Review new registrations
-- Check DIPL update status
+- Check Dynamic IP List update status
 - Monitor firewall deny logs for patterns
 
 ### Weekly Reviews
@@ -125,7 +125,7 @@ Takes less than a minute!
 
 - Audit user list vs. employee roster
 - Review and update policies
-- Check DIPL credential rotation schedule
+- Check Dynamic IP List credential rotation schedule
 - Analyze usage trends
 
 ## Troubleshooting
@@ -133,15 +133,15 @@ Takes less than a minute!
 ### Proactive Monitoring
 
 Set up alerts for:
-- DIPL update failures (critical)
+- Dynamic IP List update failures (critical)
 - High rate of denied requests (investigate)
 - Unusual access patterns (security)
 - Failed login attempts (support)
 
 ### Common Issues Prevention
 
-**DIPL connectivity:**
-- Test DIPL URL monthly
+**Dynamic IP List connectivity:**
+- Test Dynamic IP List URL monthly
 - Monitor firewall outbound HTTPS
 - Keep credentials current
 
@@ -173,7 +173,7 @@ Export logs regularly for compliance retention.
 
 ### Optimization
 
-- Use appropriate DIPL refresh interval
+- Use appropriate Dynamic IP List refresh interval
 - Limit temporary duration to actual needs
 - Expire old permanent locations
 - Keep user list current
@@ -181,8 +181,8 @@ Export logs regularly for compliance retention.
 ### Scalability
 
 Vesper scales automatically, but consider:
-- Firewall DIPL size limits
-- Network bandwidth for DIPL updates
+- Firewall Dynamic IP List size limits
+- Network bandwidth for Dynamic IP List updates
 - Admin monitoring capacity
 
 ---

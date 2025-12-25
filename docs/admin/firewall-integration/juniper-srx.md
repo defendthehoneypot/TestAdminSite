@@ -16,7 +16,7 @@ Juniper SRX Series firewalls (JunOS 15.1X49+) support Dynamic Address Objects th
 
 ### What You'll Configure
 
-1. Dynamic address object pointing to Vesper DIPL  
+1. Dynamic address object pointing to Vesper Dynamic IP List  
 2. Security policy to allow registered IPs  
 3. Zone configuration and policy ordering  
 4. Testing and validation  
@@ -31,7 +31,7 @@ Juniper SRX Series firewalls (JunOS 15.1X49+) support Dynamic Address Objects th
 
 Ensure you have:
 
-- [ ] DIPL URL, username, and password from [Setup & Configuration](../setup.md)
+- [ ] Dynamic IP List URL, username, and password from [Setup & Configuration](../setup.md)
 - [ ] Juniper SRX with JunOS 15.1X49 or later
 - [ ] CLI access (SSH) or J-Web access
 - [ ] Outbound HTTPS (port 443) allowed from SRX to `edl.vespersecure.com`
@@ -55,7 +55,7 @@ configure
 
 ### Create Dynamic Address Object
 
-Create a dynamic address object for the Vesper DIPL:
+Create a dynamic address object for the Vesper Dynamic IP List:
 
 ```junos
 set security dynamic-address address-name Vesper-Allowed-IPs
@@ -73,7 +73,7 @@ set security dynamic-address address-name Vesper-Allowed-IPs profile Vesper-DIPL
 
 ### Create the Feed Profile
 
-Configure the profile that defines how to fetch the DIPL:
+Configure the profile that defines how to fetch the Dynamic IP List:
 
 ```junos
 set services security-intelligence url Vesper-DIPL-Profile url https://edl.vespersecure.com/lists/your-id
@@ -85,11 +85,11 @@ set services security-intelligence url Vesper-DIPL-Profile update-interval 900
 
 **Parameter Details:**
 
-- **url**: Your unique DIPL URL from Vesper admin panel
+- **url**: Your unique Dynamic IP List URL from Vesper admin panel
   - Replace `your-id` with your actual list ID
 - **category**: A label for this feed (e.g., `Vesper-IPs`)
 - **username**: Your organization ID (starts with `org_`)
-- **password**: DIPL password from Vesper admin panel
+- **password**: Dynamic IP List password from Vesper admin panel
 - **update-interval**: Update interval in seconds
   - `300` = 5 minutes (most responsive)
   - `900` = 15 minutes (recommended)
@@ -230,7 +230,7 @@ commit
 Add a comment for documentation:
 
 ```junos
-commit comment "Added Vesper Secure DIPL integration"
+commit comment "Added Vesper Secure Dynamic IP List integration"
 ```
 
 Wait for commit to complete successfully.
@@ -266,7 +266,7 @@ See the IPs currently in the dynamic address:
 show security dynamic-address address-name Vesper-Allowed-IPs
 ```
 
-This will list all IP addresses currently loaded from the DIPL.
+This will list all IP addresses currently loaded from the Dynamic IP List.
 
 ### Check Feed Status
 
@@ -464,7 +464,7 @@ Or view in J-Web:
 
 1. **Check if Users Registered:**  
    - Verify users have registered in Vesper portal
-   - Empty DIPL will result in empty dynamic address
+   - Empty Dynamic IP List will result in empty dynamic address
 
 2. **Force Update:**  
    ```junos
@@ -554,7 +554,7 @@ set security policies from-zone untrust to-zone trust policy Allow-Critical-Admi
 
 !!! warning "Important"
     - Protect CLI/J-Web access - configuration contains credentials
-    - Use strong DIPL password
+    - Use strong Dynamic IP List password
     - Regularly review security logs
     - Test configuration changes in lab environment first
 
@@ -581,7 +581,7 @@ For those preferring GUI configuration:
    - Profile Name: `Vesper-DIPL-Profile`
    - URL: `https://edl.vespersecure.com/lists/your-id`
    - Username: `org_xxxxx`
-   - Password: Your DIPL password
+   - Password: Your Dynamic IP List password
    - Update Interval: `900` seconds
 
 ### Create Security Policy

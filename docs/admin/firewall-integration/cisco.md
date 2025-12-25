@@ -31,7 +31,7 @@ Cisco ASA and FTD devices support dynamic object groups that can pull IP address
 
 Ensure you have:
 
-- [ ] DIPL URL, username, and password from [Setup & Configuration](../setup.md)
+- [ ] Dynamic IP List URL, username, and password from [Setup & Configuration](../setup.md)
 - [ ] Cisco ASA/FTD CLI access (SSH or console)
 - [ ] Enable mode password
 - [ ] Outbound HTTPS (port 443) allowed from firewall to `edl.vespersecure.com`
@@ -60,7 +60,7 @@ object-group network Vesper-Allowed-IPs
   description Vesper Secure verified user IPs
 ```
 
-This creates an empty object group that we'll populate from the DIPL.
+This creates an empty object group that we'll populate from the Dynamic IP List.
 
 ---
 
@@ -68,7 +68,7 @@ This creates an empty object group that we'll populate from the DIPL.
 
 ### Create the Dynamic Object Update URL
 
-Configure the DIPL source with authentication:
+Configure the Dynamic IP List source with authentication:
 
 ```cisco
 dynamic-object update-url Vesper-DIPL https://edl.vespersecure.com/lists/your-id
@@ -79,13 +79,13 @@ dynamic-object update-url Vesper-DIPL https://edl.vespersecure.com/lists/your-id
 **Parameter Details:**
 
 - **Vesper-DIPL**: Name for this dynamic object update URL
-- **URL**: Your unique DIPL URL from Vesper admin panel
+- **URL**: Your unique Dynamic IP List URL from Vesper admin panel
 - **poll-period**: Update interval in minutes
   - `5` = 5 minutes (most responsive)
   - `15` = 15 minutes (recommended)
   - `60` = 1 hour (lower load)
 - **username**: Your organization ID (starts with `org_`)
-- **password**: DIPL password from Vesper admin panel
+- **password**: Dynamic IP List password from Vesper admin panel
 
 !!! warning "Password in Configuration"
     The password will be stored in the configuration. Ensure you protect access to the configuration files.
@@ -223,14 +223,14 @@ See which IPs are currently in the dynamic object group:
 show dynamic-object Vesper-DIPL
 ```
 
-This lists all IPs currently fetched from the DIPL.
+This lists all IPs currently fetched from the Dynamic IP List.
 
 !!! tip "Empty List is OK"
     If no users have registered yet, this may show no entries. This is normal.
 
 ### Force Manual Update
 
-To force an immediate update of the DIPL:
+To force an immediate update of the Dynamic IP List:
 
 ```cisco
 clear dynamic-object Vesper-DIPL
@@ -321,7 +321,7 @@ show dynamic-object Vesper-DIPL
    - Confirm active registrations exist
 
 2. **Check URL Format:**  
-   - Ensure DIPL URL is correct
+   - Ensure Dynamic IP List URL is correct
    - Test the URL manually: `curl -u "user:pass" URL`
 
 3. **Force Update:**  
@@ -437,7 +437,7 @@ For HA pairs:
 
 1. Configure on the active unit  
 2. Configuration syncs to standby automatically  
-3. Both units fetch the DIPL independently  
+3. Both units fetch the Dynamic IP List independently  
 4. Verify connectivity from both units  
 
 ---
@@ -458,7 +458,7 @@ For HA pairs:
 
 !!! tip "Security"
     - Protect configuration files (password is visible)
-    - Use strong DIPL password
+    - Use strong Dynamic IP List password
     - Enable logging for audit trail
     - Regularly review allowed connections
 

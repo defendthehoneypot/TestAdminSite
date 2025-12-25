@@ -51,7 +51,7 @@ Follow these guides in order for initial setup:
 
 1. **[Setup & Configuration](./setup.md)** - Configure your organization  
 2. **[SSO Integration](./sso-integration/index.md)** - Connect your identity provider  
-3. **[Firewall Integration](./firewall-integration/index.md)** - Add DIPL to your firewall  
+3. **[Firewall Integration](./firewall-integration/index.md)** - Add Dynamic IP List to your firewall  
 4. **[User Management](./user-management.md)** - Manage ongoing access  
 
 ---

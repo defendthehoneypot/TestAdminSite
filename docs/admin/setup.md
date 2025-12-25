@@ -47,12 +47,12 @@ Maximum temporary duration: [30 days ▼]
 
 ---
 
-## Step 3: Generate DIPL Credentials
+## Step 3: Generate Dynamic IP List Credentials
 
 Create the credentials needed for firewall integration:
 
 1. Go to **Settings** → **Firewall Integration**  
-2. Click **Generate Dynamic IP List (DIPL)**  
+2. Click **Generate Dynamic IP List**  
 3. Save these credentials securely:  
 
 ```
@@ -65,7 +65,7 @@ Password: •••••••••••••••••••••
     Save these credentials! You'll need them for firewall integration.
     The password is only displayed once and cannot be recovered.
 
-**Test the DIPL:**
+**Test the Dynamic IP List:**
 
 ```bash
 curl -u "org_abc123:your-password" \
@@ -81,7 +81,7 @@ You should see an empty list or IP addresses if users have already registered.
 After completing basic setup:
 
 1. **[Configure SSO Integration](sso-integration/index.md)** - Connect your identity provider  
-2. **[Set up Firewall Integration](firewall-integration/index.md)** - Add DIPL to your firewall  
+2. **[Set up Firewall Integration](firewall-integration/index.md)** - Add Dynamic IP List to your firewall  
 3. **[Start Managing Users](./user-management.md)** - Begin monitoring user registrations  
 
 ---
