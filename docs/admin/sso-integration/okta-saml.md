@@ -596,7 +596,7 @@ Enable ThreatInsight to detect and respond to suspicious authentications:
 
 After successfully configuring Okta SAML SSO:
 
-1. **[Set up Firewall Integration](../firewall-integration/index.md)** - Connect the EDL to your firewall  
+1. **[Set up Firewall Integration](../firewall-integration/index.md)** - Connect the DIPL to your firewall  
 2. **[Configure User Management](../user-management.md)** - Monitor and manage user access  
 3. **Configure Sign-On Policies** - Add additional security policies in Okta  
 4. **Review System Logs** - Regularly check Okta logs for authentication events  

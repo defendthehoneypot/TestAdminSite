@@ -502,7 +502,7 @@ When the certificate is nearing expiration:
 
 After successfully configuring Azure AD SAML SSO:
 
-1. **[Set up Firewall Integration](../firewall-integration/index.md)** - Connect the EDL to your firewall  
+1. **[Set up Firewall Integration](../firewall-integration/index.md)** - Connect the DIPL to your firewall  
 2. **[Configure User Management](../user-management.md)** - Monitor and manage user access  
 3. **Configure Conditional Access** - Add additional security policies in Azure AD  
 4. **Review Audit Logs** - Regularly check Azure AD sign-in logs  
