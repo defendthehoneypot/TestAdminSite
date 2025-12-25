@@ -1,18 +1,18 @@
 # Firewall Integration Overview
 
-Integrate Vesper Secure's External Dynamic List (EDL) with your firewall to automate ACL updates.
+Integrate Vesper Secure's Dynamic IP List with your firewall to automate ACL updates.
 
 ---
 
 ## What is Firewall Integration?
 
-The External Dynamic List (EDL) is an HTTPS endpoint that serves registered IP addresses. Your firewall polls this endpoint and automatically updates access control lists.
+The Dynamic IP List is an HTTPS endpoint that serves registered IP addresses. Your firewall polls this endpoint and automatically updates access control lists.
 
 ### How It Works
 
 1. **Users Register**: Users register their IP addresses through the Vesper Secure portal  
-2. **EDL Updates**: IP addresses are automatically added to the External Dynamic List  
-3. **Firewall Polls**: Your firewall periodically checks the EDL for updates  
+2. **Dynamic IP List Updates**: IP addresses are automatically added to the Dynamic IP List  
+3. **Firewall Polls**: Your firewall periodically checks the Dynamic IP List for updates  
 4. **ACLs Update**: Firewall automatically updates access control lists  
 5. **Access Granted**: Only registered IPs can access protected resources  
 
@@ -28,13 +28,13 @@ The External Dynamic List (EDL) is an HTTPS endpoint that serves registered IP a
 
 ## Supported Firewalls
 
-Vesper Secure works with any firewall that supports External Dynamic Lists (EDL) or URL-based IP lists:
+Vesper Secure works with any firewall that supports Dynamic IP Lists or URL-based IP lists:
 
 ### Enterprise Firewalls
 
 **[Palo Alto Networks (PAN-OS 8.0+)](palo-alto.md)**
 
-Industry-leading next-generation firewall with native EDL support.
+Industry-leading next-generation firewall with native External Dynamic List support.
 
 - External Dynamic Lists
 - Test Source functionality
@@ -104,7 +104,7 @@ Open-source firewall based on FreeBSD with native URL alias support.
 Any firewall supporting URL-based IP lists can work with Vesper Secure. Check the generic guide for general configuration steps.
 
 !!! success "Fully Supported Platforms"
-    All firewalls listed above have been tested and verified to work with Vesper Secure's EDL functionality.
+    All firewalls listed above have been tested and verified to work with Vesper Secure's Dynamic IP List functionality.
 
 !!! info "Need Help with Your Firewall?"
     If your firewall supports URL-based IP lists but isn't listed here, check the [Generic Firewall Guide](generic.md) for general configuration steps that apply to most firewalls.
@@ -113,9 +113,9 @@ Any firewall supporting URL-based IP lists can work with Vesper Secure. Check th
 
 ## Unsupported Firewalls
 
-The following firewalls do **NOT** have comparable EDL functionality for custom IP lists and are **not recommended** for use with Vesper Secure:
+The following firewalls do **NOT** have comparable Dynamic IP List functionality for custom IP lists and are **not recommended** for use with Vesper Secure:
 
-### Firewalls Without EDL Support
+### Firewalls Without Dynamic IP List Support
 
 **Sophos XG Firewall**
 
@@ -137,7 +137,7 @@ The following firewalls do **NOT** have comparable EDL functionality for custom 
 
 **Zyxel**
 
-- No comparable EDL functionality
+- No comparable Dynamic IP List functionality
 - Lacks URL-based IP list support
 - Static configuration only
 
@@ -145,8 +145,8 @@ The following firewalls do **NOT** have comparable EDL functionality for custom 
     If you're using one of these unsupported firewalls, consider:
     
     - Manually exporting IPs from Vesper and updating firewall rules periodically
-    - Using a script to fetch the EDL and update firewall via API (if available)
-    - Upgrading to a firewall platform with native EDL support
+    - Using a script to fetch the Dynamic IP List and update firewall via API (if available)
+    - Upgrading to a firewall platform with native Dynamic IP List support
     - See the [Generic Firewall Guide](generic.md) for potential workarounds
 
 ---
@@ -155,7 +155,7 @@ The following firewalls do **NOT** have comparable EDL functionality for custom 
 
 Before configuring any firewall integration, ensure you have:
 
-- [ ] **EDL URL, username, and password** from [Setup & Configuration](../setup.md)
+- [ ] **Dynamic IP List URL, username, and password** from [Setup & Configuration](../setup.md)
 - [ ] **Firewall admin access** with permission to modify policies
 - [ ] **Outbound HTTPS access** from firewall to `edl.vespersecure.com` (port 443)
 - [ ] **DNS resolution** working from firewall management interface
@@ -169,7 +169,7 @@ Choose your firewall platform to get started:
 
 ### Palo Alto Networks
 
-**[Configure Palo Alto Networks EDL →](palo-alto.md)**
+**[Configure Palo Alto Networks →](palo-alto.md)**
 
 Complete guide for PAN-OS firewalls including External Dynamic Lists, security policies, and testing.
 
@@ -177,7 +177,7 @@ Complete guide for PAN-OS firewalls including External Dynamic Lists, security p
 
 ### Fortinet FortiGate
 
-**[Configure Fortinet FortiGate EDL →](fortinet.md)**
+**[Configure Fortinet FortiGate →](fortinet.md)**
 
 Complete guide for FortiGate firewalls including External Connectors, address objects, and policies.
 
@@ -185,7 +185,7 @@ Complete guide for FortiGate firewalls including External Connectors, address ob
 
 ### Cisco ASA/FTD
 
-**[Configure Cisco ASA/FTD EDL →](cisco.md)**
+**[Configure Cisco ASA/FTD →](cisco.md)**
 
 Complete guide for Cisco firewalls including dynamic object groups and ACL configuration.
 
@@ -193,7 +193,7 @@ Complete guide for Cisco firewalls including dynamic object groups and ACL confi
 
 ### Check Point
 
-**[Configure Check Point EDL →](check-point.md)**
+**[Configure Check Point →](check-point.md)**
 
 Complete guide for Check Point firewalls including Updatable Objects and security policies.
 
@@ -201,7 +201,7 @@ Complete guide for Check Point firewalls including Updatable Objects and securit
 
 ### pfSense
 
-**[Configure pfSense EDL →](pfsense.md)**
+**[Configure pfSense →](pfsense.md)**
 
 Complete guide for pfSense including URL Table Aliases and pfBlockerNG setup.
 
@@ -209,7 +209,7 @@ Complete guide for pfSense including URL Table Aliases and pfBlockerNG setup.
 
 ### OPNsense
 
-**[Configure OPNsense EDL →](opnsense.md)**
+**[Configure OPNsense →](opnsense.md)**
 
 Complete guide for OPNsense including URL Table Aliases and firewall rules.
 
@@ -217,7 +217,7 @@ Complete guide for OPNsense including URL Table Aliases and firewall rules.
 
 ### Juniper SRX
 
-**[Configure Juniper SRX EDL →](juniper-srx.md)**
+**[Configure Juniper SRX →](juniper-srx.md)**
 
 Complete guide for Juniper SRX including Dynamic Address Objects and security policies.
 
@@ -235,7 +235,7 @@ General configuration steps for any firewall supporting URL-based IP lists.
 
 ## General Best Practices
 
-!!! tip "EDL Refresh Interval"
+!!! tip "Dynamic IP List Refresh Interval"
     - **5 minutes**: Most responsive, higher firewall load
     - **15 minutes**: Balanced approach (recommended)
     - **1 hour**: Lower load, slower access grants
@@ -247,7 +247,7 @@ General configuration steps for any firewall supporting URL-based IP lists.
     Log both allowed and denied attempts for security auditing and troubleshooting.
 
 !!! success "Backup Access"
-    Maintain static IP allow-list entries for critical administrators as backup in case EDL is unavailable.
+    Maintain static IP allow-list entries for critical administrators as backup in case Dynamic IP List is unavailable.
 
 ---
 
@@ -255,7 +255,7 @@ General configuration steps for any firewall supporting URL-based IP lists.
 
 After configuring your firewall, validate the integration:
 
-### Test EDL Connectivity
+### Test Dynamic IP List Connectivity
 
 From a system with network access:
 
@@ -269,9 +269,9 @@ Should return IP addresses or an empty list.
 ### Test User Access Flow
 
 1. Have a test user register through Vesper portal  
-2. User's IP is automatically added to EDL  
-3. Wait for EDL refresh interval (e.g., 5 minutes)  
-4. Verify test user's IP appears in EDL:  
+2. User's IP is automatically added to Dynamic IP List  
+3. Wait for Dynamic IP List refresh interval (e.g., 5 minutes)  
+4. Verify test user's IP appears in Dynamic IP List:  
    ```bash
    curl -u "user:pass" https://edl.vespersecure.com/lists/your-id | grep "test-user-ip"
    ```
@@ -296,7 +296,7 @@ For platform-specific troubleshooting, see the individual setup guides:
 
 ### Common Issues Across All Platforms
 
-**EDL shows as "Failed" or "Unreachable"**
+**Dynamic IP List shows as "Failed" or "Unreachable"**
 
 - Verify firewall can reach `edl.vespersecure.com` on port 443
 - Check DNS resolution works
@@ -312,8 +312,8 @@ For platform-specific troubleshooting, see the individual setup guides:
 
 **User Blocked After Registration**
 
-- Wait for EDL refresh interval
-- Force manual EDL refresh on firewall
+- Wait for Dynamic IP List refresh interval
+- Force manual Dynamic IP List refresh on firewall
 - Verify firewall policy order (allow above deny)
 - Check user's current IP matches registered IP
 - Verify user's access hasn't expired

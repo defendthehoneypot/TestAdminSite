@@ -4,7 +4,7 @@
 
 # pfSense Integration
 
-Configure pfSense firewalls to use Vesper Secure's External Dynamic List for automated ACL updates.
+Configure pfSense firewalls to use Vesper Secure's Dynamic IP List for automated ACL updates.
 
 </div>
 
@@ -12,11 +12,11 @@ Configure pfSense firewalls to use Vesper Secure's External Dynamic List for aut
 
 ## Overview
 
-pfSense (2.4+) provides native URL Table Aliases that can fetch IP addresses from HTTP/HTTPS URLs. Additionally, the pfBlockerNG package offers enhanced EDL-like functionality. This guide covers both approaches.
+pfSense (2.4+) provides native URL Table Aliases that can fetch IP addresses from HTTP/HTTPS URLs. Additionally, the pfBlockerNG package offers enhanced Dynamic IP List-like functionality. This guide covers both approaches.
 
 ### What You'll Configure
 
-1. URL Table Alias pointing to Vesper EDL  
+1. URL Table Alias pointing to Vesper Dynamic IP List  
 2. Firewall rule to allow registered IPs  
 3. Optional pfBlockerNG integration for advanced features  
 4. Testing and validation  
@@ -31,7 +31,7 @@ pfSense (2.4+) provides native URL Table Aliases that can fetch IP addresses fro
 
 Ensure you have:
 
-- [ ] EDL URL, username, and password from [Setup & Configuration](../setup.md)
+- [ ] Dynamic IP List URL, username, and password from [Setup & Configuration](../setup.md)
 - [ ] pfSense 2.4 or later
 - [ ] pfSense web interface admin access
 - [ ] Outbound HTTPS (port 443) allowed from pfSense to `edl.vespersecure.com`
@@ -71,10 +71,10 @@ URL: https://org_xxxxx:password@edl.vespersecure.com/lists/your-id
 - **Refresh Frequency**: 
   - 1 day (default, updates daily)
   - Note: pfSense URL aliases don't support frequent updates natively
-- **URL**: Your EDL URL with embedded credentials
+- **URL**: Your Dynamic IP List URL with embedded credentials
   - Format: `https://username:password@edl.vespersecure.com/lists/your-id`
   - Replace `username` with your org ID (e.g., `org_xxxxx`)
-  - Replace `password` with your EDL password
+  - Replace `password` with your Dynamic IP List password
   - Replace `your-id` with your list ID
 
 !!! warning "Credentials in URL"
@@ -227,7 +227,7 @@ URL: https://org_xxxxx:password@edl.vespersecure.com/lists/your-id
   - Every 4 hours for faster updates
   - Every 8 hours for balanced approach
   - Daily for minimal load
-- **URL**: EDL URL with embedded credentials (same format as Method 1)
+- **URL**: Dynamic IP List URL with embedded credentials (same format as Method 1)
 
 #### Configure List Settings
 
@@ -430,7 +430,7 @@ Create a cron job for more frequent updates:
    Month: *
    Weekday: *
    Command: /etc/rc.update_url_aliases
-   Description: Update Vesper EDL alias
+   Description: Update Vesper Dynamic IP List alias
    ```
 4. Click **Save**  
 
@@ -443,7 +443,7 @@ If using pfSense HA (CARP):
 
 1. Configure alias and rules on primary node  
 2. Configuration will sync to secondary via Config Sync  
-3. Both nodes will independently fetch the EDL  
+3. Both nodes will independently fetch the Dynamic IP List  
 4. Ensure both nodes have internet connectivity  
 
 ### IPv6 Support
@@ -451,8 +451,8 @@ If using pfSense HA (CARP):
 To support IPv6 addresses:
 
 1. Create a second alias with type "URL Table (IPs)"  
-2. Use the same URL (if EDL returns IPv6 addresses)  
-3. Or create separate IPv6 EDL if available  
+2. Use the same URL (if Dynamic IP List returns IPv6 addresses)  
+3. Or create separate IPv6 Dynamic IP List if available  
 4. Add to firewall rules alongside IPv4 alias  
 
 ### Multiple VPN Servers
@@ -487,7 +487,7 @@ If you have multiple VPN servers:
 
 !!! warning "Important"
     - Protect configuration backups - they contain credentials
-    - Use strong EDL password
+    - Use strong Dynamic IP List password
     - Regularly review firewall logs
     - Test changes in non-production first
 

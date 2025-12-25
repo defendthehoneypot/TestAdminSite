@@ -72,16 +72,16 @@ Select whether this location is **Permanent** or **Temporary**:
 
 1. Click **"Register my location"**  
 2. You'll see a confirmation message  
-3. Your IP is now added to the External Dynamic List (EDL)  
+3. Your IP is now added to the Dynamic IP List  
 
 ---
 
 ## Step 5: Wait for Firewall Refresh
 
 !!! info "Please Wait Up to 60 Minutes"
-    After submitting, your IP is immediately added to the EDL. However, you need to wait for:
+    After submitting, your IP is immediately added to the Dynamic IP List. However, you need to wait for:
     
-    1. **Firewall refresh** - Your firewall polls the EDL periodically (typically every 5-60 minutes)
+    1. **Firewall refresh** - Your firewall polls the Dynamic IP List periodically (typically every 5-60 minutes)
     2. **ACL update** - The firewall updates its access control lists
     
     After the firewall refreshes, you should be able to connect to VPN.

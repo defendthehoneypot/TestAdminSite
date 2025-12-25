@@ -4,7 +4,7 @@
 
 # Check Point Integration
 
-Configure Check Point firewalls to use Vesper Secure's External Dynamic List for automated ACL updates.
+Configure Check Point firewalls to use Vesper Secure's Dynamic IP List for automated ACL updates.
 
 </div>
 
@@ -16,7 +16,7 @@ Check Point firewalls (R80.20+) support Updatable Objects (formerly External Obj
 
 ### What You'll Configure
 
-1. Updatable Object pointing to Vesper EDL  
+1. Updatable Object pointing to Vesper Dynamic IP List  
 2. Network group containing the updatable object  
 3. Access rule to allow registered IPs  
 4. Testing and validation  
@@ -31,7 +31,7 @@ Check Point firewalls (R80.20+) support Updatable Objects (formerly External Obj
 
 Ensure you have:
 
-- [ ] EDL URL, username, and password from [Setup & Configuration](../setup.md)
+- [ ] Dynamic IP List URL, username, and password from [Setup & Configuration](../setup.md)
 - [ ] Check Point SmartConsole access
 - [ ] Check Point Security Management Server (SMS) R80.20 or later
 - [ ] Outbound HTTPS (port 443) allowed from SMS to `edl.vespersecure.com`
@@ -70,14 +70,14 @@ Password: ••••••••
 
 - **Name**: Use a descriptive name without spaces (e.g., `Vesper_Secure_Allowed_IPs`)
 - **Resource**: Select "External - IP Address List"
-- **URI**: Your unique EDL URL from Vesper admin panel
+- **URI**: Your unique Dynamic IP List URL from Vesper admin panel
 - **Update Interval**: 
   - 300 seconds (5 minutes) for fastest access grants
   - 900 seconds (15 minutes) recommended for balanced approach
   - 3600 seconds (1 hour) for reduced load
 - **Authentication**: Select "HTTP Basic Authentication"
 - **Username**: Your organization ID (starts with `org_`)
-- **Password**: EDL password from Vesper admin panel
+- **Password**: Dynamic IP List password from Vesper admin panel
 
 ### Test Connectivity
 
@@ -159,7 +159,7 @@ Add a comment to the rule for documentation:
 
 ```
 Allows VPN access for users registered through Vesper Secure portal. 
-IPs are automatically updated from EDL every 15 minutes.
+IPs are automatically updated from Dynamic IP List every 15 minutes.
 ```
 
 ---
@@ -192,7 +192,7 @@ Track: Log
 1. Click **Install Policy** (toolbar icon)  
 2. Select target gateways  
 3. Review changes in the preview  
-4. Add an installation comment (e.g., "Added Vesper Secure EDL integration")  
+4. Add an installation comment (e.g., "Added Vesper Secure Dynamic IP List integration")  
 5. Click **Install** to push the policy to gateways  
 
 Wait for the policy installation to complete successfully.
@@ -222,7 +222,7 @@ Wait for the policy installation to complete successfully.
 ### Test with User Registration
 
 1. Have a test user register their IP through Vesper portal  
-2. Wait for EDL refresh interval (5-15 minutes depending on your setting)  
+2. Wait for Dynamic IP List refresh interval (5-15 minutes depending on your setting)  
 3. Force manual update if desired:  
    - Select the updatable object
    - Click **Update Now**
@@ -336,7 +336,7 @@ If using Check Point HA cluster:
 
 1. Configure updatable object on the active management server  
 2. Policy and object configuration will sync to standby  
-3. Both SMS instances will independently fetch the EDL  
+3. Both SMS instances will independently fetch the Dynamic IP List  
 4. Gateways will use policy from active SMS  
 
 ### Multiple VPN Gateways
@@ -363,7 +363,7 @@ Create a separate network group with static IPs for critical administrators:
 1. Create static IP host objects for admin IPs  
 2. Create a new network group with these static IPs  
 3. Add this group as an additional source in your allow rule  
-4. Provides backup access if EDL is unavailable  
+4. Provides backup access if Dynamic IP List is unavailable  
 
 ---
 
@@ -389,7 +389,7 @@ Create a separate network group with static IPs for critical administrators:
 
 !!! warning "Important"
     - Protect SMS access - credentials are stored there
-    - Use strong EDL password
+    - Use strong Dynamic IP List password
     - Review logs regularly for security issues
     - Test policy changes in non-production first
 

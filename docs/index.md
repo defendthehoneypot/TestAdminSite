@@ -9,7 +9,7 @@ Vesper Secure provides a simple solution to a common problem: **managing which I
 Instead of manually maintaining static IP allow-lists, Vesper Secure:
 
 - Provides a **web portal** where users register their IP addresses
-- Creates a **dynamic External Dynamic List (EDL)** of registered IPs
+- Creates a **dynamic Dynamic IP List** of registered IPs
 - Serves this list via **HTTPS** for your firewall to consume
 - **Automatically updates** your firewall ACLs as users register new locations
 
@@ -20,11 +20,11 @@ Instead of manually maintaining static IP allow-lists, Vesper Secure:
 !!! note "1. User Registers IP Address"
     Users visit the Vesper Secure portal and authenticate using SSO (EntraID, Google, or Okta). They register their current location as either permanent (home/office) or temporary (hotel/coffee shop).
 
-!!! note "2. IP Automatically Added to EDL"
-    The user's IP address is immediately added to the External Dynamic List served at your organization's unique HTTPS endpoint. No admin approval is required.
+!!! note "2. IP Automatically Added to Dynamic IP List"
+    The user's IP address is immediately added to the Dynamic IP List served at your organization's unique HTTPS endpoint. No admin approval is required.
 
 !!! note "3. Firewall Updates ACL"
-    Your firewall periodically polls the EDL (typically every 5-60 minutes) and automatically updates its access control lists to allow traffic from registered IPs.
+    Your firewall periodically polls the Dynamic IP List (typically every 5-60 minutes) and automatically updates its access control lists to allow traffic from registered IPs.
 
 !!! note "4. Admin Monitoring (Optional)"
     Administrators can monitor registered locations and revoke access if needed, but approval is not required as part of the standard workflow.
@@ -40,7 +40,7 @@ IT and security professionals who configure and manage the system.
 **You will:**
 
 - Configure SSO integration (EntraID, Google, Okta)
-- Integrate the EDL with your firewall
+- Integrate the Dynamic IP List with your firewall
 - Monitor user registrations
 - Revoke access when needed
 - Audit access logs

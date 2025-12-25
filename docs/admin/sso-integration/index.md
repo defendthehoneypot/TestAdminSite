@@ -171,7 +171,7 @@ For provider-specific troubleshooting, see the individual setup guides:
 
 After configuring SSO integration:
 
-1. **[Set up Firewall Integration](../firewall-integration/index.md)** - Connect the EDL to your firewall  
+1. **[Set up Firewall Integration](../firewall-integration/index.md)** - Connect the Dynamic IP List to your firewall  
 2. **[Configure User Management](../user-management.md)** - Monitor and manage user access  
 3. **Review Best Practices** - Ensure your deployment follows security best practices  
 

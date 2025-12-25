@@ -84,7 +84,7 @@ If you need assistance with SSO configuration:
 - **[Back to Administrator Guide](index.md)** - Main admin documentation
 - **[Setup & Configuration](setup.md)** - Initial Vesper Secure setup
 - **[User Management](user-management.md)** - Managing user access
-- **[Firewall Integration](firewall-integration/index.md)** - Connect EDL to firewall
+- **[Firewall Integration](firewall-integration/index.md)** - Connect Dynamic IP List to firewall
 
 ---
 

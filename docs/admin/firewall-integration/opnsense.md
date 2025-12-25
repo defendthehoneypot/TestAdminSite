@@ -4,7 +4,7 @@
 
 # OPNsense Integration
 
-Configure OPNsense firewalls to use Vesper Secure's External Dynamic List for automated ACL updates.
+Configure OPNsense firewalls to use Vesper Secure's Dynamic IP List for automated ACL updates.
 
 </div>
 
@@ -16,7 +16,7 @@ OPNsense (19.1+) provides native URL Table Aliases that can fetch IP addresses f
 
 ### What You'll Configure
 
-1. URL Table Alias pointing to Vesper EDL  
+1. URL Table Alias pointing to Vesper Dynamic IP List  
 2. Firewall rule to allow registered IPs  
 3. Testing and validation  
 
@@ -30,7 +30,7 @@ OPNsense (19.1+) provides native URL Table Aliases that can fetch IP addresses f
 
 Ensure you have:
 
-- [ ] EDL URL, username, and password from [Setup & Configuration](../setup.md)
+- [ ] Dynamic IP List URL, username, and password from [Setup & Configuration](../setup.md)
 - [ ] OPNsense 19.1 or later
 - [ ] OPNsense web interface admin access
 - [ ] Outbound HTTPS (port 443) allowed from OPNsense to `edl.vespersecure.com`
@@ -65,10 +65,10 @@ Refresh Frequency: 1 day
 - **Name**: Use a descriptive name without spaces (e.g., `Vesper_Allowed_IPs`)
 - **Type**: Select **"URL Table (IPs)"** from the dropdown
 - **Description**: Add a clear description for documentation
-- **Content**: Your EDL URL with embedded credentials
+- **Content**: Your Dynamic IP List URL with embedded credentials
   - Format: `https://username:password@edl.vespersecure.com/lists/your-id`
   - Replace `username` with your org ID (e.g., `org_xxxxx`)
-  - Replace `password` with your EDL password
+  - Replace `password` with your Dynamic IP List password
   - Replace `your-id` with your list ID
 - **Refresh Frequency**: 
   - 1 day (default, updates daily at midnight)
@@ -416,7 +416,7 @@ For faster than daily updates, use cron:
    Weekdays: *
    Command: Update Alias
    Parameters: Vesper_Allowed_IPs
-   Description: Update Vesper EDL more frequently
+   Description: Update Vesper Dynamic IP List more frequently
    ```
 4. Click **Save**  
 
@@ -429,7 +429,7 @@ If using OPNsense HA (CARP):
 1. Configure alias and rules on the primary node  
 2. Configuration will sync to secondary via XMLRPC Config Sync  
 3. Ensure config sync is enabled: **System** → **High Availability** → **Settings**  
-4. Both nodes will independently fetch the EDL  
+4. Both nodes will independently fetch the Dynamic IP List  
 5. Ensure both nodes have internet connectivity  
 
 ### IPv6 Support
@@ -437,8 +437,8 @@ If using OPNsense HA (CARP):
 To support IPv6 addresses:
 
 1. Create a second alias with Type "URL Table (IPs)"  
-2. Use the same URL (if EDL returns IPv6)  
-3. Or configure separate IPv6 EDL if available  
+2. Use the same URL (if Dynamic IP List returns IPv6)  
+3. Or configure separate IPv6 Dynamic IP List if available  
 4. Create firewall rules with TCP/IP Version: IPv6  
 5. Use the IPv6 alias in those rules  
 
@@ -483,7 +483,7 @@ Maintain a backup method for critical admins:
 
 !!! warning "Important"
     - Protect configuration backups - they contain credentials
-    - Use strong EDL password
+    - Use strong Dynamic IP List password
     - Regularly review firewall logs for security
     - Test configuration changes in non-production first
 

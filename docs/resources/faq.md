@@ -13,8 +13,8 @@ Vesper Secure is a dynamic IP list management system that serves registered IP a
 ### How does it work?
 
 1. Users register their location through the access portal  
-2. IPs are automatically added to the External Dynamic List (EDL)  
-3. Your firewall polls the EDL and automatically updates ACLs  
+2. IPs are automatically added to the Dynamic IP List  
+3. Your firewall polls the Dynamic IP List and automatically updates ACLs  
 4. Administrators can monitor and revoke access if needed  
 5. Only registered IPs can access protected resources  
 
@@ -29,7 +29,7 @@ Vesper Secure is a dynamic IP list management system that serves registered IP a
 **Vesper Secure:**
 - Automatic firewall updates
 - Self-service user registration
-- Automatic IP addition to EDL
+- Automatic IP addition to Dynamic IP List
 - Audit logs and compliance
 - Temporary access management
 
@@ -37,7 +37,7 @@ Vesper Secure is a dynamic IP list management system that serves registered IP a
 
 ### Which firewalls are supported?
 
-Vesper Secure works with any firewall that supports External Dynamic Lists (EDL) or URL-based IP lists, including:
+Vesper Secure works with any firewall that supports Dynamic IP Lists or URL-based IP lists, including:
 
 - Palo Alto Networks (External Dynamic Lists)
 - Fortinet FortiGate (External Connectors)
@@ -47,9 +47,9 @@ Vesper Secure works with any firewall that supports External Dynamic Lists (EDL)
 - OPNsense 19.1+ (URL Table Aliases)
 - Juniper SRX (Dynamic Address Objects)
 
-**Not supported:** Sophos XG Firewall, WatchGuard, SonicWall, and Zyxel do not have comparable EDL functionality for custom IP lists. These firewalls require manual IP list management and are not recommended for use with Vesper Secure.
+**Not supported:** Sophos XG Firewall, WatchGuard, SonicWall, and Zyxel do not have comparable Dynamic IP List functionality for custom IP lists. These firewalls require manual IP list management and are not recommended for use with Vesper Secure.
 
-### How often does the EDL update?
+### How often does the Dynamic IP List update?
 
 You can configure the refresh interval on your firewall. We recommend 5 minutes for responsive access, or hourly for reduced load.
 

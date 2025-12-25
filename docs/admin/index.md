@@ -24,7 +24,7 @@ Configure single sign-on with Azure AD (Entra ID), Okta, or other SAML 2.0 provi
 
 **[Firewall Integration](./firewall-integration/index.md)**
 
-Integrate the External Dynamic List with your firewall.
+Integrate the Dynamic IP List with your firewall.
 
 ### User Management
 
@@ -51,7 +51,7 @@ Follow these guides in order for initial setup:
 
 1. **[Setup & Configuration](./setup.md)** - Configure your organization  
 2. **[SSO Integration](./sso-integration/index.md)** - Connect your identity provider  
-3. **[Firewall Integration](./firewall-integration/index.md)** - Add EDL to your firewall  
+3. **[Firewall Integration](./firewall-integration/index.md)** - Add Dynamic IP List to your firewall  
 4. **[User Management](./user-management.md)** - Manage ongoing access  
 
 ---
