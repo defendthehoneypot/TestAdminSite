@@ -264,8 +264,8 @@ If your firewall supports URL-based IP lists but isn't covered in the dedicated 
 ### URL Fetch Fails
 
 **Symptoms:**
-- Firewall shows update failed
-- Error accessing URL
+- Firewall shows update failed  
+- Error accessing URL  
 - Empty list when IPs should exist
 
 **Solutions:**
@@ -297,7 +297,7 @@ If your firewall supports URL-based IP lists but isn't covered in the dedicated 
 ### Authentication Issues
 
 **Symptoms:**
-- 401 Unauthorized errors
+- 401 Unauthorized errors  
 - Authentication failed in logs
 
 **Solutions:**
@@ -320,7 +320,7 @@ If your firewall supports URL-based IP lists but isn't covered in the dedicated 
 ### Traffic Not Allowed
 
 **Symptoms:**
-- User registered but still blocked
+- User registered but still blocked  
 - Policy not matching traffic
 
 **Solutions:**

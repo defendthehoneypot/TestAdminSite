@@ -329,8 +329,8 @@ Or view in J-Web:
 ### Feed Download Fails
 
 **Symptoms:**
-- Dynamic address object is empty
-- Feed status shows error
+- Dynamic address object is empty  
+- Feed status shows error  
 - System logs show update failures
 
 **Solutions:**
@@ -378,7 +378,7 @@ Or view in J-Web:
 ### Authentication Errors
 
 **Symptoms:**
-- Feed shows 401 authentication failure
+- Feed shows 401 authentication failure  
 - Logs indicate credential issues
 
 **Solutions:**
@@ -406,7 +406,7 @@ Or view in J-Web:
 ### Traffic Not Being Allowed
 
 **Symptoms:**
-- User registered but VPN connection fails
+- User registered but VPN connection fails  
 - Logs show denies instead of permits
 
 **Solutions:**
@@ -456,7 +456,7 @@ Or view in J-Web:
 ### Dynamic Address Object Empty
 
 **Symptoms:**
-- Object shows 0 entries
+- Object shows 0 entries  
 - No IPs loaded
 
 **Solutions:**

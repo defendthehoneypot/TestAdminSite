@@ -278,8 +278,8 @@ Should return list of IPs or empty response if no users registered.
 ### Alias Download Fails
 
 **Symptoms:**
-- Alias shows error status (red X)
-- Contents are empty when they shouldn't be
+- Alias shows error status (red X)  
+- Contents are empty when they shouldn't be  
 - Logs show download errors
 
 **Solutions:**
@@ -333,7 +333,7 @@ Example: Password `Pass@123#` becomes `Pass%40123%23`
 ### Traffic Not Being Allowed
 
 **Symptoms:**
-- User registered but VPN connection still fails
+- User registered but VPN connection still fails  
 - Firewall logs show blocks instead of passes
 
 **Solutions:**
@@ -370,7 +370,7 @@ Example: Password `Pass@123#` becomes `Pass%40123%23`
 ### Authentication Errors (401)
 
 **Symptoms:**
-- Alias shows authentication failure
+- Alias shows authentication failure  
 - 401 errors in logs
 
 **Solutions:**

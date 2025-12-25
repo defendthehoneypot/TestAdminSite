@@ -243,8 +243,8 @@ Wait for the policy installation to complete successfully.
 ### Updatable Object Update Fails
 
 **Symptoms:**
-- Object shows "Failed" status
-- Error in System Events logs
+- Object shows "Failed" status  
+- Error in System Events logs  
 - No IPs being loaded
 
 **Solutions:**
@@ -280,7 +280,7 @@ Wait for the policy installation to complete successfully.
 ### Traffic Not Being Allowed
 
 **Symptoms:**
-- User registered but still can't connect
+- User registered but still can't connect  
 - Logs show traffic being denied
 
 **Solutions:**
@@ -312,7 +312,7 @@ Wait for the policy installation to complete successfully.
 ### Authentication Errors
 
 **Symptoms:**
-- 401 Unauthorized in logs
+- 401 Unauthorized in logs  
 - Updatable object shows authentication failure
 
 **Solutions:**

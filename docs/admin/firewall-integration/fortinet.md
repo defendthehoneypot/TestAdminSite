@@ -258,8 +258,8 @@ You can force a manual update:
 ### External Connector Shows "Failed" or "Disconnected"
 
 **Symptoms:**
-- Connector status shows red or failed
-- No IPs being populated
+- Connector status shows red or failed  
+- No IPs being populated  
 - Error in connector details
 
 **Solutions:**
@@ -296,7 +296,7 @@ You can force a manual update:
 ### Address Object is Empty
 
 **Symptoms:**
-- Connector shows connected but address object has no IPs
+- Connector shows connected but address object has no IPs  
 - Policy not matching traffic
 
 **Solutions:**
@@ -321,7 +321,7 @@ You can force a manual update:
 ### Traffic Not Being Allowed
 
 **Symptoms:**
-- User registered but still can't connect
+- User registered but still can't connect  
 - Logs show denies
 
 **Solutions:**
@@ -350,7 +350,7 @@ You can force a manual update:
 ### Authentication Errors
 
 **Symptoms:**
-- Connector shows authentication failed
+- Connector shows authentication failed  
 - 401 Unauthorized in logs
 
 **Solutions:**
