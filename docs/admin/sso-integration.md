@@ -73,9 +73,9 @@ The new SSO documentation provides:
 
 If you need assistance with SSO configuration:
 
-1. Check the **[troubleshooting sections](sso-integration/index.md#troubleshooting)** in each guide
-2. Review the **[general troubleshooting guide](../resources/troubleshooting.md)**
-3. Contact Vesper Secure support at support@vespersecure.com
+1. Check the **[troubleshooting sections](sso-integration/index.md#troubleshooting)** in each guide  
+2. Review the **[general troubleshooting guide](../resources/troubleshooting.md)**  
+3. Contact Vesper Secure support at support@vespersecure.com  
 
 ---
 

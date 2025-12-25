@@ -10,11 +10,11 @@ The External Dynamic List (EDL) is an HTTPS endpoint that serves registered IP a
 
 ### How It Works
 
-1. **Users Register**: Users register their IP addresses through the Vesper Secure portal
-2. **EDL Updates**: IP addresses are automatically added to the External Dynamic List
-3. **Firewall Polls**: Your firewall periodically checks the EDL for updates
-4. **ACLs Update**: Firewall automatically updates access control lists
-5. **Access Granted**: Only registered IPs can access protected resources
+1. **Users Register**: Users register their IP addresses through the Vesper Secure portal  
+2. **EDL Updates**: IP addresses are automatically added to the External Dynamic List  
+3. **Firewall Polls**: Your firewall periodically checks the EDL for updates  
+4. **ACLs Update**: Firewall automatically updates access control lists  
+5. **Access Granted**: Only registered IPs can access protected resources  
 
 ### Benefits
 
@@ -268,20 +268,20 @@ Should return IP addresses or an empty list.
 
 ### Test User Access Flow
 
-1. Have a test user register through Vesper portal
-2. User's IP is automatically added to EDL
-3. Wait for EDL refresh interval (e.g., 5 minutes)
-4. Verify test user's IP appears in EDL:
+1. Have a test user register through Vesper portal  
+2. User's IP is automatically added to EDL  
+3. Wait for EDL refresh interval (e.g., 5 minutes)  
+4. Verify test user's IP appears in EDL:  
    ```bash
    curl -u "user:pass" https://edl.vespersecure.com/lists/your-id | grep "test-user-ip"
    ```
-5. Test VPN connection from test user's location (should succeed)
+5. Test VPN connection from test user's location (should succeed)  
 
 ### Verify Blocking
 
-1. Try VPN connection from an unregistered IP address
-2. Should be blocked by firewall
-3. Check firewall logs for deny entry
+1. Try VPN connection from an unregistered IP address  
+2. Should be blocked by firewall  
+3. Check firewall logs for deny entry  
 
 ---
 
@@ -324,9 +324,9 @@ For platform-specific troubleshooting, see the individual setup guides:
 
 After firewall integration:
 
-1. **[Configure User Management](../user-management.md)** - Set up monitoring workflows
-2. **Test with pilot users** - Validate the complete flow
-3. **Monitor and adjust** - Review logs and optimize policies
+1. **[Configure User Management](../user-management.md)** - Set up monitoring workflows  
+2. **Test with pilot users** - Validate the complete flow  
+3. **Monitor and adjust** - Review logs and optimize policies  
 
 ---
 

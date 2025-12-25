@@ -19,21 +19,21 @@
 
 **Solutions:**
 
-1. **Test connectivity from firewall:**
+1. **Test connectivity from firewall:**  
    ```bash
    curl -v https://edl.vespersecure.com
    ```
 
-2. **Check DNS:**
+2. **Check DNS:**  
    ```bash
    nslookup edl.vespersecure.com
    ```
 
-3. **Verify outbound HTTPS (port 443) is allowed**
+3. **Verify outbound HTTPS (port 443) is allowed**  
 
-4. **Check SSL inspection isn't blocking**
+4. **Check SSL inspection isn't blocking**  
 
-5. **Test with credentials:**
+5. **Test with credentials:**  
    ```bash
    curl -u "org_xxxxx:password" https://edl.vespersecure.com/lists/your-id
    ```
@@ -53,14 +53,14 @@
 
 **Solutions:**
 
-1. **Verify credentials in Vesper admin panel**
-2. **Check for typos or extra spaces**
-3. **Re-enter credentials on firewall** (copy/paste carefully)
-4. **Test manually:**
+1. **Verify credentials in Vesper admin panel**  
+2. **Check for typos or extra spaces**  
+3. **Re-enter credentials on firewall** (copy/paste carefully)  
+4. **Test manually:**  
    ```bash
    curl -v -u "username:password" https://edl.vespersecure.com/lists/your-id
    ```
-5. **If needed, regenerate credentials in admin panel**
+5. **If needed, regenerate credentials in admin panel**  
 
 ---
 
@@ -77,11 +77,11 @@
 
 **Solutions:**
 
-1. **Check admin panel** - Are registrations showing as active?
-2. **Verify temporary locations haven't expired**
-3. **Force manual EDL refresh on firewall**
-4. **Check user's registration status in admin panel**
-5. **Wait for next scheduled EDL refresh**
+1. **Check admin panel** - Are registrations showing as active?  
+2. **Verify temporary locations haven't expired**  
+3. **Force manual EDL refresh on firewall**  
+4. **Check user's registration status in admin panel**  
+5. **Wait for next scheduled EDL refresh**  
 
 ---
 
@@ -101,15 +101,15 @@
 
 **Solutions:**
 
-1. **Wait for EDL refresh** (up to refresh interval)
-2. **Force manual EDL refresh**
-3. **Check firewall policy order:**
+1. **Wait for EDL refresh** (up to refresh interval)  
+2. **Force manual EDL refresh**  
+3. **Check firewall policy order:**  
    - Vesper allow rule must be ABOVE deny rules
-4. **Verify user's current IP:**
+4. **Verify user's current IP:**  
    - Have user visit whatismyipaddress.com
    - Compare to IP in EDL
-5. **Check request status in admin panel**
-6. **Review firewall logs** for deny reason
+5. **Check request status in admin panel**  
+6. **Review firewall logs** for deny reason  
 
 ---
 
@@ -128,12 +128,12 @@
 
 **Solutions:**
 
-1. **Check internet connectivity**
-2. **Try different browser** (Chrome, Firefox, Edge)
-3. **Clear browser cache and cookies**
-4. **Verify user in correct Entra ID group** (if applicable)
-5. **Check identity provider status** (Google/Microsoft)
-6. **Try incognito/private mode**
+1. **Check internet connectivity**  
+2. **Try different browser** (Chrome, Firefox, Edge)  
+3. **Clear browser cache and cookies**  
+4. **Verify user in correct Entra ID group** (if applicable)  
+5. **Check identity provider status** (Google/Microsoft)  
+6. **Try incognito/private mode**  
 
 ---
 
@@ -150,10 +150,10 @@
 
 **Solutions:**
 
-1. **Expected behavior** if recently authenticated
-2. **Verify MFA policy** in identity provider
-3. **Try private/incognito mode** to test fresh login
-4. **Check identity provider MFA settings**
+1. **Expected behavior** if recently authenticated  
+2. **Verify MFA policy** in identity provider  
+3. **Try private/incognito mode** to test fresh login  
+4. **Check identity provider MFA settings**  
 
 ---
 
@@ -167,12 +167,12 @@
 
 **Solutions:**
 
-1. **Verify admin email address**
-2. **Use password reset** if needed
-3. **Check organization is active**
-4. **Clear browser cache**
-5. **Try different browser**
-6. **Contact Vesper support** if locked out
+1. **Verify admin email address**  
+2. **Use password reset** if needed  
+3. **Check organization is active**  
+4. **Clear browser cache**  
+5. **Try different browser**  
+6. **Contact Vesper support** if locked out  
 
 ---
 
@@ -190,11 +190,11 @@
 
 **Solutions:**
 
-1. **Verify tenant ID is correct**
-2. **Ensure you have Global Admin or Application Admin role**
-3. **Grant all required API permissions** in Azure portal
-4. **Re-authorize the application**
-5. **Check selected groups have users**
+1. **Verify tenant ID is correct**  
+2. **Ensure you have Global Admin or Application Admin role**  
+3. **Grant all required API permissions** in Azure portal  
+4. **Re-authorize the application**  
+5. **Check selected groups have users**  
 
 ---
 
@@ -203,26 +203,26 @@
 #### Palo Alto: EDL test fails
 
 **Solutions:**
-1. Check certificate profile settings
-2. Verify management interface can reach internet
-3. Test from CLI: `test external-list <name>`
-4. Check system logs
+1. Check certificate profile settings  
+2. Verify management interface can reach internet  
+3. Test from CLI: `test external-list <name>`  
+4. Check system logs  
 
 #### FortiGate: External connector not updating
 
 **Solutions:**
-1. Verify interface selection
-2. Check routing for management traffic
-3. Test with `diagnose test application fcnacd 4`
-4. Review external connector logs
+1. Verify interface selection  
+2. Check routing for management traffic  
+3. Test with `diagnose test application fcnacd 4`  
+4. Review external connector logs  
 
 #### Cisco ASA: Dynamic object not populating
 
 **Solutions:**
-1. Verify basic-auth configured correctly
-2. Check crypto configuration if using SSL
-3. Test with `show dynamic-object update-url`
-4. Review object-group membership
+1. Verify basic-auth configured correctly  
+2. Check crypto configuration if using SSL  
+3. Test with `show dynamic-object update-url`  
+4. Review object-group membership  
 
 ---
 

@@ -16,10 +16,10 @@ pfSense (2.4+) provides native URL Table Aliases that can fetch IP addresses fro
 
 ### What You'll Configure
 
-1. URL Table Alias pointing to Vesper EDL
-2. Firewall rule to allow registered IPs
-3. Optional pfBlockerNG integration for advanced features
-4. Testing and validation
+1. URL Table Alias pointing to Vesper EDL  
+2. Firewall rule to allow registered IPs  
+3. Optional pfBlockerNG integration for advanced features  
+4. Testing and validation  
 
 ### Time Required
 
@@ -47,9 +47,9 @@ This method uses pfSense's built-in URL Table functionality without additional p
 
 #### Navigate to Aliases
 
-1. Log in to pfSense web interface
-2. Go to **Firewall** → **Aliases** → **IP** tab
-3. Click **Add** (+ icon)
+1. Log in to pfSense web interface  
+2. Go to **Firewall** → **Aliases** → **IP** tab  
+3. Click **Add** (+ icon)  
 
 #### Configure the Alias
 
@@ -82,9 +82,9 @@ URL: https://org_xxxxx:password@edl.vespersecure.com/lists/your-id
 
 #### Save the Alias
 
-1. Click **Save**
-2. Click **Apply Changes** at the top of the page
-3. pfSense will immediately attempt to fetch the URL
+1. Click **Save**  
+2. Click **Apply Changes** at the top of the page  
+3. pfSense will immediately attempt to fetch the URL  
 
 ---
 
@@ -92,10 +92,10 @@ URL: https://org_xxxxx:password@edl.vespersecure.com/lists/your-id
 
 #### Check Alias Status
 
-1. Go to **Diagnostics** → **Tables**
-2. Find your alias name (e.g., `Vesper_Allowed_IPs`)
-3. Verify it shows IP addresses in the list
-4. If empty and no users registered yet, this is normal
+1. Go to **Diagnostics** → **Tables**  
+2. Find your alias name (e.g., `Vesper_Allowed_IPs`)  
+3. Verify it shows IP addresses in the list  
+4. If empty and no users registered yet, this is normal  
 
 !!! tip "Manual Update"
     To force an immediate update, click the **refresh icon** next to the alias in **Firewall** → **Aliases**.
@@ -106,9 +106,9 @@ URL: https://org_xxxxx:password@edl.vespersecure.com/lists/your-id
 
 #### Navigate to Firewall Rules
 
-1. Go to **Firewall** → **Rules**
-2. Select the **WAN** interface (or interface where external traffic arrives)
-3. Click **Add** (↑ up arrow) to add rule at top
+1. Go to **Firewall** → **Rules**  
+2. Select the **WAN** interface (or interface where external traffic arrives)  
+3. Click **Add** (↑ up arrow) to add rule at top  
 
 !!! warning "Rule Order Matters"
     Add this rule at the **top** of the rule list to ensure it's evaluated before any deny rules.
@@ -151,16 +151,16 @@ Description: Allow Vesper Secure verified users to VPN
 
 #### Advanced Options (Recommended)
 
-1. Click **Display Advanced** button
-2. Under **Extra Options**:
+1. Click **Display Advanced** button  
+2. Under **Extra Options**:  
    - Enable **Log**: Check to log packets matched by this rule
    - Set log description if desired
 
 #### Save the Rule
 
-1. Click **Save**
-2. Click **Apply Changes** at the top
-3. The rule is now active
+1. Click **Save**  
+2. Click **Apply Changes** at the top  
+3. The rule is now active  
 
 ---
 
@@ -168,8 +168,8 @@ Description: Allow Vesper Secure verified users to VPN
 
 For explicit logging of denied access:
 
-1. Add another rule **below** the allow rule
-2. Configure:
+1. Add another rule **below** the allow rule  
+2. Configure:  
    ```
    Action: Block
    Interface: WAN
@@ -189,10 +189,10 @@ pfBlockerNG provides more frequent updates and advanced features.
 
 ### Step 1: Install pfBlockerNG
 
-1. Go to **System** → **Package Manager** → **Available Packages**
-2. Search for **pfBlockerNG**
-3. Click **Install**
-4. Wait for installation to complete
+1. Go to **System** → **Package Manager** → **Available Packages**  
+2. Search for **pfBlockerNG**  
+3. Click **Install**  
+4. Wait for installation to complete  
 
 !!! info "pfBlockerNG vs pfBlockerNG-devel"
     Either version works. pfBlockerNG-devel has newer features but may be less stable.
@@ -203,8 +203,8 @@ pfBlockerNG provides more frequent updates and advanced features.
 
 #### Navigate to pfBlockerNG
 
-1. Go to **Firewall** → **pfBlockerNG** → **IP** → **IP Configuration**
-2. Click **Add** to create new IP list
+1. Go to **Firewall** → **pfBlockerNG** → **IP** → **IP Configuration**  
+2. Click **Add** to create new IP list  
 
 #### Configure IP List
 
@@ -241,10 +241,10 @@ Click **Save**
 
 ### Step 3: Enable pfBlockerNG
 
-1. Go to **Firewall** → **pfBlockerNG** → **General** tab
-2. Enable pfBlockerNG: Check
-3. Click **Save**
-4. Click **Update** button to force initial download
+1. Go to **Firewall** → **pfBlockerNG** → **General** tab  
+2. Enable pfBlockerNG: Check  
+3. Click **Save**  
+4. Click **Update** button to force initial download  
 
 ---
 
@@ -252,9 +252,9 @@ Click **Save**
 
 If using "Alias Native" mode:
 
-1. Go to **Firewall** → **Rules** → **WAN**
-2. Create rule using the pfBlockerNG alias (similar to Method 1)
-3. Source: Select the alias created by pfBlockerNG
+1. Go to **Firewall** → **Rules** → **WAN**  
+2. Create rule using the pfBlockerNG alias (similar to Method 1)  
+3. Source: Select the alias created by pfBlockerNG  
 
 pfBlockerNG will automatically create rules if using Permit/Deny actions.
 
@@ -266,16 +266,16 @@ pfBlockerNG will automatically create rules if using Permit/Deny actions.
 
 **For Method 1:**
 
-1. Go to **Diagnostics** → **Tables**
-2. Find `Vesper_Allowed_IPs`
-3. Click to view contents
-4. Verify IPs are listed
+1. Go to **Diagnostics** → **Tables**  
+2. Find `Vesper_Allowed_IPs`  
+3. Click to view contents  
+4. Verify IPs are listed  
 
 **For Method 2 (pfBlockerNG):**
 
-1. Go to **Firewall** → **pfBlockerNG** → **Reports**
-2. Select your list
-3. View downloaded IPs
+1. Go to **Firewall** → **pfBlockerNG** → **Reports**  
+2. Select your list  
+3. View downloaded IPs  
 
 ### Test URL Fetch Manually
 
@@ -295,20 +295,20 @@ Should return list of IPs or empty response.
 
 ### Test with User Registration
 
-1. Have a test user register their IP through Vesper portal
-2. Wait for pfSense alias update (up to 24 hours for Method 1, faster for Method 2)
-3. Force manual update:
+1. Have a test user register their IP through Vesper portal  
+2. Wait for pfSense alias update (up to 24 hours for Method 1, faster for Method 2)  
+3. Force manual update:  
    - **Method 1**: Click refresh icon next to alias
    - **Method 2**: Click Update in pfBlockerNG
-4. Verify the test user's IP appears in the alias/list
-5. Test VPN connection from test user's location (should succeed)
+4. Verify the test user's IP appears in the alias/list  
+5. Test VPN connection from test user's location (should succeed)  
 
 ### Check Firewall Logs
 
-1. Go to **Status** → **System Logs** → **Firewall** tab
-2. Look for entries matching your rule description
-3. Verify connections from registered IPs are being passed
-4. Check that unregistered IPs are being blocked
+1. Go to **Status** → **System Logs** → **Firewall** tab  
+2. Look for entries matching your rule description  
+3. Verify connections from registered IPs are being passed  
+4. Check that unregistered IPs are being blocked  
 
 ---
 
@@ -322,27 +322,27 @@ Should return list of IPs or empty response.
 
 **Solutions:**
 
-1. **Verify Connectivity:**
+1. **Verify Connectivity:**  
    ```bash
    ping edl.vespersecure.com
    curl -I https://edl.vespersecure.com
    ```
 
-2. **Check DNS Resolution:**
+2. **Check DNS Resolution:**  
    - Go to **Diagnostics** → **DNS Lookup**
    - Look up `edl.vespersecure.com`
    - Verify it resolves correctly
 
-3. **Test URL with credentials:**
+3. **Test URL with credentials:**  
    ```bash
    curl "https://org_xxxxx:password@edl.vespersecure.com/lists/your-id"
    ```
 
-4. **Check System Logs:**
+4. **Check System Logs:**  
    - Go to **Status** → **System Logs** → **System** tab
    - Look for errors related to alias updates
 
-5. **Verify Credentials:**
+5. **Verify Credentials:**  
    - Ensure username and password are correct
    - Check for special characters that need URL encoding
    - Try re-entering credentials
@@ -367,22 +367,22 @@ Example: If password is `Pass@123`, use `Pass%40123` in URL.
 
 **Solutions:**
 
-1. **Verify Rule Order:**
+1. **Verify Rule Order:**  
    - Go to **Firewall** → **Rules** → **WAN**
    - Ensure Vesper allow rule is **above** any deny rules
    - Drag to reorder if needed
 
-2. **Check Alias Contents:**
+2. **Check Alias Contents:**  
    - Go to **Diagnostics** → **Tables**
    - Verify user's IP is in the alias
    - Force alias refresh if needed
 
-3. **Verify Rule Configuration:**
+3. **Verify Rule Configuration:**  
    - Check source alias is correct
    - Verify destination and ports match VPN configuration
    - Ensure Action is "Pass"
 
-4. **Review Logs:**
+4. **Review Logs:**  
    - Go to **Status** → **System Logs** → **Firewall**
    - Find blocked connection
    - Check which rule is blocking
@@ -395,11 +395,11 @@ Example: If password is `Pass@123`, use `Pass%40123` in URL.
 
 **Solutions:**
 
-1. **Use pfBlockerNG** (Method 2):
+1. **Use pfBlockerNG** (Method 2):  
    - Supports updates every 4 hours or more frequently
    - Better for dynamic environments
 
-2. **Create Custom Update Script** (Advanced):
+2. **Create Custom Update Script** (Advanced):  
    ```bash
    #!/bin/sh
    /etc/rc.update_url_aliases
@@ -408,7 +408,7 @@ Example: If password is `Pass@123`, use `Pass%40123` in URL.
    - Go to **System** → **Cron**
    - Add new cron entry to run script
 
-3. **Manual Updates**:
+3. **Manual Updates**:  
    - Refresh alias manually when needed
    - Educate users to request manual refresh for urgent access
 
@@ -420,9 +420,9 @@ Example: If password is `Pass@123`, use `Pass%40123` in URL.
 
 Create a cron job for more frequent updates:
 
-1. Go to **System** → **Cron**
-2. Click **Add**
-3. Configure:
+1. Go to **System** → **Cron**  
+2. Click **Add**  
+3. Configure:  
    ```
    Minute: */30 (every 30 minutes)
    Hour: *
@@ -432,7 +432,7 @@ Create a cron job for more frequent updates:
    Command: /etc/rc.update_url_aliases
    Description: Update Vesper EDL alias
    ```
-4. Click **Save**
+4. Click **Save**  
 
 !!! warning "System Load"
     Frequent updates may increase system load. Monitor pfSense resource usage.
@@ -441,27 +441,27 @@ Create a cron job for more frequent updates:
 
 If using pfSense HA (CARP):
 
-1. Configure alias and rules on primary node
-2. Configuration will sync to secondary via Config Sync
-3. Both nodes will independently fetch the EDL
-4. Ensure both nodes have internet connectivity
+1. Configure alias and rules on primary node  
+2. Configuration will sync to secondary via Config Sync  
+3. Both nodes will independently fetch the EDL  
+4. Ensure both nodes have internet connectivity  
 
 ### IPv6 Support
 
 To support IPv6 addresses:
 
-1. Create a second alias with type "URL Table (IPs)"
-2. Use the same URL (if EDL returns IPv6 addresses)
-3. Or create separate IPv6 EDL if available
-4. Add to firewall rules alongside IPv4 alias
+1. Create a second alias with type "URL Table (IPs)"  
+2. Use the same URL (if EDL returns IPv6 addresses)  
+3. Or create separate IPv6 EDL if available  
+4. Add to firewall rules alongside IPv4 alias  
 
 ### Multiple VPN Servers
 
 If you have multiple VPN servers:
 
-1. Use the same alias in multiple rules
-2. Create separate rules for each VPN destination
-3. Maintain consistent rule ordering
+1. Use the same alias in multiple rules  
+2. Create separate rules for each VPN destination  
+3. Maintain consistent rule ordering  
 
 ---
 
@@ -497,9 +497,9 @@ If you have multiple VPN servers:
 
 After pfSense integration:
 
-1. **[Configure User Management](../user-management.md)** - Monitor user registrations
-2. **[Test with pilot users](../user-management.md#onboarding-new-users)** - Validate the complete flow
-3. **[Review best practices](../../resources/best-practices.md)** - Optimize your deployment
+1. **[Configure User Management](../user-management.md)** - Monitor user registrations  
+2. **[Test with pilot users](../user-management.md#onboarding-new-users)** - Validate the complete flow  
+3. **[Review best practices](../../resources/best-practices.md)** - Optimize your deployment  
 
 ---
 

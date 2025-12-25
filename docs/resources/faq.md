@@ -12,11 +12,11 @@ Vesper Secure is a dynamic IP list management system that serves registered IP a
 
 ### How does it work?
 
-1. Users register their location through the access portal
-2. IPs are automatically added to the External Dynamic List (EDL)
-3. Your firewall polls the EDL and automatically updates ACLs
-4. Administrators can monitor and revoke access if needed
-5. Only registered IPs can access protected resources
+1. Users register their location through the access portal  
+2. IPs are automatically added to the External Dynamic List (EDL)  
+3. Your firewall polls the EDL and automatically updates ACLs  
+4. Administrators can monitor and revoke access if needed  
+5. Only registered IPs can access protected resources  
 
 ### What makes Vesper Secure different from static IP lists?
 
@@ -66,10 +66,10 @@ Users can register immediately through the portal. If you need faster access tha
 ### How do I register my location?
 
 See the [User Guide](../user/get-ip-added.md) for detailed instructions. Quick version:
-1. Visit [access.vespersecure.com](https://access.vespersecure.com)
-2. Log in with corporate credentials
-3. Choose Permanent or Temporary
-4. Wait for firewall refresh (typically 5-60 minutes)
+1. Visit [access.vespersecure.com](https://access.vespersecure.com)  
+2. Log in with corporate credentials  
+3. Choose Permanent or Temporary  
+4. Wait for firewall refresh (typically 5-60 minutes)  
 
 ### Do I need to register every time I connect?
 

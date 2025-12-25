@@ -59,10 +59,10 @@ The following firewalls do **NOT** have the required EDL functionality and **can
 
 If you're using an unsupported firewall, consider these alternatives:
 
-1. **Manual Updates**: Periodically export IPs from Vesper admin panel and manually update firewall rules
-2. **API Scripts**: If your firewall has an API, create a script to fetch the EDL and update rules programmatically
-3. **Intermediate Server**: Set up a server to fetch the EDL and push updates via your firewall's management interface
-4. **Platform Upgrade**: Consider upgrading to a firewall platform with native EDL support
+1. **Manual Updates**: Periodically export IPs from Vesper admin panel and manually update firewall rules  
+2. **API Scripts**: If your firewall has an API, create a script to fetch the EDL and update rules programmatically  
+3. **Intermediate Server**: Set up a server to fetch the EDL and push updates via your firewall's management interface  
+4. **Platform Upgrade**: Consider upgrading to a firewall platform with native EDL support  
 
 !!! tip "Looking for Specific Guides?"
     If you're using Palo Alto, Fortinet, Cisco, Check Point, pfSense, OPNsense, or Juniper SRX, we have dedicated guides:
@@ -155,10 +155,10 @@ Format: Plain text / IP List / One IP per line
 
 After adding the URL source, create an address object or alias that references it:
 
-1. Create a new address object/alias
-2. Select type: "Dynamic" or "URL-based" or "External"
-3. Reference the URL source you created
-4. Name it descriptively (e.g., `Vesper-Allowed-IPs`)
+1. Create a new address object/alias  
+2. Select type: "Dynamic" or "URL-based" or "External"  
+3. Reference the URL source you created  
+4. Name it descriptively (e.g., `Vesper-Allowed-IPs`)  
 
 Some firewalls combine steps 2 and 3 into a single configuration.
 
@@ -217,11 +217,11 @@ Check your firewall's interface for:
 
 ### Test with User Registration
 
-1. Have a test user register through Vesper portal
-2. Wait for firewall's update interval
-3. Force manual update if supported
-4. Verify user's IP appears in the list
-5. Test VPN connection from user's location
+1. Have a test user register through Vesper portal  
+2. Wait for firewall's update interval  
+3. Force manual update if supported  
+4. Verify user's IP appears in the list  
+5. Test VPN connection from user's location  
 
 ---
 
@@ -234,17 +234,17 @@ If your firewall supports URL-based IP lists but isn't covered in the dedicated 
 **General Configuration Steps:**
 
 ```
-1. Locate the feature in your firewall's interface
+1. Locate the feature in your firewall's interface  
    - Look for: "External Lists", "URL Tables", "Dynamic Objects"
    - Usually under: Network Objects, Addresses, or Security Settings
 
-2. Create new URL-based object:
+2. Create new URL-based object:  
    - Name: Vesper_Allowed_IPs
    - Type: URL Table / External List / IP List
    - URL: https://org_xxxxx:password@edl.vespersecure.com/lists/your-id
    - Update Frequency: As frequent as supported (5-60 minutes)
 
-3. Create firewall rule:
+3. Create firewall rule:  
    - Source: Vesper_Allowed_IPs object
    - Destination: VPN gateway
    - Action: Allow
@@ -270,26 +270,26 @@ If your firewall supports URL-based IP lists but isn't covered in the dedicated 
 
 **Solutions:**
 
-1. **Test DNS Resolution:**
+1. **Test DNS Resolution:**  
    - Verify firewall can resolve `edl.vespersecure.com`
    - Check DNS settings
 
-2. **Test Connectivity:**
+2. **Test Connectivity:**  
    - Verify outbound HTTPS (port 443) allowed
    - Check firewall can reach internet
    - Test from firewall CLI if available
 
-3. **Verify Authentication:**
+3. **Verify Authentication:**  
    - Double-check username and password
    - Test manually with curl
    - Ensure no special characters causing issues
 
-4. **Check Certificate Validation:**
+4. **Check Certificate Validation:**  
    - Verify firewall trusts SSL certificates
    - Check if SSL inspection interfering
    - Ensure certificate store is updated
 
-5. **Review Logs:**
+5. **Review Logs:**  
    - Check system logs for error messages
    - Look for HTTP error codes
    - Check for timeout errors
@@ -302,17 +302,17 @@ If your firewall supports URL-based IP lists but isn't covered in the dedicated 
 
 **Solutions:**
 
-1. **Verify Credentials:**
+1. **Verify Credentials:**  
    - Check username starts with `org_`
    - Verify password is correct
    - Ensure no spaces or hidden characters
 
-2. **Test Manually:**
+2. **Test Manually:**  
    ```bash
    curl -v -u "org_xxxxx:password" https://edl.vespersecure.com/lists/your-id
    ```
 
-3. **Check Authentication Method:**
+3. **Check Authentication Method:**  
    - Ensure using "Basic Authentication"
    - Verify firewall supports HTTP Basic Auth
    - Check if credentials need to be URL-encoded
@@ -325,22 +325,22 @@ If your firewall supports URL-based IP lists but isn't covered in the dedicated 
 
 **Solutions:**
 
-1. **Verify Rule Order:**
+1. **Verify Rule Order:**  
    - Ensure allow rule is ABOVE deny rules
    - Check rule hit counts
    - Verify rule is enabled
 
-2. **Check IP is in List:**
+2. **Check IP is in List:**  
    - View current IPs in address object
    - Confirm user's IP matches
    - Force update if needed
 
-3. **Review Rule Configuration:**
+3. **Review Rule Configuration:**  
    - Verify source address matches
    - Check zones/interfaces correct
    - Confirm ports/services match
 
-4. **Check Logs:**
+4. **Check Logs:**  
    - Review denied traffic logs
    - Identify which rule is blocking
    - Verify logging is enabled
@@ -366,18 +366,18 @@ If your firewall only supports daily updates:
 
 If your firewall doesn't support Basic Auth directly:
 
-1. **Embed credentials in URL** (less secure):
+1. **Embed credentials in URL** (less secure):  
    ```
    https://username:password@edl.vespersecure.com/lists/your-id
    ```
 
-2. **Use custom script**:
+2. **Use custom script**:  
    - Create script to fetch with curl
    - Save to local file
    - Point firewall at local file
    - Schedule script to run periodically
 
-3. **Use intermediate proxy**:
+3. **Use intermediate proxy**:  
    - Set up nginx or similar to handle auth
    - Firewall fetches from local proxy
 
@@ -385,9 +385,9 @@ If your firewall doesn't support Basic Auth directly:
 
 Vesper EDL returns plain text, one IP per line:
 ```
-192.0.2.1
-198.51.100.5
-203.0.113.42
+192.0.2.1  
+198.51.100.5  
+203.0.113.42  
 ```
 
 Some firewalls expect specific formats. If needed, create a script to:
@@ -430,17 +430,17 @@ Some firewalls expect specific formats. If needed, create a script to:
 
 ### Vendor-Specific Assistance
 
-1. **Check your firewall's documentation** for:
+1. **Check your firewall's documentation** for:  
    - URL-based IP lists
    - External threat feeds
    - Dynamic address objects
 
-2. **Search for**:
+2. **Search for**:  
    - "[Firewall Model] URL IP list"
    - "[Firewall Model] external IP feed"
    - "[Firewall Model] threat intelligence feed"
 
-3. **Contact vendor support** for:
+3. **Contact vendor support** for:  
    - Confirmation of feature support
    - Specific configuration steps
    - Best practices for your platform
@@ -459,9 +459,9 @@ If you need assistance integrating with your specific firewall:
 
 After firewall integration:
 
-1. **[Configure User Management](../user-management.md)** - Monitor user registrations
-2. **[Test with pilot users](../user-management.md#onboarding-new-users)** - Validate the complete flow
-3. **[Review best practices](../../resources/best-practices.md)** - Optimize your deployment
+1. **[Configure User Management](../user-management.md)** - Monitor user registrations  
+2. **[Test with pilot users](../user-management.md#onboarding-new-users)** - Validate the complete flow  
+3. **[Review best practices](../../resources/best-practices.md)** - Optimize your deployment  
 
 ---
 

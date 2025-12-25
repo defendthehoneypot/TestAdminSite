@@ -16,10 +16,10 @@ Palo Alto Networks firewalls have native support for External Dynamic Lists (EDL
 
 ### What You'll Configure
 
-1. External Dynamic List object pointing to Vesper EDL
-2. Security policy to allow registered IPs
-3. Optional deny policy for unregistered IPs
-4. Testing and validation
+1. External Dynamic List object pointing to Vesper EDL  
+2. Security policy to allow registered IPs  
+3. Optional deny policy for unregistered IPs  
+4. Testing and validation  
 
 ### Time Required
 
@@ -42,9 +42,9 @@ Ensure you have:
 
 ### Navigate to EDL Configuration
 
-1. Log in to Palo Alto web interface
-2. Go to **Objects** → **External Dynamic Lists**
-3. Click **Add**
+1. Log in to Palo Alto web interface  
+2. Go to **Objects** → **External Dynamic Lists**  
+3. Click **Add**  
 
 ### Configure the EDL
 
@@ -73,7 +73,7 @@ Password: ••••••••
 
 ### Save Configuration
 
-4. Click **OK** to save the EDL object
+4. Click **OK** to save the EDL object  
 
 !!! warning "Don't Forget to Commit"
     Changes won't take effect until you commit. We'll commit after testing connectivity.
@@ -84,9 +84,9 @@ Password: ••••••••
 
 Before committing changes, test that the firewall can reach the EDL:
 
-1. In the External Dynamic Lists page, select your EDL object
-2. Click **Test Source**
-3. Wait for the test to complete
+1. In the External Dynamic Lists page, select your EDL object  
+2. Click **Test Source**  
+3. Wait for the test to complete  
 
 **Expected Results:**
 
@@ -102,9 +102,9 @@ Before committing changes, test that the firewall can reach the EDL:
 
 ### Navigate to Policies
 
-1. Go to **Policies** → **Security**
-2. Click **Add** to create a new policy
-3. Place the new policy **above** any general deny rules
+1. Go to **Policies** → **Security**  
+2. Click **Add** to create a new policy  
+3. Place the new policy **above** any general deny rules  
 
 ### Configure Allow Policy
 
@@ -167,10 +167,10 @@ Log at Session Start: Yes
 
 ## Step 5: Commit Changes
 
-1. Click **Commit** in the top-right corner
-2. Review the changes to be committed
-3. Add a comment (e.g., "Added Vesper Secure EDL integration")
-4. Click **Commit** to apply changes
+1. Click **Commit** in the top-right corner  
+2. Review the changes to be committed  
+3. Add a comment (e.g., "Added Vesper Secure EDL integration")  
+4. Click **Commit** to apply changes  
 
 Wait for the commit to complete successfully.
 
@@ -180,27 +180,27 @@ Wait for the commit to complete successfully.
 
 ### Verify EDL is Updating
 
-1. Go to **Objects** → **External Dynamic Lists**
-2. Select your EDL object
-3. Check the "Last Update" timestamp
-4. Verify status shows success
+1. Go to **Objects** → **External Dynamic Lists**  
+2. Select your EDL object  
+3. Check the "Last Update" timestamp  
+4. Verify status shows success  
 
 ### Test with a User Registration
 
-1. Have a test user register their IP through Vesper portal
-2. Wait for EDL refresh interval (5 minutes to 1 hour depending on your setting)
-3. Force a manual refresh if desired:
+1. Have a test user register their IP through Vesper portal  
+2. Wait for EDL refresh interval (5 minutes to 1 hour depending on your setting)  
+3. Force a manual refresh if desired:  
    - Select the EDL object
    - Click **Test Source** or wait for scheduled update
-4. Verify the test user's IP appears in the EDL
-5. Test VPN connection from the test user's location
+4. Verify the test user's IP appears in the EDL  
+5. Test VPN connection from the test user's location  
 
 ### Verify in Traffic Logs
 
-1. Go to **Monitor** → **Traffic**
-2. Look for connections from registered IPs
-3. Verify they're being allowed by your Vesper policy
-4. Check that unregistered IPs are being denied
+1. Go to **Monitor** → **Traffic**  
+2. Look for connections from registered IPs  
+3. Verify they're being allowed by your Vesper policy  
+4. Check that unregistered IPs are being denied  
 
 ---
 
@@ -214,27 +214,27 @@ Wait for the commit to complete successfully.
 
 **Solutions:**
 
-1. **Check Management Interface Connectivity:**
+1. **Check Management Interface Connectivity:**  
    ```
    > ping source <mgmt-interface> host edl.vespersecure.com
    ```
 
-2. **Verify DNS Resolution:**
+2. **Verify DNS Resolution:**  
    ```
    > show system info | match "DNS Server"
    > test dns-resolution edl.vespersecure.com
    ```
 
-3. **Test HTTPS Connectivity:**
+3. **Test HTTPS Connectivity:**  
    - Ensure outbound HTTPS (port 443) is allowed from management interface
    - Check if SSL inspection is interfering
 
-4. **Verify Credentials:**
+4. **Verify Credentials:**  
    - Double-check username and password
    - Ensure no extra spaces
    - Test manually: `curl -u "user:pass" https://edl.vespersecure.com/lists/your-id`
 
-5. **Check Certificate Profile:**
+5. **Check Certificate Profile:**  
    - Go to **Device** → **Certificate Management** → **Certificate Profile**
    - Ensure default profile allows connection to edl.vespersecure.com
 
@@ -246,21 +246,21 @@ Wait for the commit to complete successfully.
 
 **Solutions:**
 
-1. **Verify Policy Order:**
+1. **Verify Policy Order:**  
    - Go to **Policies** → **Security**
    - Ensure Vesper allow policy is **above** deny rules
    - Rearrange if necessary and commit
 
-2. **Check EDL Contents:**
+2. **Check EDL Contents:**  
    - Test source on EDL to see current IPs
    - Verify user's IP is in the list
    - Have user confirm their current IP matches
 
-3. **Force EDL Refresh:**
+3. **Force EDL Refresh:**  
    - Select EDL object
    - Click **Test Source** to force update
 
-4. **Review Traffic Logs:**
+4. **Review Traffic Logs:**  
    - Go to **Monitor** → **Traffic**
    - Find the blocked session
    - Click on it to see which policy is blocking
@@ -274,10 +274,10 @@ Wait for the commit to complete successfully.
 
 **Solutions:**
 
-1. Verify credentials in Vesper admin panel
-2. Check for typos or extra spaces when entering
-3. Re-generate credentials if needed
-4. Test with curl: `curl -v -u "user:pass" URL`
+1. Verify credentials in Vesper admin panel  
+2. Check for typos or extra spaces when entering  
+3. Re-generate credentials if needed  
+4. Test with curl: `curl -v -u "user:pass" URL`  
 
 ---
 
@@ -287,27 +287,27 @@ Wait for the commit to complete successfully.
 
 For enhanced security, you can pin the EDL server certificate:
 
-1. Download the certificate from edl.vespersecure.com
-2. Import to **Device** → **Certificate Management** → **Certificates**
-3. Create a Certificate Profile referencing this certificate
-4. Reference the profile in your EDL configuration
+1. Download the certificate from edl.vespersecure.com  
+2. Import to **Device** → **Certificate Management** → **Certificates**  
+3. Create a Certificate Profile referencing this certificate  
+4. Reference the profile in your EDL configuration  
 
 ### High Availability Configuration
 
 If using HA pair:
 
-1. Configure EDL on the active firewall
-2. Commit changes
-3. HA sync will replicate configuration to passive firewall
-4. Both firewalls will independently fetch the EDL
+1. Configure EDL on the active firewall  
+2. Commit changes  
+3. HA sync will replicate configuration to passive firewall  
+4. Both firewalls will independently fetch the EDL  
 
 ### Multiple VPN Gateways
 
 If you have multiple VPN gateways:
 
-1. Use the same EDL object in multiple security policies
-2. Create separate policies for each VPN gateway
-3. Maintain consistent policy ordering
+1. Use the same EDL object in multiple security policies  
+2. Create separate policies for each VPN gateway  
+3. Maintain consistent policy ordering  
 
 ---
 
@@ -337,9 +337,9 @@ If you have multiple VPN gateways:
 
 After Palo Alto integration:
 
-1. **[Configure User Management](../user-management.md)** - Monitor user registrations
-2. **[Test with pilot users](../user-management.md#onboarding-new-users)** - Validate the complete flow
-3. **[Review best practices](../../resources/best-practices.md)** - Optimize your deployment
+1. **[Configure User Management](../user-management.md)** - Monitor user registrations  
+2. **[Test with pilot users](../user-management.md#onboarding-new-users)** - Validate the complete flow  
+3. **[Review best practices](../../resources/best-practices.md)** - Optimize your deployment  
 
 ---
 

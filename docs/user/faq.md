@@ -24,11 +24,11 @@ The registration itself takes less than 1 minute. After submitting, your IP is i
 
 ### How do I register my location?
 
-1. Visit [access.vespersecure.com](https://access.vespersecure.com)
-2. Log in with your corporate credentials
-3. Choose Permanent or Temporary
-4. Submit your registration
-5. Wait for firewall refresh (typically 5-60 minutes)
+1. Visit [access.vespersecure.com](https://access.vespersecure.com)  
+2. Log in with your corporate credentials  
+3. Choose Permanent or Temporary  
+4. Submit your registration  
+5. Wait for firewall refresh (typically 5-60 minutes)  
 
 [See detailed instructions](./get-ip-added.md)
 
@@ -69,18 +69,18 @@ Yes! You can have multiple permanent locations and register temporary ones as ne
 ### What if I'm traveling?
 
 Register each new location as Temporary before connecting to VPN:
-1. Arrive at new location
-2. Register at [access.vespersecure.com](https://access.vespersecure.com)
-3. Wait for firewall refresh (typically 5-60 minutes)
-4. Connect to VPN
+1. Arrive at new location  
+2. Register at [access.vespersecure.com](https://access.vespersecure.com)  
+3. Wait for firewall refresh (typically 5-60 minutes)  
+4. Connect to VPN  
 
 ### What if I forgot to register before leaving?
 
 Register from your current location:
-1. Visit [access.vespersecure.com](https://access.vespersecure.com) 
-2. Register as Temporary
-3. Wait for firewall refresh (typically 5-60 minutes)
-4. Connect
+1. Visit [access.vespersecure.com](https://access.vespersecure.com)  
+2. Register as Temporary  
+3. Wait for firewall refresh (typically 5-60 minutes)  
+4. Connect  
 
 ### What if I moved to a new home?
 
@@ -95,11 +95,11 @@ Register your new address as Permanent. Your administrator will eventually remov
 **Wait for the firewall to refresh** - This typically takes 5-60 minutes depending on your organization's configuration.
 
 **Still not working?**
-1. Disconnect and reconnect VPN
-2. Check your internet connection
-3. Verify you're at the location you registered
-4. Verify your IP hasn't changed
-5. Contact your IT administrator
+1. Disconnect and reconnect VPN  
+2. Check your internet connection  
+3. Verify you're at the location you registered  
+4. Verify your IP hasn't changed  
+5. Contact your IT administrator  
 
 ### My VPN was working, now it's not
 
@@ -112,11 +112,11 @@ Register your new address as Permanent. Your administrator will eventually remov
 ### I can't access the portal
 
 **Try these steps:**
-1. Check your internet connection
-2. Try a different browser
-3. Clear browser cache and cookies
-4. Try incognito/private mode
-5. Contact your IT administrator
+1. Check your internet connection  
+2. Try a different browser  
+3. Clear browser cache and cookies  
+4. Try incognito/private mode  
+5. Contact your IT administrator  
 
 ### The portal won't accept my login
 
@@ -130,18 +130,18 @@ Register your new address as Permanent. Your administrator will eventually remov
 
 ### What if my location is revoked?
 
-1. You'll receive a notification with the reason
-2. Contact your IT administrator for clarification
-3. They may ask for more information
-4. Submit a new registration if approved
+1. You'll receive a notification with the reason  
+2. Contact your IT administrator for clarification  
+3. They may ask for more information  
+4. Submit a new registration if approved  
 
 ### My temporary access expired
 
 Simply register again:
-1. Visit [access.vespersecure.com](https://access.vespersecure.com)
-2. Choose Temporary
-3. Wait 5 minutes
-4. Connect
+1. Visit [access.vespersecure.com](https://access.vespersecure.com)  
+2. Choose Temporary  
+3. Wait 5 minutes  
+4. Connect  
 
 ---
 

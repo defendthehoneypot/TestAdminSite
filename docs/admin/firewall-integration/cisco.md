@@ -16,10 +16,10 @@ Cisco ASA and FTD devices support dynamic object groups that can pull IP address
 
 ### What You'll Configure
 
-1. Dynamic object group for IP addresses
-2. External URL configuration with authentication
-3. ACL entries using the dynamic object group
-4. Testing and validation
+1. Dynamic object group for IP addresses  
+2. External URL configuration with authentication  
+3. ACL entries using the dynamic object group  
+4. Testing and validation  
 
 ### Time Required
 
@@ -248,23 +248,23 @@ show dynamic-object Vesper-EDL
 
 ### Test the Complete Flow
 
-1. **User Registers**: Have a test user register their IP through Vesper portal
+1. **User Registers**: Have a test user register their IP through Vesper portal  
 
-2. **Wait for Update**: Wait for the poll interval (5 minutes, 15 minutes, etc.)
+2. **Wait for Update**: Wait for the poll interval (5 minutes, 15 minutes, etc.)  
 
-3. **Verify IP in Object**: Check that the IP appears:
+3. **Verify IP in Object**: Check that the IP appears:  
    ```cisco
    show dynamic-object Vesper-EDL | grep test-user-ip
    ```
 
-4. **Check ACL Hits**: Verify ACL is being hit:
+4. **Check ACL Hits**: Verify ACL is being hit:  
    ```cisco
    show access-list outside_access_in | grep Vesper-Allowed-IPs
    ```
 
-5. **Test Connection**: Have the test user attempt VPN connection
+5. **Test Connection**: Have the test user attempt VPN connection  
 
-6. **Review Logs**: Check syslog or ASDM logs for allowed connections
+6. **Review Logs**: Check syslog or ASDM logs for allowed connections  
 
 ---
 
@@ -279,32 +279,32 @@ show dynamic-object Vesper-EDL
 
 **Solutions:**
 
-1. **Test DNS Resolution:**
+1. **Test DNS Resolution:**  
    ```cisco
    ping edl.vespersecure.com
    ```
 
-2. **Verify Outbound HTTPS:**
+2. **Verify Outbound HTTPS:**  
    - Ensure management interface can reach internet
    - Check ACLs don't block outbound HTTPS from firewall
 
-3. **Test from CLI:**
+3. **Test from CLI:**  
    ```cisco
    test dynamic-object update Vesper-EDL
    ```
 
-4. **Check Credentials:**
+4. **Check Credentials:**  
    - Verify username and password are correct
    - Ensure no extra spaces or special characters causing issues
    - Test manually with curl from another system
 
-5. **Review Configuration:**
+5. **Review Configuration:**  
    ```cisco
    show run dynamic-object
    ```
    Verify URL, username, and authentication are correct
 
-6. **Check SSL/TLS:**
+6. **Check SSL/TLS:**  
    - Ensure ASA/FTD has proper CA certificates
    - Verify SSL/TLS version compatibility
 
@@ -316,21 +316,21 @@ show dynamic-object Vesper-EDL
 
 **Solutions:**
 
-1. **Verify Users Have Registered:**
+1. **Verify Users Have Registered:**  
    - Check Vesper admin panel
    - Confirm active registrations exist
 
-2. **Check URL Format:**
+2. **Check URL Format:**  
    - Ensure EDL URL is correct
    - Test the URL manually: `curl -u "user:pass" URL`
 
-3. **Force Update:**
+3. **Force Update:**  
    ```cisco
    clear dynamic-object Vesper-EDL
    ```
    Wait 30 seconds, then check again
 
-4. **Review Logs:**
+4. **Review Logs:**  
    ```cisco
    show logging | grep dynamic-object
    ```
@@ -343,29 +343,29 @@ show dynamic-object Vesper-EDL
 
 **Solutions:**
 
-1. **Verify ACL Order:**
+1. **Verify ACL Order:**  
    ```cisco
    show access-list outside_access_in
    ```
    Ensure Vesper permit rules are **before** any deny rules
 
-2. **Check ACL Configuration:**
+2. **Check ACL Configuration:**  
    - Verify ACL references correct object group
    - Ensure ACL is applied to correct interface
    - Confirm protocol and port match your VPN type
 
-3. **Verify IP in Object:**
+3. **Verify IP in Object:**  
    ```cisco
    show dynamic-object Vesper-EDL | include user-ip-address
    ```
 
-4. **Check ACL Hits:**
+4. **Check ACL Hits:**  
    ```cisco
    show access-list outside_access_in | grep Vesper-Allowed-IPs
    ```
    Look for hit counts to confirm traffic is matching
 
-5. **Review Connection Logs:**
+5. **Review Connection Logs:**  
    ```cisco
    show conn | grep user-ip-address
    show logging | grep user-ip-address
@@ -379,7 +379,7 @@ show dynamic-object Vesper-EDL
 
 **Solutions:**
 
-1. Remove and re-create the dynamic object with correct credentials:
+1. Remove and re-create the dynamic object with correct credentials:  
    ```cisco
    configure terminal
    no dynamic-object update-url Vesper-EDL
@@ -388,7 +388,7 @@ show dynamic-object Vesper-EDL
      basic-auth username org_xxxxx password your-password
    ```
 
-2. Test credentials manually from another system:
+2. Test credentials manually from another system:  
    ```bash
    curl -v -u "org_xxxxx:your-password" https://edl.vespersecure.com/lists/your-id
    ```
@@ -435,10 +435,10 @@ object-group network Vesper-Allowed-IPs
 
 For HA pairs:
 
-1. Configure on the active unit
-2. Configuration syncs to standby automatically
-3. Both units fetch the EDL independently
-4. Verify connectivity from both units
+1. Configure on the active unit  
+2. Configuration syncs to standby automatically  
+3. Both units fetch the EDL independently  
+4. Verify connectivity from both units  
 
 ---
 
@@ -506,9 +506,9 @@ show logging | grep dynamic-object
 
 After Cisco ASA/FTD integration:
 
-1. **[Configure User Management](../user-management.md)** - Monitor user registrations
-2. **[Test with pilot users](../user-management.md#onboarding-new-users)** - Validate the complete flow
-3. **[Review best practices](../../resources/best-practices.md)** - Optimize your deployment
+1. **[Configure User Management](../user-management.md)** - Monitor user registrations  
+2. **[Test with pilot users](../user-management.md#onboarding-new-users)** - Validate the complete flow  
+3. **[Review best practices](../../resources/best-practices.md)** - Optimize your deployment  
 
 ---
 

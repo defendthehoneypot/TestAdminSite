@@ -16,10 +16,10 @@ Juniper SRX Series firewalls (JunOS 15.1X49+) support Dynamic Address Objects th
 
 ### What You'll Configure
 
-1. Dynamic address object pointing to Vesper EDL
-2. Security policy to allow registered IPs
-3. Zone configuration and policy ordering
-4. Testing and validation
+1. Dynamic address object pointing to Vesper EDL  
+2. Security policy to allow registered IPs  
+3. Zone configuration and policy ordering  
+4. Testing and validation  
 
 ### Time Required
 
@@ -297,14 +297,14 @@ show services security-intelligence url Vesper-EDL-Profile
 
 ### Test with User Registration
 
-1. Have a test user register their IP through Vesper portal
-2. Wait for SRX update interval (5-15 minutes depending on setting)
-3. Force manual update using command above
-4. Verify the test user's IP appears:
+1. Have a test user register their IP through Vesper portal  
+2. Wait for SRX update interval (5-15 minutes depending on setting)  
+3. Force manual update using command above  
+4. Verify the test user's IP appears:  
    ```junos
    show security dynamic-address address-name Vesper-Allowed-IPs | match test-user-ip
    ```
-5. Test VPN connection from test user's location (should succeed)
+5. Test VPN connection from test user's location (should succeed)  
 
 ### Check Security Policy Logs
 
@@ -336,29 +336,29 @@ Or view in J-Web:
 
 **Solutions:**
 
-1. **Check Connectivity:**
+1. **Check Connectivity:**  
    ```junos
    ping edl.vespersecure.com
    traceroute edl.vespersecure.com
    ```
 
-2. **Test HTTPS Connectivity:**
+2. **Test HTTPS Connectivity:**  
    ```junos
    show system connections | match 443
    ```
 
-3. **Verify DNS Resolution:**
+3. **Verify DNS Resolution:**  
    ```junos
    show host edl.vespersecure.com
    ```
 
-4. **Check System Logs:**
+4. **Check System Logs:**  
    ```junos
    show log messages | match security-intelligence
    ```
    Look for error messages related to URL feeds
 
-5. **Verify Credentials:**
+5. **Verify Credentials:**  
    - Review configuration:
      ```junos
      show services security-intelligence url Vesper-EDL-Profile
@@ -369,7 +369,7 @@ Or view in J-Web:
      commit
      ```
 
-6. **Test URL Manually:**
+6. **Test URL Manually:**  
    
    From a system with internet access:
    ```bash
@@ -384,11 +384,11 @@ Or view in J-Web:
 
 **Solutions:**
 
-1. **Verify Credentials:**
+1. **Verify Credentials:**  
    - Check username starts with `org_`
    - Confirm password is correct in Vesper admin panel
    
-2. **Re-enter Credentials:**
+2. **Re-enter Credentials:**  
    ```junos
    configure
    delete services security-intelligence url Vesper-EDL-Profile username
@@ -398,7 +398,7 @@ Or view in J-Web:
    commit
    ```
 
-3. **Test with Curl:**
+3. **Test with Curl:**  
    ```bash
    curl -v -u "org_xxxxx:password" https://edl.vespersecure.com/lists/your-id
    ```
@@ -412,43 +412,43 @@ Or view in J-Web:
 
 **Solutions:**
 
-1. **Verify Policy Order:**
+1. **Verify Policy Order:**  
    ```junos
    show security policies from-zone untrust to-zone trust
    ```
    Ensure `Allow-Vesper-Users` appears before deny policies
 
-2. **Reorder Policies if Needed:**
+2. **Reorder Policies if Needed:**  
    ```junos
    configure
    insert security policies from-zone untrust to-zone trust policy Allow-Vesper-Users before policy Deny-All
    commit
    ```
 
-3. **Check Dynamic Address Contents:**
+3. **Check Dynamic Address Contents:**  
    ```junos
    show security dynamic-address address-name Vesper-Allowed-IPs
    ```
    Verify user's IP is in the list
 
-4. **Force Update:**
+4. **Force Update:**  
    ```junos
    request services security-intelligence url Vesper-EDL-Profile update
    ```
 
-5. **Review Policy Matches:**
+5. **Review Policy Matches:**  
    ```junos
    show security policies hit-count
    ```
    Check if allow policy is being hit
 
-6. **Check Zones:**
+6. **Check Zones:**  
    ```junos
    show security zones
    ```
    Verify interfaces are in correct zones
 
-7. **Review Logs:**
+7. **Review Logs:**  
    ```junos
    show log messages | match "RT_FLOW"
    ```
@@ -462,21 +462,21 @@ Or view in J-Web:
 
 **Solutions:**
 
-1. **Check if Users Registered:**
+1. **Check if Users Registered:**  
    - Verify users have registered in Vesper portal
    - Empty EDL will result in empty dynamic address
 
-2. **Force Update:**
+2. **Force Update:**  
    ```junos
    request services security-intelligence url Vesper-EDL-Profile update
    ```
 
-3. **Check Feed Status:**
+3. **Check Feed Status:**  
    ```junos
    show services security-intelligence url Vesper-EDL-Profile
    ```
 
-4. **Test URL Manually:**
+4. **Test URL Manually:**  
    - Should return IP addresses if users registered
    - Empty response means no users registered (this is OK)
 
@@ -507,19 +507,19 @@ Create separate policies or combine in address-sets.
 
 For SRX HA cluster:
 
-1. Configure on primary node
-2. Configuration syncs to secondary via chassis cluster
-3. Both nodes independently fetch feeds
-4. Ensure both nodes have internet connectivity
+1. Configure on primary node  
+2. Configuration syncs to secondary via chassis cluster  
+3. Both nodes independently fetch feeds  
+4. Ensure both nodes have internet connectivity  
 
 ### IPv6 Support
 
 To support IPv6 addresses:
 
-1. Create separate dynamic address for IPv6
-2. Use IPv6-enabled feed URL if available
-3. Create IPv6 security policies
-4. Use `inet6` address family in policies
+1. Create separate dynamic address for IPv6  
+2. Use IPv6-enabled feed URL if available  
+3. Create IPv6 security policies  
+4. Use `inet6` address family in policies  
 
 ### Backup Static Access
 
@@ -566,18 +566,18 @@ For those preferring GUI configuration:
 
 ### Create Dynamic Address Object
 
-1. Log in to J-Web interface
-2. Go to **Configure** → **Security** → **Dynamic Address**
-3. Click **Create** 
-4. Configure:
+1. Log in to J-Web interface  
+2. Go to **Configure** → **Security** → **Dynamic Address**  
+3. Click **Create**  
+4. Configure:  
    - Address Name: `Vesper-Allowed-IPs`
    - Profile: `Vesper-EDL-Profile` (create profile first)
 
 ### Create Feed Profile
 
-1. Go to **Configure** → **Services** → **Security Intelligence**
-2. Click **Create** under URL Feeds
-3. Configure:
+1. Go to **Configure** → **Services** → **Security Intelligence**  
+2. Click **Create** under URL Feeds  
+3. Configure:  
    - Profile Name: `Vesper-EDL-Profile`
    - URL: `https://edl.vespersecure.com/lists/your-id`
    - Username: `org_xxxxx`
@@ -586,11 +586,11 @@ For those preferring GUI configuration:
 
 ### Create Security Policy
 
-1. Go to **Configure** → **Security** → **Policies**
-2. Select appropriate zone pair
-3. Click **Create Policy**
-4. Configure match conditions and permit action
-5. Apply configuration
+1. Go to **Configure** → **Security** → **Policies**  
+2. Select appropriate zone pair  
+3. Click **Create Policy**  
+4. Configure match conditions and permit action  
+5. Apply configuration  
 
 ---
 
@@ -598,9 +598,9 @@ For those preferring GUI configuration:
 
 After Juniper SRX integration:
 
-1. **[Configure User Management](../user-management.md)** - Monitor user registrations
-2. **[Test with pilot users](../user-management.md#onboarding-new-users)** - Validate the complete flow
-3. **[Review best practices](../../resources/best-practices.md)** - Optimize your deployment
+1. **[Configure User Management](../user-management.md)** - Monitor user registrations  
+2. **[Test with pilot users](../user-management.md#onboarding-new-users)** - Validate the complete flow  
+3. **[Review best practices](../../resources/best-practices.md)** - Optimize your deployment  
 
 ---
 
